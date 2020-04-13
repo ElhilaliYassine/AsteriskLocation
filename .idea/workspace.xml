@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Initial">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Downloads.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Contrat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Facture.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Parking.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Réservation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Utilisateur.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Véhicule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ant.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/DAO/ClientDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/DAO/DAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Sanction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Asterisk Location.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Asterisk Location.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,9 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings">
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -79,9 +70,6 @@
     <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="JavaFxApplication" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -97,13 +85,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="C:\Users\Yassine\IdeaProjects\Asterisk Location\.idea" />
-      </set>
-    </option>
-  </component>
   <component name="ProjectId" id="1aUbjUPvbZeYAYf8EEGtTTvIVAq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -113,7 +94,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -226,7 +206,9 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-      <workItem from="1586793259531" duration="9093000" />
+      <workItem from="1586793259531" duration="9830000" />
+      <workItem from="1586812333679" duration="44000" />
+      <workItem from="1586812399428" duration="5917000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <created>1586793573886</created>
@@ -239,7 +221,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -251,6 +233,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
@@ -259,14 +242,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="Initial" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="233" y="0" key="#Plugins" timestamp="1586812525413">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="0" key="#Plugins/0.0.1280.680@0.0.1280.680" timestamp="1586812525413" />
     <state x="233" y="0" key="#Project_Structure" timestamp="1586804191140">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1586804191140" />
-    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser" timestamp="1586810623653">
+    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser" timestamp="1586811514573">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1586810623653" />
+    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1586811514573" />
     <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1586793571698">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -283,26 +270,30 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="501" y="234" key="Github.ShareDialog/0.0.1280.680@0.0.1280.680" timestamp="1586793514296" />
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1586804550216">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1586811839716">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586804550216" />
-    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1586804550216">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586811839716" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1586811839713">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1586804550216" />
-    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1586804550216">
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1586811839713" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1586811839711">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1586804550216" />
-    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1586804550216">
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1586811839711" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1586811839715">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1586804550216" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1586811839715" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1586804103490">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1586804103490" />
+    <state x="371" y="102" key="extract.method.dialog" timestamp="1586814036432">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="102" key="extract.method.dialog/0.0.1280.680@0.0.1280.680" timestamp="1586814036432" />
     <state x="0" y="0" width="612" height="680" key="find.popup" timestamp="1586804172685">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
