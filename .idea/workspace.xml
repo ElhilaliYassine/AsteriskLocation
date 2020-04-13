@@ -82,6 +82,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
@@ -89,6 +90,7 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
@@ -198,10 +200,10 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1586793445052">
+    <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1586793571698">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="239" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1586793445052" />
+    <state x="239" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1586793571698" />
     <state x="421" y="82" key="FileChooserDialogImpl" timestamp="1586793472674">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
