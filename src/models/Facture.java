@@ -1,0 +1,39 @@
+package models;
+
+import java.time.LocalDate;
+
+public class Facture {
+    private int NFacture;
+    private LocalDate dateFacture;
+    private double MontantAPayer;
+    //Constructors
+    public Facture(int NFacture, LocalDate dateFacture, double montantAPayer) {
+        this.NFacture = NFacture;
+        this.dateFacture = dateFacture;
+        MontantAPayer = montantAPayer;
+    }
+    //Getters and setters
+    public int getNFacture() {
+        return NFacture;
+    }
+
+    public void setNFacture(int NFacture) {
+        this.NFacture = NFacture;
+    }
+
+    public LocalDate getDateFacture() {
+        return dateFacture;
+    }
+
+    public void setDateFacture(LocalDate dateFacture) {
+        this.dateFacture = dateFacture;
+    }
+
+    public double getMontantAPayer() {
+        return MontantAPayer;
+    }
+
+    public void setMontantAPayer(double montantAPayer) {
+        MontantAPayer = montantAPayer;
+    }
+}

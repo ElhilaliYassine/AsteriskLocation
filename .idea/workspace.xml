@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Initial">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Downloads.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Contrat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Facture.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Parking.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Réservation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Utilisateur.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Véhicule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ant.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Asterisk Location.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Asterisk Location.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +26,20 @@
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="DebuggerManager">
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
@@ -56,6 +82,13 @@
   <component name="FavoritesManager">
     <favorites_list name="JavaFxApplication" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
@@ -72,7 +105,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1aUbjUPvbZeYAYf8EEGtTTvIVAq" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
@@ -94,7 +129,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RunManager">
@@ -188,26 +226,55 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-      <workItem from="1586793259531" duration="276000" />
+      <workItem from="1586793259531" duration="9093000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial">
+      <created>1586793573886</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586793573886</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <MESSAGE value="Initial" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="233" y="0" key="#Project_Structure" timestamp="1586804191140">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1586804191140" />
+    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser" timestamp="1586810623653">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1586810623653" />
     <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1586793571698">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="239" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1586793571698" />
-    <state x="421" y="82" key="FileChooserDialogImpl" timestamp="1586793472674">
+    <state x="421" y="82" key="FileChooserDialogImpl" timestamp="1586804085688">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="82" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1586793472674" />
+    <state x="421" y="82" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1586804085688" />
     <state x="463" y="257" key="Github.CreateGistDialog" timestamp="1586793351422">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -216,9 +283,29 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="501" y="234" key="Github.ShareDialog/0.0.1280.680@0.0.1280.680" timestamp="1586793514296" />
-  </component>
-  <component name="antWorkspaceConfiguration">
-    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
-    <option name="FILTER_TARGETS" value="false" />
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1586804550216">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586804550216" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1586804550216">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1586804550216" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1586804550216">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1586804550216" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1586804550216">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1586804550216" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1586804103490">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1586804103490" />
+    <state x="0" y="0" width="612" height="680" key="find.popup" timestamp="1586804172685">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="0" y="0" width="612" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1586804172685" />
   </component>
 </project>
