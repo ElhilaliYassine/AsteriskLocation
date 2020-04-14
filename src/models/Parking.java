@@ -7,16 +7,25 @@ public class Parking {
     private int capacité;
     private String rue;
     private String arrondissement;
-    private Set<Véhicule> listeVéhicules=new HashSet<>();
+    private int nbrPlacesOccupées=0;
     //Constructors
-    public Parking(int NParking, int capacité, String rue, String arrondissement, Set<Véhicule> listeVéhicules) {
+    public Parking(int NParking, int capacité, String rue, String arrondissement,int nbrPlacesOccupées) {
         this.NParking = NParking;
         this.capacité = capacité;
         this.rue = rue;
         this.arrondissement = arrondissement;
-        this.listeVéhicules = listeVéhicules;
+        this.nbrPlacesOccupées++;
     }
     //Getters and setters
+
+    public int getNbrPlacesOccupées() {
+        return nbrPlacesOccupées;
+    }
+
+    public void setNbrPlacesOccupées(int nbrPlacesOccupées) {
+        this.nbrPlacesOccupées = nbrPlacesOccupées;
+    }
+
     public int getNParking() {
         return NParking;
     }
@@ -49,11 +58,8 @@ public class Parking {
         this.arrondissement = arrondissement;
     }
 
-    public Set<Véhicule> getListeVéhicules() {
-        return listeVéhicules;
-    }
-
-    public void setListeVéhicules(Set<Véhicule> listeVéhicules) {
-        this.listeVéhicules = listeVéhicules;
+    public int getPlacesVides()
+    {
+        return getCapacité()-getNbrPlacesOccupées();
     }
 }

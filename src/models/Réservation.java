@@ -6,13 +6,24 @@ public class Réservation {
     private int codeRéservation;
     private LocalDate dateDépart;
     private LocalDate dateRetour;
-    //constructors
+    private int idClient;
 
-    public Réservation(int codeRéservation, LocalDate dateDépart, LocalDate dateRetour) {
+    //constructors
+    public Réservation(int codeRéservation, LocalDate dateDépart, LocalDate dateRetour,int idClient) {
         this.codeRéservation = codeRéservation;
         this.dateDépart = dateDépart;
         this.dateRetour = dateRetour;
+        this.idClient=idClient;
     }
+
+    public int getIdClient() {
+        return idClient;
+    }
+
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
+    }
+
     //Getters and setters
     public int getCodeRéservation() {
         return codeRéservation;

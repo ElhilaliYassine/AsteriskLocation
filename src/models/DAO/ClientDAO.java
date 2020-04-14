@@ -21,12 +21,11 @@ public class ClientDAO extends DAO<Client>{
     public boolean create(Client obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO client(nomComplet,adresse,numGsm,uriImage) VALUES(?,?,?,?) WHERE codeClient=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO client(nomComplet,adresse,numGsm,uriImage) VALUES(?,?,?,?)");
             preparedStmt.setString(1,obj.getNomComplet());
             preparedStmt.setString(2,obj.getAdresse());
             preparedStmt.setInt(3,obj.getNumGsm());
             preparedStmt.setString(4,obj.getUriImage());
-            preparedStmt.setInt(5,obj.getCodeClient());
             preparedStmt.execute();
             return true;
         }
@@ -100,7 +99,7 @@ public class ClientDAO extends DAO<Client>{
             return new Client(id,"","",0,"");
         }
     }
-    public List<Client> listClients()
+    public List<Client> list()
     {
         try
         {
@@ -122,7 +121,7 @@ public class ClientDAO extends DAO<Client>{
     public Client find(String fullName) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM client WHERE comComplet=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM client WHERE nomComplet=?");
             preparedStmt.setString(1,fullName);
             ResultSet resultSet = preparedStmt.executeQuery();
             return new Client(resultSet.getInt("codeClient"),fullName,resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("uriImage"));
