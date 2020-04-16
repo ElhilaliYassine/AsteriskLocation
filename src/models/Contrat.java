@@ -6,15 +6,26 @@ public class Contrat {
     private int NContrat;
     private LocalDate dateContrat;
     private LocalDate dateEchéance;
+    private int idReservation;
 
     //Constructors
-    public Contrat(int NContrat, LocalDate dateContrat, LocalDate dateEchéance) {
+    public Contrat(int NContrat, LocalDate dateContrat, LocalDate dateEchéance,int idReservation) {
         this.NContrat = NContrat;
         this.dateContrat = dateContrat;
         this.dateEchéance = dateEchéance;
+        this.idReservation=idReservation;
     }
 
     //Getters and setters
+
+    public int getIdReservation() {
+        return idReservation;
+    }
+
+    public void setIdReservation(int idReservation) {
+        this.idReservation = idReservation;
+    }
+
     public int getNContrat() {
         return NContrat;
     }

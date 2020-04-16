@@ -22,9 +22,10 @@ public class FactureDAO extends DAO<Facture>{
     public boolean create(Facture obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO facture(dateFacture,MontantAPayer) VALUES(?,?)");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO facture(dateFacture,MontantAPayer,idContrat) VALUES(?,?,?)");
             preparedStmt.setObject(1,obj.getDateFacture());
             preparedStmt.setObject(2,obj.getMontantAPayer());
+            preparedStmt.setInt(3,obj.getIdContrat());
             preparedStmt.execute();
             return true;
         }
@@ -38,7 +39,7 @@ public class FactureDAO extends DAO<Facture>{
     public boolean delete(Facture obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("DELETE FROM facture WHERE NFacture=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("DELETE * FROM facture WHERE NFacture=?");
             preparedStmt.setInt(1,obj.getNFacture());
             preparedStmt.execute();
             return true;
@@ -52,10 +53,11 @@ public class FactureDAO extends DAO<Facture>{
     @Override
     public boolean update(Facture obj, int id) {
         try {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE facture SET dateFacture=?,MontantAPayer=? WHERE NFacture=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE facture SET dateFacture=?,MontantAPayer=?,idContrat=? WHERE NFacture=?");
             preparedStmt.setObject(1,obj.getDateFacture());
             preparedStmt.setObject(2,obj.getMontantAPayer());
-            preparedStmt.setInt(3, id);
+            preparedStmt.setInt(3,obj.getIdContrat());
+            preparedStmt.setInt(4, id);
             preparedStmt.execute();
             return true;
         }
@@ -73,11 +75,11 @@ public class FactureDAO extends DAO<Facture>{
             preparedStmt.setInt(1,id);
             ResultSet resultSet = preparedStmt.executeQuery();
             LocalDate dateFacture = (LocalDate) resultSet.getObject("dateFacture");
-            return new Facture(id,dateFacture,resultSet.getDouble("MontantAPayer"));
+            return new Facture(id,dateFacture,resultSet.getDouble("MontantAPayer"),resultSet.getInt("idContrat"));
         }
         catch(SQLException e)
         {
-            return new Facture(id,null,0.0);
+            return new Facture(id,null,0.0,0);
         }
     }
 
@@ -91,7 +93,7 @@ public class FactureDAO extends DAO<Facture>{
             while(resultSet.next())
             {
                 LocalDate dateFacture = (LocalDate) resultSet.getObject("dateFacture");
-                listFactures.add(new Facture(resultSet.getInt("NFacture"),dateFacture,resultSet.getDouble("MontantAPayer")));
+                listFactures.add(new Facture(resultSet.getInt("NFacture"),dateFacture,resultSet.getDouble("MontantAPayer"),resultSet.getInt("idContrat")));
             }
             Collections.sort(listFactures, Comparator.comparing(Facture::getDateFacture).reversed());
             return listFactures;

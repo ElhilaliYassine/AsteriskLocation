@@ -9,7 +9,11 @@ import java.sql.Statement;
 import java.util.List;
 
 public abstract class DAO<T> {
-    protected Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/AsteriskLocation","root","");
+    protected Connection connect;
+    {
+        connect = DriverManager.getConnection("jdbc:mysql://localhost/AsteriskLocation", "root", "");
+    }
+
     //Constructor
     public DAO(Connection conn) throws SQLException {
         this.connect = conn;

@@ -22,9 +22,10 @@ public class ContratDAO extends DAO<Contrat>{
     public boolean create(Contrat obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO Contrat(dateContrat,dateEcheance) VALUES(?,?)");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO Contrat(dateContrat,dateEcheance,idReservation) VALUES(?,?,?)");
             preparedStmt.setObject(1,obj.getDateContrat());
             preparedStmt.setObject(2,obj.getDateEchéance());
+            preparedStmt.setInt(3,obj.getIdReservation());
             preparedStmt.execute();
             return true;
         }
@@ -38,7 +39,7 @@ public class ContratDAO extends DAO<Contrat>{
     public boolean delete(Contrat obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("DELETE FROM contrat WHERE NContrat=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("DELETE * FROM contrat WHERE NContrat=?");
             preparedStmt.setInt(1,obj.getNContrat());
             preparedStmt.execute();
             return true;
@@ -53,10 +54,11 @@ public class ContratDAO extends DAO<Contrat>{
     public boolean update(Contrat obj, int id) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE contrat SET dateContrat=?,dateEcheance=? WHERE Ncontrat=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE contrat SET dateContrat=?,dateEcheance=?,idReservation=? WHERE Ncontrat=?");
             preparedStmt.setObject(1,obj.getDateContrat());
             preparedStmt.setObject(2,obj.getDateEchéance());
-            preparedStmt.setInt(3,id);
+            preparedStmt.setInt(3,obj.getIdReservation());
+            preparedStmt.setInt(4,id);
             preparedStmt.execute();
             return true;
         }
@@ -75,11 +77,11 @@ public class ContratDAO extends DAO<Contrat>{
             ResultSet resultSet = preparedStmt.executeQuery();
             LocalDate dateContrat = (LocalDate) resultSet.getObject("dateContrat");
             LocalDate dateEcheance = (LocalDate) resultSet.getObject("dateEcheance");
-            return new Contrat(id,dateContrat,dateEcheance);
+            return new Contrat(id,dateContrat,dateEcheance,resultSet.getInt("idReservation"));
         }
         catch(SQLException e)
         {
-            return new Contrat(id,null,null);
+            return new Contrat(id,null,null,0);
         }
     }
 
@@ -94,7 +96,7 @@ public class ContratDAO extends DAO<Contrat>{
             {
                 LocalDate dateContrat = (LocalDate) resultSet.getObject("dateContrat");
                 LocalDate dateEcheance = (LocalDate) resultSet.getObject("dateEcheance");
-                listContrats.add(new Contrat(resultSet.getInt("NContrat"),dateContrat,dateEcheance));
+                listContrats.add(new Contrat(resultSet.getInt("NContrat"),dateContrat,dateEcheance,resultSet.getInt("idReservation")));
             }
             Collections.sort(listContrats, Comparator.comparing(Contrat::getDateContrat).reversed());
             return listContrats;

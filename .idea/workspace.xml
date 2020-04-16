@@ -2,21 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Initial">
-      <change afterPath="$PROJECT_DIR$/src/models/Administrateur.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/DAO/ContratDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/DAO/FactureDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/DAO/ParkingDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/DAO/RéservationDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/DAO/SanctionDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/DAO/UtilisateurDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/DAO/VéhiculeDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asterisklocation.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/DAO/ClientDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/DAO/ClientDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Contrat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Contrat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/DAO/ContratDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/DAO/ContratDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/DAO/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/DAO/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Parking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Parking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Réservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Réservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Sanction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Sanction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Utilisateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Utilisateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/DAO/FactureDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/DAO/FactureDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/DAO/SanctionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/DAO/SanctionDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/DAO/VéhiculeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/DAO/VéhiculeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Facture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Facture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Véhicule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Véhicule.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,20 +25,6 @@
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
-  </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
   </component>
   <component name="DebuggerManager">
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
@@ -116,15 +99,28 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Yassine\IdeaProjects\Asterisk Location" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="git add ." />
+    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -220,7 +216,8 @@
       <workItem from="1586793259531" duration="9830000" />
       <workItem from="1586812333679" duration="44000" />
       <workItem from="1586812399428" duration="6483000" />
-      <workItem from="1586862938168" duration="19319000" />
+      <workItem from="1586862938168" duration="25082000" />
+      <workItem from="1586978378167" duration="4199000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <created>1586793573886</created>
@@ -262,10 +259,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1586804191140" />
-    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser" timestamp="1586902520420">
+    <state x="233" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586979837305">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1586902520420" />
+    <state x="233" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1586979837305" />
+    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser" timestamp="1586905692390">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1586905692390" />
     <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1586793571698">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -282,26 +283,26 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="501" y="234" key="Github.ShareDialog/0.0.1280.680@0.0.1280.680" timestamp="1586793514296" />
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1586811839716">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1586984053946">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586811839716" />
-    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1586811839713">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586984053946" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1586984053944">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1586811839713" />
-    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1586811839711">
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1586984053944" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1586984053942">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1586811839711" />
-    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1586811839715">
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1586984053942" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1586984053945">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1586811839715" />
-    <state x="121" y="0" key="SettingsEditor" timestamp="1586804103490">
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1586984053945" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1586979848449">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1586804103490" />
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1586979848449" />
     <state x="371" y="102" key="extract.method.dialog" timestamp="1586814036432">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -310,16 +311,13 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="0" y="0" width="612" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1586804172685" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/models/DAO/FactureDAO.java</url>
-          <line>93</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="297" y="151" key="run.anything.popup" timestamp="1586903098223">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1586903098223" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1586906195250">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1586906195250" />
   </component>
 </project>

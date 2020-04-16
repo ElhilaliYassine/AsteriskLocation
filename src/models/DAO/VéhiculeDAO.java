@@ -23,12 +23,13 @@ public class VéhiculeDAO extends DAO<Véhicule>{
     public boolean create(Véhicule obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO vehicule(marque,type,carburant,compteurKm,dateMiseEnCirculation) VALUES(?,?,?,?,?)");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO vehicule(marque,type,carburant,compteurKm,dateMiseEnCirculation,idParking) VALUES(?,?,?,?,?,?)");
             preparedStmt.setString(1,obj.getMarque());
             preparedStmt.setString(2,obj.getType());
             preparedStmt.setString(3,obj.getCarburant());
             preparedStmt.setDouble(4,obj.getCompteurKm());
             preparedStmt.setObject(5,obj.getDateMiseEnCirculation());
+            preparedStmt.setInt(6,obj.getIdParking());
             preparedStmt.execute();
             return true;
         }
@@ -42,7 +43,7 @@ public class VéhiculeDAO extends DAO<Véhicule>{
     public boolean delete(Véhicule obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("DELETE FROM vehicule WHERE NImmatriculation=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("DELETE * FROM vehicule WHERE NImmatriculation=?");
             preparedStmt.setInt(1,obj.getNImmatriculation());
             preparedStmt.execute();
             return true;
@@ -56,13 +57,14 @@ public class VéhiculeDAO extends DAO<Véhicule>{
     @Override
     public boolean update(Véhicule obj, int id) {
         try {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE vehicule SET marque=?,type=?,carburant=?,compteurKm=?,dateMiseEnCirculation=? WHERE NImmatriculation=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE vehicule SET marque=?,type=?,carburant=?,compteurKm=?,dateMiseEnCirculation=?,idParking=? WHERE NImmatriculation=?");
             preparedStmt.setString(1,obj.getMarque());
             preparedStmt.setString(2,obj.getType());
             preparedStmt.setString(3,obj.getCarburant());
             preparedStmt.setDouble(4,obj.getCompteurKm());
             preparedStmt.setObject(5,obj.getDateMiseEnCirculation());
-            preparedStmt.setInt(6, id);
+            preparedStmt.setInt(6,obj.getIdParking());
+            preparedStmt.setInt(7, id);
             preparedStmt.execute();
             return true;
         }
@@ -80,11 +82,11 @@ public class VéhiculeDAO extends DAO<Véhicule>{
             preparedStmt.setInt(1,id);
             ResultSet resultSet = preparedStmt.executeQuery();
             LocalDate dateMiseEnCirculation = (LocalDate) resultSet.getObject("dateMiseEnCirculation");
-            return new Véhicule(id,resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation);
+            return new Véhicule(id,resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation,resultSet.getInt("idParking"));
         }
         catch(SQLException e)
         {
-            return new Véhicule(id,"","","",0.0,null);
+            return new Véhicule(id,"","","",0.0,null,0);
         }
     }
 
@@ -98,7 +100,7 @@ public class VéhiculeDAO extends DAO<Véhicule>{
             while(resultSet.next())
             {
                 LocalDate dateMiseEnCirculation = (LocalDate) resultSet.getObject("dateMiseEnCirculation");
-                listVéhicules.add(new Véhicule(resultSet.getInt("NImmatriculation"),resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation));
+                listVéhicules.add(new Véhicule(resultSet.getInt("NImmatriculation"),resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation,resultSet.getInt("idParking")));
             }
             Collections.sort(listVéhicules, Comparator.comparing(Véhicule::getNImmatriculation).reversed());
             return listVéhicules;
