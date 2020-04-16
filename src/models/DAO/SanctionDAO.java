@@ -22,7 +22,7 @@ public class SanctionDAO extends DAO<Sanction>{
     public boolean create(Sanction obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO sanction(nbrJoursRetards,idContrat,idSanction) VALUES(?,?)");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO sanction(nbrJoursRetards,idContrat) VALUES(?,?)");
             preparedStmt.setInt(1,obj.getNbrJoursRetards());
             preparedStmt.setInt(2,obj.getIdContrat());
             preparedStmt.execute();

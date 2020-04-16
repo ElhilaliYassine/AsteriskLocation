@@ -9,16 +9,26 @@ public class Véhicule {
     private String carburant;
     private double compteurKm;
     private LocalDate dateMiseEnCirculation;
+    private int idParking;
     //Constructors
-    public Véhicule(int NImmatriculation, String marque, String type, String carburant, double compteurKm, LocalDate dateMiseEnCirculation) {
+    public Véhicule(int NImmatriculation, String marque, String type, String carburant, double compteurKm, LocalDate dateMiseEnCirculation,int idParking) {
         this.NImmatriculation = NImmatriculation;
         this.marque = marque;
         this.type = type;
         this.carburant = carburant;
         this.compteurKm = compteurKm;
         this.dateMiseEnCirculation = dateMiseEnCirculation;
+        this.idParking=idParking;
     }
     //Getters and setters
+    public int getIdParking() {
+        return idParking;
+    }
+
+    public void setIdParking(int idParking) {
+        this.idParking = idParking;
+    }
+
     public int getNImmatriculation() {
         return NImmatriculation;
     }

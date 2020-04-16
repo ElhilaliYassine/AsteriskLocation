@@ -6,13 +6,24 @@ public class Facture {
     private int NFacture;
     private LocalDate dateFacture;
     private double MontantAPayer;
+    private int idContrat;
     //Constructors
-    public Facture(int NFacture, LocalDate dateFacture, double montantAPayer) {
+    public Facture(int NFacture, LocalDate dateFacture, double montantAPayer,int idContrat) {
         this.NFacture = NFacture;
         this.dateFacture = dateFacture;
-        MontantAPayer = montantAPayer;
+        this.MontantAPayer = montantAPayer;
+        this.idContrat=idContrat;
     }
     //Getters and setters
+
+    public int getIdContrat() {
+        return idContrat;
+    }
+
+    public void setIdContrat(int idContrat) {
+        this.idContrat = idContrat;
+    }
+
     public int getNFacture() {
         return NFacture;
     }
