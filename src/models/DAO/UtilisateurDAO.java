@@ -14,9 +14,12 @@ import java.util.List;
 
 public class UtilisateurDAO extends DAO<Utilisateur>{
 
+
+
     public UtilisateurDAO(Connection conn) throws SQLException {
         super(conn);
     }
+
 
     @Override
     public boolean create(Utilisateur obj) {
@@ -122,17 +125,20 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
             return null;
         }
     }
-    public Utilisateur find(String fullName) {
+    public static Utilisateur find(String fullName) {
         try
         {
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM utilisateur WHERE nomComplet=?");
             preparedStmt.setString(1,fullName);
             ResultSet resultSet = preparedStmt.executeQuery();
-            return new Utilisateur(resultSet.getInt("codeUtilisateur"),fullName,resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("uriImage"),resultSet.getString("password"),resultSet.getString("email"));
+            while(resultSet.next()) {
+                return new Utilisateur(resultSet.getInt("codeUtilisateur"), fullName, resultSet.getString("adresse"), resultSet.getInt("numGsm"), resultSet.getString("uriImage"), resultSet.getString("password"), resultSet.getString("email"));
+            }
         }
         catch(SQLException e)
         {
             return new Utilisateur(0,fullName,"",0,"","","");
         }
+        return new Utilisateur(0,fullName,"",0,"","","");
     }
 }

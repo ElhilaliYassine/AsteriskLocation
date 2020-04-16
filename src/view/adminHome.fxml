@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="708.0" prefWidth="803.0" style="-fx-background-radius: 30; -fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.adminHomeController">
+   <children>
+      <Button fx:id="btnClose" focusTraversable="false" layoutX="770.0" layoutY="15.0" mnemonicParsing="false" onAction="#Close" onMouseClicked="#Close" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="7.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button focusTraversable="false" layoutX="752.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#Minimize" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: #feb72b; -fx-background-radius: 50; -fx-border-radius: 20;" text="_" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="7.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="64.0" fitWidth="142.0" layoutX="28.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Pictures/logo.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="-1.0" layoutY="135.0" prefHeight="574.0" prefWidth="218.0" style="-fx-background-radius: 0 41 0 30; -fx-background-color: #05071F;">
+         <children>
+            <Pane prefHeight="574.0" prefWidth="211.0">
+               <children>
+                  <Button layoutY="168.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Dashboard">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <JFXButton buttonType="RAISED" layoutX="62.0" layoutY="489.0" onAction="#Logout" onMouseClicked="#Logout" prefHeight="31.0" prefWidth="88.0" ripplerFill="#11bfff" style="-fx-background-color: #4059a9; -fx-background-radius: 18;" text="     Logout" textFill="WHITE">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" layoutX="75.0" layoutY="509.0" />
+                  <Button layoutY="214.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Utilisateur">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="51.0" layoutY="239.0" size="20" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="53.0" layoutY="194.0" size="20" />
+                  <Button layoutY="261.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="Client">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutY="308.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Vehicule">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CAR" layoutX="51.0" layoutY="333.0" size="20" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="56.0" layoutY="285.0" size="20" />
+                  <ImageView fitHeight="64.0" fitWidth="52.0" layoutX="83.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Pictures/user.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="name" alignment="CENTER" layoutY="96.0" prefHeight="16.0" prefWidth="218.0" text="Name" textFill="WHITE" />
+                  <Label fx:id="email" alignment="CENTER" layoutY="119.0" prefHeight="16.0" prefWidth="218.0" text="gmail" textFill="WHITE" />
+               </children>
+            </Pane>
+         </children></VBox>
+      <Label fx:id="dateTime" layoutX="12.0" layoutY="106.0" prefHeight="19.0" prefWidth="211.0" text="Time">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
