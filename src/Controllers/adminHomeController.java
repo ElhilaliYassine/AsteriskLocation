@@ -19,6 +19,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -45,6 +47,16 @@ public class adminHomeController implements Initializable {
     private Label name;
     @FXML
     private Label email;
+    //Last add
+    @FXML
+    private Button btnUtilisateur;
+    @FXML
+    private AnchorPane rootPane;
+    @FXML
+    private Button btnClient;
+    @FXML
+    private Button btnVehicule;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initClock();
@@ -59,6 +71,7 @@ public class adminHomeController implements Initializable {
     private void Minimize(MouseEvent event){
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setIconified(true);
+
     }
     @FXML
     private void Logout()
@@ -95,6 +108,33 @@ public class adminHomeController implements Initializable {
         Utilisateur user = UtilisateurDAO.find(LoginController.username.getText());
         name.setText(user.getNomComplet());
         email.setText(user.getEmail());
+    }
+
+    //last add + utilisateur.fxml created
+    @FXML
+    private void user() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/utilisateur.fxml"));
+        rootPane.getChildren().setAll(pane);
+        btnUtilisateur.setStyle("-fx-background-color : #1620A1;");
+        btnClient.setStyle("-fx-background-color : #05071F; :hover{fx-background-color : #10165F;}");
+        btnVehicule.setStyle("-fx-background-color : #05071F; :hover{fx-background-color : #10165F;}");
+
+    }
+    @FXML
+    private void client() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/client.fxml"));
+        rootPane.getChildren().setAll(pane);
+        btnClient.setStyle("-fx-background-color : #1620A1;");
+        btnUtilisateur.setStyle("-fx-background-color : #05071F; :hover{fx-background-color : #10165F;}");
+        btnVehicule.setStyle("-fx-background-color : #05071F; :hover{fx-background-color : #10165F;}");
+    }
+    @FXML
+    private void vehicule() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/vehicule.fxml"));
+        rootPane.getChildren().setAll(pane);
+        btnVehicule.setStyle("-fx-background-color : #1620A1;");
+        btnUtilisateur.setStyle("-fx-background-color : #05071F; :hover{fx-background-color : #10165F;}");
+        btnClient.setStyle("-fx-background-color : #05071F; :hover{fx-background-color : #10165F;}");
     }
 
 }
