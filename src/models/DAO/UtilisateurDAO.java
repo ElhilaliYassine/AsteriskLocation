@@ -1,5 +1,7 @@
 package models.DAO;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Client;
 import models.Utilisateur;
 
@@ -106,26 +108,7 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
             return new Utilisateur(id,"","",0,"","","");
         }
     }
-    public List<Utilisateur> list()
-    {
-        try
-        {
-            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM utilisateur");
-            ResultSet resultSet = preparedStmt.executeQuery();
-            List<Utilisateur> listUtilisateurs = new ArrayList<>();
-            while(resultSet.next())
-            {
-                listUtilisateurs.add(new Utilisateur(resultSet.getInt("codeUtilisateur"),resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("uriImage"),resultSet.getString("password"),resultSet.getString("email")));
-            }
-            Collections.sort(listUtilisateurs, Comparator.comparing(Utilisateur::getNomComplet));
-            return listUtilisateurs;
-        }
-        catch(SQLException e)
-        {
-            return null;
-        }
-    }
-    public static Utilisateur find(String fullName) {
+    public Utilisateur find(String fullName) {
         try
         {
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM utilisateur WHERE nomComplet=?");
@@ -141,4 +124,25 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
         }
         return new Utilisateur(0,fullName,"",0,"","","");
     }
+    //In javafx we use ObservableList to show Data
+    public ObservableList<Utilisateur> list()
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM utilisateur ORDER BY nomComplet");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<Utilisateur> listUtilisateurs = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                listUtilisateurs.add(new Utilisateur(resultSet.getInt("codeUtilisateur"),resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("uriImage"),resultSet.getString("password"),resultSet.getString("email")));
+            }
+            return listUtilisateurs;
+        }
+        catch(SQLException e)
+        {
+            return null;
+        }
+    }
+
+
 }

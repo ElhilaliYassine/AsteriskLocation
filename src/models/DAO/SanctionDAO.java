@@ -1,7 +1,10 @@
 package models.DAO;
 
-import models.Parking;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Sanction;
+import models.Véhicule;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -82,12 +85,12 @@ public class SanctionDAO extends DAO<Sanction>{
     }
 
     @Override
-    public List<Sanction> list() {
+    public ObservableList<Sanction> list() {
         try
         {
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM sanction DESC");
             ResultSet resultSet = preparedStmt.executeQuery();
-            List<Sanction> listSanctions = new ArrayList<>();
+            ObservableList<Sanction> listSanctions = FXCollections.observableArrayList();
             while(resultSet.next())
             {
                 listSanctions.add(new Sanction(resultSet.getInt("nbrJoursRetards"),resultSet.getInt("idContrat"),resultSet.getInt("idSanction")));

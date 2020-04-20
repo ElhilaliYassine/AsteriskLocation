@@ -26,6 +26,7 @@ package Controllers;
      import javax.swing.*;
      import java.io.IOException;
      import java.net.URL;
+     import java.sql.SQLException;
      import java.util.ResourceBundle;
      import java.util.logging.Level;
      import java.util.logging.Logger;
@@ -43,8 +44,17 @@ public class LoginController implements Initializable {
 
          @FXML
          private JFXPasswordField passwordField;
+         UtilisateurDAO utilisateurDAO;
+         {
+             try {
+                    utilisateurDAO = new UtilisateurDAO(connect);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+         }
 
-         @Override
+
+    @Override
          public void initialize(URL url, ResourceBundle resourceBundle) {
 
          }
@@ -91,7 +101,7 @@ public class LoginController implements Initializable {
                  if(connect == null)
                     status = -1;
                  else {
-                     User = UtilisateurDAO.find(usernameField.getText());
+                     User = utilisateurDAO.find(usernameField.getText());
                      status = checkLogin(User.getPassword());
                      username = usernameField;
                  }

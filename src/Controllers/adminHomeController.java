@@ -32,11 +32,14 @@ import models.Utilisateur;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static models.DAO.DAO.connect;
 
 public class adminHomeController implements Initializable {
     @FXML
@@ -56,6 +59,16 @@ public class adminHomeController implements Initializable {
     private Button btnClient;
     @FXML
     private Button btnVehicule;
+    UtilisateurDAO utilisateurDAO;
+
+    {
+        try {
+            utilisateurDAO = new UtilisateurDAO(connect);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -105,9 +118,10 @@ public class adminHomeController implements Initializable {
     }
     private void afficheInfos()
     {
-        Utilisateur user = UtilisateurDAO.find(LoginController.username.getText());
+        Utilisateur user = utilisateurDAO.find(LoginController.username.getText());
         name.setText(user.getNomComplet());
         email.setText(user.getEmail());
+
     }
 
     //last add + utilisateur.fxml created
@@ -116,8 +130,8 @@ public class adminHomeController implements Initializable {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/utilisateur.fxml"));
         rootPane.getChildren().setAll(pane);
         btnUtilisateur.setStyle("-fx-background-color : #1620A1;");
-        btnClient.setStyle("-fx-background-color : #05071F; :hover{fx-background-color : #10165F;}");
-        btnVehicule.setStyle("-fx-background-color : #05071F; :hover{fx-background-color : #10165F;}");
+        btnClient.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+        btnVehicule.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
 
     }
     @FXML
@@ -125,16 +139,16 @@ public class adminHomeController implements Initializable {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/client.fxml"));
         rootPane.getChildren().setAll(pane);
         btnClient.setStyle("-fx-background-color : #1620A1;");
-        btnUtilisateur.setStyle("-fx-background-color : #05071F; :hover{fx-background-color : #10165F;}");
-        btnVehicule.setStyle("-fx-background-color : #05071F; :hover{fx-background-color : #10165F;}");
+        btnUtilisateur.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+        btnVehicule.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
     }
     @FXML
     private void vehicule() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/vehicule.fxml"));
         rootPane.getChildren().setAll(pane);
         btnVehicule.setStyle("-fx-background-color : #1620A1;");
-        btnUtilisateur.setStyle("-fx-background-color : #05071F; :hover{fx-background-color : #10165F;}");
-        btnClient.setStyle("-fx-background-color : #05071F; :hover{fx-background-color : #10165F;}");
+        btnUtilisateur.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+        btnClient.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
     }
 
 }
