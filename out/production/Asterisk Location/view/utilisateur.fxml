@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -22,7 +23,7 @@
          <children>
             <Pane prefHeight="47.0" prefWidth="371.0">
                <children>
-                  <Button fx:id="btnClose" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnReturn" onMouseClicked="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
+                  <Button fx:id="btnClose" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnReturn" onMouseClicked="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
                      <font>
                         <Font name="System Bold" size="7.0" />
                      </font>
@@ -55,7 +56,7 @@
                   </Pane>
                </children>
             </HBox>
-            <TableView fx:id="table" layoutX="8.0" layoutY="126.0" prefHeight="337.0" prefWidth="643.0" style="-fx-background-color: white;">
+            <TableView fx:id="table" layoutX="8.0" layoutY="156.0" prefHeight="337.0" prefWidth="643.0" style="-fx-background-color: white;" stylesheets="@../Style/table.css">
                <columns>
                   <TableColumn fx:id="col_codeUtilisateur" prefWidth="50.0" text="id" />
                   <TableColumn fx:id="col_nomComplet" prefWidth="90.0" text="Nom" />
@@ -65,14 +66,16 @@
                   <TableColumn fx:id="col_adresse" minWidth="0.0" prefWidth="127.0" text="Adresse" />
                </columns>
             </TableView>
-            <JFXButton layoutX="557.0" layoutY="473.0" onAction="#createUser" onMouseClicked="#createUser" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: green;" text="    Add" textFill="WHITE">
+            <JFXButton layoutX="557.0" layoutY="503.0" onAction="#createUser" onMouseClicked="#createUser" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: green;" text="    Add" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="569.0" layoutY="496.0" size="17" />
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="569.0" layoutY="526.0" size="17" />
+            <JFXTextField layoutX="35.0" layoutY="119.0" promptText="recherhe" />
+            <FontAwesomeIconView glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
          </children>
       </AnchorPane>
    </children>
