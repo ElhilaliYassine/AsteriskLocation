@@ -1,8 +1,11 @@
 package Controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -56,6 +59,8 @@ public class utilisateurController implements Initializable {
     private AnchorPane rootPane;
     @FXML
     private Button btnClose;
+    @FXML
+    private JFXTextField filterField;
 
     UtilisateurDAO utilisateurDAO;
 
@@ -107,6 +112,33 @@ public class utilisateurController implements Initializable {
         DataUser();
 
 
+    }
+    public void search()
+    {
+
+        FilteredList<Utilisateur> filteredData = new FilteredList<>(list, p -> true);
+
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(Utilisateur -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (Utilisateur.getNomComplet().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (Utilisateur.getEmail().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (Utilisateur.getAdresse().toLowerCase().contains(lowerCaseFilter))
+                {
+                    return true;
+                }
+                return false;
+            });
+        });
+        SortedList<Utilisateur> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
     }
 
 }

@@ -81,6 +81,7 @@ public class createUserController implements Initializable {
             @Override
             public void handle(ActionEvent __) {
                 dialog.close();
+                clear();
             }
         });
         if(usernameField.getText().isEmpty() || passwordField.getText().isEmpty() || adresseField.getText().isEmpty() ||telephoneField.getText().isEmpty() ||emailField.getText().isEmpty())
@@ -100,6 +101,9 @@ public class createUserController implements Initializable {
         {
             Utilisateur user = new Utilisateur(0,usernameField.getText(),adresseField.getText(),Integer.parseInt(telephoneField.getText()),"",passwordField.getText(),emailField.getText());
             utilisateurDAO.create(user);
+            dialogContent.setBody(new Text("Utilisateur est enregistré"));
+            dialog.show();
+            return;
 
         }
     }

@@ -74,7 +74,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
             <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="569.0" layoutY="526.0" size="17" />
-            <JFXTextField layoutX="35.0" layoutY="119.0" promptText="recherhe" />
+            <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" promptText="recherhe" />
             <FontAwesomeIconView glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
          </children>
       </AnchorPane>
