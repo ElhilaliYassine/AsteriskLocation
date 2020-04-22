@@ -62,12 +62,13 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
     public boolean update(Utilisateur obj, int id) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE utilisateur SET nomComplet=?,adresse=?,numGsm=?,uriImage=? WHERE codeUtilisateur=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE utilisateur SET nomComplet=?,adresse=?,numGsm=?,uriImage=?,password=? WHERE codeUtilisateur=?");
             preparedStmt.setString(1,obj.getNomComplet());
             preparedStmt.setString(2,obj.getAdresse());
             preparedStmt.setInt(3,obj.getNumGsm());
             preparedStmt.setString(4,obj.getUriImage());
-            preparedStmt.setInt(5,id);
+            preparedStmt.setString(5,obj.getPassword());
+            preparedStmt.setInt(6,id);
             preparedStmt.execute();
             return true;
         }
