@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.utilisateurController">
@@ -66,17 +67,32 @@
                   <TableColumn fx:id="col_adresse" minWidth="0.0" prefWidth="127.0" text="Adresse" />
                </columns>
             </TableView>
-            <JFXButton layoutX="557.0" layoutY="503.0" onAction="#createUser" onMouseClicked="#createUser" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: green;" text="    Add" textFill="WHITE">
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="504.0" onAction="#createUser" onMouseClicked="#createUser" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
-            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="569.0" layoutY="526.0" size="17" />
+               </cursor>
+            </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="61.0" layoutY="527.0" size="19" />
             <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" promptText="recherhe" />
             <FontAwesomeIconView glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="91.0" layoutY="504.0" onAction="#deleteUser" prefHeight="32.0" prefWidth="89.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="TRASH" layoutX="160.0" layoutY="526.0" size="17" />
          </children>
       </AnchorPane>
+      <Pane layoutX="146.0" layoutY="160.0" prefHeight="337.0" prefWidth="363.0">
+         <children>
+            <StackPane fx:id="myStackPane" layoutX="23.0" layoutY="62.0" prefHeight="7.0" prefWidth="318.0" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

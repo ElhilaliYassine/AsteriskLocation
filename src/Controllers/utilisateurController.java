@@ -1,11 +1,15 @@
 package Controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import models.Utilisateur;
 import models.DAO.UtilisateurDAO;
 
@@ -55,12 +60,18 @@ public class utilisateurController implements Initializable {
 
     @FXML
     private AnchorPane loadPane;
+
     @FXML
     private AnchorPane rootPane;
+
     @FXML
     private Button btnClose;
+
     @FXML
     private JFXTextField filterField;
+
+    @FXML
+    private StackPane myStackPane;
 
     UtilisateurDAO utilisateurDAO;
 
@@ -139,6 +150,55 @@ public class utilisateurController implements Initializable {
         SortedList<Utilisateur> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
+    }
+    public void deleteUser()
+    {
+
+        String title = "Asterisk Location - Message :" ;
+
+
+        JFXDialogLayout dialogContent = new JFXDialogLayout();
+
+        dialogContent.setHeading(new Text(title));
+
+        JFXButton close = new JFXButton("Close");
+
+        close.setButtonType(JFXButton.ButtonType.RAISED);
+
+        close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
+        dialogContent.setActions(close);
+
+        JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+        dialog.setStyle("-fx-background-radius : 18");
+
+
+        close.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent __) {
+                dialog.close();
+                blur.setEffect(null);
+                list = utilisateurDAO.list();
+                DataUser();
+
+            }
+        });
+
+        if(table.getSelectionModel().isEmpty())
+        {
+            dialogContent.setBody(new Text("Selectionner l'utilisateur à supprimer !"));
+            dialog.show();
+            blur.setEffect(new GaussianBlur(10));
+            return;
+        }else{
+            Utilisateur user = utilisateurDAO.find(table.getSelectionModel().getSelectedItem().getNomComplet());
+            utilisateurDAO.delete(user);
+            dialogContent.setBody(new Text("L'utilisateur a été supprimé !"));
+            dialog.show();
+            blur.setEffect(new GaussianBlur(10));
+            return;
+
+        }
+        
     }
 
 }

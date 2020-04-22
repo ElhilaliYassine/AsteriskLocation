@@ -47,7 +47,7 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
     public boolean delete(Utilisateur obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("DELETE FROM utilisateur WHERE codeClient=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("DELETE FROM utilisateur WHERE codeUtilisateur=?");
             preparedStmt.setInt(1,obj.getCodeUtilisateur());
             preparedStmt.execute();
             return true;
