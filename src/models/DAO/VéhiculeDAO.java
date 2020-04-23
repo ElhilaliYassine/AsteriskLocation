@@ -1,6 +1,10 @@
 package models.DAO;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Facture;
+import models.Utilisateur;
 import models.Véhicule;
 
 import java.sql.Connection;
@@ -91,12 +95,12 @@ public class VéhiculeDAO extends DAO<Véhicule>{
     }
 
     @Override
-    public List<Véhicule> list() {
+    public ObservableList<Véhicule> list() {
         try
         {
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM vehicule DESC");
             ResultSet resultSet = preparedStmt.executeQuery();
-            List<Véhicule> listVéhicules = new ArrayList<>();
+            ObservableList<Véhicule> listVéhicules = FXCollections.observableArrayList();
             while(resultSet.next())
             {
                 LocalDate dateMiseEnCirculation = (LocalDate) resultSet.getObject("dateMiseEnCirculation");

@@ -1,5 +1,7 @@
 package models.DAO;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Client;
 
 import java.sql.Connection;
@@ -9,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 public class ClientDAO extends DAO<Client>{
 
@@ -99,13 +100,13 @@ public class ClientDAO extends DAO<Client>{
             return new Client(id,"","",0,"");
         }
     }
-    public List<Client> list()
+    public ObservableList<Client> list()
     {
         try
         {
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM client");
             ResultSet resultSet = preparedStmt.executeQuery();
-            List<Client> listClients = new ArrayList<>();
+            ObservableList<Client> listClients = FXCollections.observableArrayList();;
             while(resultSet.next())
             {
                 listClients.add(new Client(resultSet.getInt("codeClient"),resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("uriImage")));

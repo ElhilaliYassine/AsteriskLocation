@@ -1,5 +1,8 @@
 package models.DAO;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Contrat;
 import models.Réservation;
 
@@ -86,12 +89,12 @@ public class ContratDAO extends DAO<Contrat>{
     }
 
     @Override
-    public List<Contrat> list() {
+    public ObservableList<Contrat> list() {
         try
         {
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM contrat DESC");
             ResultSet resultSet = preparedStmt.executeQuery();
-            List<Contrat> listContrats = new ArrayList<>();
+            ObservableList<Contrat> listContrats = FXCollections.observableArrayList();
             while(resultSet.next())
             {
                 LocalDate dateContrat = (LocalDate) resultSet.getObject("dateContrat");

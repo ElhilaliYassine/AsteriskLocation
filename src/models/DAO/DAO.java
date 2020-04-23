@@ -1,5 +1,6 @@
 package models.DAO;
 
+import javafx.collections.ObservableList;
 import models.Client;
 
 import java.sql.Connection;
@@ -34,5 +35,5 @@ public abstract class DAO<T> {
     public abstract boolean delete(T obj);
     public abstract boolean update(T obj,int id);
     public abstract T find(int id);
-    public abstract List<T> list();
+    public abstract ObservableList<T> list();
 }

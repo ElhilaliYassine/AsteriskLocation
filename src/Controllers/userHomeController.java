@@ -30,12 +30,15 @@ import models.Utilisateur;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Controllers.LoginController;
+
+import static models.DAO.DAO.connect;
 
 public class userHomeController implements Initializable {
     @FXML
@@ -47,7 +50,15 @@ public class userHomeController implements Initializable {
     @FXML
     private Label email;
 
-    private Utilisateur user ;
+    UtilisateurDAO utilisateurDAO;
+    {
+        try {
+            utilisateurDAO = new UtilisateurDAO(connect);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -95,7 +106,7 @@ public class userHomeController implements Initializable {
     }
     private void afficheInfos()
     {
-        Utilisateur user = UtilisateurDAO.find(LoginController.username.getText());
+        Utilisateur user = utilisateurDAO.find(LoginController.username.getText());
         name.setText(user.getNomComplet());
         email.setText(user.getEmail());
     }

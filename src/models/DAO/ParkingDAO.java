@@ -1,13 +1,14 @@
 package models.DAO;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Parking;
-import models.Véhicule;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -84,12 +85,12 @@ public class ParkingDAO extends DAO<Parking>{
     }
 
     @Override
-    public List<Parking> list() {
+    public ObservableList<Parking> list() {
         try
         {
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM parking DESC");
             ResultSet resultSet = preparedStmt.executeQuery();
-            List<Parking> listParkings = new ArrayList<>();
+            ObservableList<Parking> listParkings = FXCollections.observableArrayList();
             while(resultSet.next())
             {
                 listParkings.add(new Parking(resultSet.getInt("NParking"),resultSet.getInt("capacite"),resultSet.getString("rue"),resultSet.getString("arrondissement"),resultSet.getInt("nbrPlacesOccupees")));

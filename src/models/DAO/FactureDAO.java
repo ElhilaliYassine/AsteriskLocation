@@ -1,5 +1,8 @@
 package models.DAO;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Facture;
 import models.Réservation;
 
@@ -84,12 +87,12 @@ public class FactureDAO extends DAO<Facture>{
     }
 
     @Override
-    public List<Facture> list() {
+    public ObservableList<Facture> list() {
         try
         {
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM facture DESC");
             ResultSet resultSet = preparedStmt.executeQuery();
-            List<Facture> listFactures = new ArrayList<>();
+            ObservableList<Facture> listFactures = FXCollections.observableArrayList();
             while(resultSet.next())
             {
                 LocalDate dateFacture = (LocalDate) resultSet.getObject("dateFacture");
