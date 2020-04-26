@@ -211,15 +211,12 @@ public class clientController implements Initializable {
         close.setButtonType(JFXButton.ButtonType.RAISED);
         close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
         dialogContent.setActions(close);
-        JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+        JFXDialog dialog = new JFXDialog(myStackPane1, dialogContent, JFXDialog.DialogTransition.BOTTOM);
         dialog.setStyle("-fx-background-radius : 18");
-        JFXDialog finalDialog = dialog;
         close.setOnAction(e -> {
-            finalDialog.close();
+            dialog.close();
         });
-        dialog = new JFXDialog(myStackPane1, dialogContent, JFXDialog.DialogTransition.BOTTOM);
-        dialog.setStyle("-fx-background-radius : 18");
-        Client client = new Client(0, nomCompletField.getText(), adresseField.getText(), Integer.parseInt(numGsmField.getText()), uriImageField.getText());
+        Client client = new Client(0, nomCompletField.getText(), adresseField.getText(), Integer.parseInt(numGsmField.getText()), "");
         if (clientDAO.update(client, table.getSelectionModel().getSelectedItem().getCodeClient())) {
             dialogContent.setBody(new Text("Le client à été modifié!"));
             dialog.show();
