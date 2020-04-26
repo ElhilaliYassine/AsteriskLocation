@@ -1,14 +1,10 @@
 package Controllers;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
+import Controllers.interfaces.Window;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,10 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -41,7 +34,7 @@ import java.util.logging.Logger;
 
 import static models.DAO.DAO.connect;
 
-public class adminHomeController implements Initializable {
+public class adminHomeController implements Initializable, Window {
     @FXML
     private Button btnClose;
     @FXML
@@ -50,7 +43,6 @@ public class adminHomeController implements Initializable {
     private Label name;
     @FXML
     private Label email;
-    //Last add
     @FXML
     private Button btnUtilisateur;
     @FXML
@@ -76,19 +68,19 @@ public class adminHomeController implements Initializable {
         afficheInfos();
 
     }
-    @FXML
-    private void Close(){
+
+    public void close() {
         Platform.exit();
     }
-    @FXML
-    private void Minimize(MouseEvent event){
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+    public void minimize(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
 
     }
+
     @FXML
-    private void Logout()
-    {
+    private void logout() {
         Stage stage = (Stage) btnClose.getScene().getWindow();
 
         Parent root = null;
@@ -106,9 +98,7 @@ public class adminHomeController implements Initializable {
     }
 
 
-
     private void initClock() {
-
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH : mm : ss");
             dateTime.setText(LocalDateTime.now().format(formatter));
@@ -116,15 +106,14 @@ public class adminHomeController implements Initializable {
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
     }
-    private void afficheInfos()
-    {
+
+    private void afficheInfos() {
         Utilisateur user = utilisateurDAO.find(LoginController.username.getText());
         name.setText(user.getNomComplet());
         email.setText(user.getEmail());
 
     }
 
-    //last add + utilisateur.fxml created
     @FXML
     private void user() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/utilisateur.fxml"));
@@ -134,6 +123,7 @@ public class adminHomeController implements Initializable {
         btnVehicule.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
 
     }
+
     @FXML
     private void client() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/client.fxml"));
@@ -142,6 +132,7 @@ public class adminHomeController implements Initializable {
         btnUtilisateur.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
         btnVehicule.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
     }
+
     @FXML
     private void vehicule() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/vehicule.fxml"));

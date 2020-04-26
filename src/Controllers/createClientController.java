@@ -1,15 +1,13 @@
 package Controllers;
 
 import com.jfoenix.controls.*;
-import com.mysql.jdbc.Connection;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import models.Client;
+import models.DAO.ClientDAO;
 import models.DAO.UtilisateurDAO;
 import models.Utilisateur;
 
@@ -19,33 +17,20 @@ import java.util.ResourceBundle;
 
 import static models.DAO.DAO.connect;
 
-public class createUserController implements Initializable {
-
+public class createClientController implements Initializable {
     @FXML
-    private AnchorPane rootPane;
-    @FXML
-    private JFXTextField usernameField;
-
-    @FXML
-    private JFXPasswordField passwordField;
-
-    @FXML
-    private JFXTextField emailField;
-
+    private JFXTextField nomCompletField;
     @FXML
     private JFXTextField adresseField;
-
     @FXML
-    private JFXTextField telephoneField;
-
+    private JFXTextField numGsmField;
     @FXML
     private StackPane myStackPane;
-
-    UtilisateurDAO utilisateurDAO;
+    ClientDAO clientDAO;
 
     {
         try {
-            utilisateurDAO = new UtilisateurDAO(connect);
+            clientDAO = new ClientDAO(connect);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -53,48 +38,42 @@ public class createUserController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
     @FXML
-    public void nouveauUtilisateur() {
-
+    public void newClient() {
         String title = "Asterisk Location - Message :";
-
-
         JFXDialogLayout dialogContent = new JFXDialogLayout();
-
         dialogContent.setHeading(new Text(title));
-
         JFXButton close = new JFXButton("Close");
-
         close.setButtonType(JFXButton.ButtonType.RAISED);
-
         close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
         dialogContent.setActions(close);
-
         JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
         dialog.setStyle("-fx-background-radius : 18");
-
-
         close.setOnAction(e -> {
             dialog.close();
             clear();
         });
-        if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty() || adresseField.getText().isEmpty() || telephoneField.getText().isEmpty() || emailField.getText().isEmpty()) {
-            dialogContent.setBody(new Text("Utilisateur invalide!"));
+        if (nomCompletField.getText().isEmpty() || adresseField.getText().isEmpty() || numGsmField.getText().isEmpty()) {
+            dialogContent.setBody(new Text("Client invalide!"));
             dialog.show();
             return;
-
         }
-        Utilisateur checker = utilisateurDAO.find(usernameField.getText());
-        if (checker.getCodeUtilisateur() != 0) {
-            dialogContent.setBody(new Text("Utilisateur déjà enregistré"));
-        }
-        else {
-            Utilisateur user = new Utilisateur(0, usernameField.getText(), adresseField.getText(), Integer.parseInt(telephoneField.getText()), "", passwordField.getText(), emailField.getText());
-            utilisateurDAO.create(user);
-            dialogContent.setBody(new Text("Utilisateur est enregistré"));
+        Client checker = clientDAO.find(nomCompletField.getText());
+        if (checker.getCodeClient() != 0) {
+            dialogContent.setBody(new Text("Le client déjà enregistré!"));
+        } else {
+            Client client=null;
+            try {
+                client = new Client(0, nomCompletField.getText(), adresseField.getText(), Integer.parseInt(numGsmField.getText()), "");
+            } catch (NumberFormatException e) {
+                dialogContent.setBody(new Text("Veuillez ajouter le code du pays!"));
+                dialog.show();
+                return;
+            }
+            clientDAO.create(client);
+            dialogContent.setBody(new Text("Le client à été enregistré"));
         }
         dialog.show();
         return;
@@ -102,12 +81,8 @@ public class createUserController implements Initializable {
 
     @FXML
     public void clear() {
-        usernameField.setText("");
-        passwordField.setText("");
-        emailField.setText("");
+        nomCompletField.setText("");
+        numGsmField.setText("");
         adresseField.setText("");
-        telephoneField.setText("");
-
     }
-
 }

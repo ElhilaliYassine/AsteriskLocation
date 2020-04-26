@@ -1,5 +1,6 @@
 package Controllers;
 
+import Controllers.interfaces.Window;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
@@ -40,7 +41,7 @@ import Controllers.LoginController;
 
 import static models.DAO.DAO.connect;
 
-public class userHomeController implements Initializable {
+public class userHomeController implements Initializable, Window {
     @FXML
     private Button btnClose;
     @FXML
@@ -67,16 +68,16 @@ public class userHomeController implements Initializable {
 
     }
     @FXML
-    private void Close(){
+    public void close(){
         Platform.exit();
     }
     @FXML
-    private void Minimize(MouseEvent event){
+    public void minimize(MouseEvent event){
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
     @FXML
-    private void Logout()
+    private void logout()
     {
         Stage stage = (Stage) btnClose.getScene().getWindow();
 

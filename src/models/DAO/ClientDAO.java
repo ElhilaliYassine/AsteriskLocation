@@ -3,12 +3,10 @@ package models.DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Client;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -125,11 +123,14 @@ public class ClientDAO extends DAO<Client>{
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM client WHERE nomComplet=?");
             preparedStmt.setString(1,fullName);
             ResultSet resultSet = preparedStmt.executeQuery();
-            return new Client(resultSet.getInt("codeClient"),fullName,resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("uriImage"));
+            while(resultSet.next()) {
+                return new Client(resultSet.getInt("codeClient"), fullName, resultSet.getString("adresse"), resultSet.getInt("numGsm"), resultSet.getString("uriImage"));
+            }
         }
         catch(SQLException e)
         {
             return new Client(0,fullName,"",0,"");
         }
+        return new Client(0,fullName,"",0,"");
     }
 }

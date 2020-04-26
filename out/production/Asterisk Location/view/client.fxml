@@ -1,27 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="586.0" style="-fx-background-color: white; -fx-background-radius: 10 0 30 0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.clientController">
    <children>
-      <HBox prefHeight="103.0" prefWidth="586.0" style="-fx-background-color: #ececec; -fx-background-radius: 10 0 0 10;">
+      <AnchorPane fx:id="rootPane" layoutX="150.0" layoutY="116.0" prefHeight="461.0" prefWidth="371.0">
+         <effect>
+            <DropShadow height="11.89" radius="5.445" width="11.89" />
+         </effect>
          <children>
-            <Pane prefHeight="103.0" prefWidth="612.0">
+            <Pane prefHeight="47.0" prefWidth="371.0">
                <children>
-                  <Label layoutX="79.0" layoutY="34.0" style="-fx-text-fill: #30475e;" text="Gestion des clients">
+                  <Button fx:id="btnClose" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnReturn" onMouseClicked="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
                      <font>
-                        <Font name="System Bold" size="27.0" />
+                        <Font name="System Bold" size="7.0" />
                      </font>
-                  </Label>
-                  <FontAwesomeIconView fill="#30475e" glyphName="USER" layoutX="40.0" layoutY="62.0" selectionFill="#30475e" size="30" />
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </Pane>
+            <AnchorPane fx:id="loadPane" layoutY="44.0" prefHeight="424.0" prefWidth="371.0">
+               <effect>
+                  <DropShadow height="11.89" radius="5.445" width="11.89" />
+               </effect>
+            </AnchorPane>
          </children>
-      </HBox>
+      </AnchorPane>
+      <AnchorPane fx:id="rootPane1" layoutX="150.0" layoutY="117.0" prefHeight="461.0" prefWidth="371.0" visible="false">
+         <effect>
+            <DropShadow height="11.89" radius="5.445" width="11.89" />
+         </effect>
+         <children>
+            <Pane prefHeight="47.0" prefWidth="371.0">
+               <children>
+                  <Button fx:id="btnClose1" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnUpdate" onMouseClicked="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="System Bold" size="7.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </Pane>
+            <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: #ececec; -fx-background-radius: 12;">
+               <children>
+                  <Label layoutX="37.0" layoutY="13.0" text="Modifier client" textFill="#1d71bf">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="nomCompletField" labelFloat="true" layoutX="37.0" layoutY="107.0" prefHeight="26.0" prefWidth="221.0" promptText="Nom Complet" unFocusColor="#1d71bf" />
+                  <FontAwesomeIconView fill="#1d71bf" glyphName="USERS" layoutX="14.0" layoutY="28.0" size="14" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+                  <JFXTextField fx:id="adresseField" labelFloat="true" layoutX="37.0" layoutY="167.0" prefHeight="26.0" prefWidth="221.0" promptText="Adresse" unFocusColor="#1d71bf" />
+                  <JFXTextField fx:id="numGsmField" labelFloat="true" layoutX="37.0" layoutY="225.0" prefHeight="26.0" prefWidth="221.0" promptText="Numéro Gsm" unFocusColor="#1d71bf" />
+                  <StackPane fx:id="myStackPane1" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
+                  <JFXButton layoutX="273.0" layoutY="375.0" onAction="#modifyClient" prefHeight="26.0" prefWidth="81.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="blur" prefHeight="668.0" prefWidth="659.0">
+         <children>
+            <HBox prefHeight="103.0" prefWidth="659.0" style="-fx-background-color: #ececec; -fx-background-radius: 10 0 0 10;">
+               <children>
+                  <Pane prefHeight="103.0" prefWidth="650.0">
+                     <children>
+                        <Label layoutX="79.0" layoutY="34.0" style="-fx-text-fill: #30475e;" text="Gestion des clients">
+                           <font>
+                              <Font name="System Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#30475e" glyphName="USERS" layoutX="34.0" layoutY="62.0" selectionFill="#30475e" size="30" />
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <TableView fx:id="table" layoutX="8.0" layoutY="156.0" prefHeight="337.0" prefWidth="643.0" style="-fx-background-color: white;" stylesheets="@../Style/table.css">
+               <columns>
+                  <TableColumn fx:id="col_codeClient" prefWidth="90.00001239776611" text="Code Client" />
+                  <TableColumn fx:id="col_nomComplet" prefWidth="137.9999771118164" text="Nom Complet" />
+                  <TableColumn fx:id="col_adresse" prefWidth="243.99998474121094" text="Adresse" />
+                  <TableColumn fx:id="col_numGsm" prefWidth="170.00003051757812" text="Numéro Gsm" />
+               </columns>
+            </TableView>
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="504.0" onAction="#createClient" onMouseClicked="#createClient" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="61.0" layoutY="527.0" size="19" />
+            <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" />
+            <FontAwesomeIconView glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="201.0" layoutY="504.0" onAction="#deleteClient" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="TRASH" layoutX="274.0" layoutY="527.0" size="17" />
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="95.0" layoutY="504.0" onAction="#updateClient" prefHeight="32.0" prefWidth="97.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Update" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" layoutX="169.0" layoutY="527.0" size="17" />
+         </children>
+      </AnchorPane>
+      <Pane fx:id="msgPane" layoutX="146.0" layoutY="167.0" prefHeight="15.0" prefWidth="363.0">
+         <children>
+            <StackPane fx:id="myStackPane" layoutX="23.0" layoutY="6.0" prefHeight="4.0" prefWidth="318.0" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
