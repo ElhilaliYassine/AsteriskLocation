@@ -112,7 +112,7 @@ public class clientController implements Initializable {
                 String lowerCaseFilter = newValue.toLowerCase();
                 if (client.getNomComplet().toLowerCase().contains(lowerCaseFilter)) return true;
                 if (client.getAdresse().toLowerCase().contains(lowerCaseFilter)) return true;
-                String numGsmString = String.valueOf(client.getNomComplet());
+                String numGsmString = String.valueOf(client.getNumGsm());
                 if (numGsmString.toLowerCase().contains(lowerCaseFilter)) return true;
                 return false;
             });
@@ -147,13 +147,6 @@ public class clientController implements Initializable {
         else {
             Client user = clientDAO.find(table.getSelectionModel().getSelectedItem().getNomComplet());
             clientDAO.delete(user);
-
-
-            System.out.println(user.getNomComplet());
-            System.out.println(user.getAdresse());
-            System.out.println(user.getCodeClient());
-
-
             dialogContent.setBody(new Text("Le client a été supprimé!"));
             dialog.show();
             blur.setEffect(new GaussianBlur(10));
