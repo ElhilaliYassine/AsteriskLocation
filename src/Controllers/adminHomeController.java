@@ -51,6 +51,8 @@ public class adminHomeController implements Initializable, Window {
     private Button btnClient;
     @FXML
     private Button btnVehicule;
+    @FXML
+    private Button btnParking;
     UtilisateurDAO utilisateurDAO;
 
     {
@@ -121,6 +123,7 @@ public class adminHomeController implements Initializable, Window {
         btnUtilisateur.setStyle("-fx-background-color : #1620A1;");
         btnClient.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
         btnVehicule.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+        btnParking.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
 
     }
 
@@ -131,6 +134,7 @@ public class adminHomeController implements Initializable, Window {
         btnClient.setStyle("-fx-background-color : #1620A1;");
         btnUtilisateur.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
         btnVehicule.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+        btnParking.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
     }
 
     @FXML
@@ -140,6 +144,16 @@ public class adminHomeController implements Initializable, Window {
         btnVehicule.setStyle("-fx-background-color : #1620A1;");
         btnUtilisateur.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
         btnClient.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+        btnParking.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+    }
+    @FXML
+    private void parking() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/parking.fxml"));
+        rootPane.getChildren().setAll(pane);
+        btnParking.setStyle("-fx-background-color : #1620A1;");
+        btnUtilisateur.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+        btnClient.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+        btnVehicule.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
     }
 
 }

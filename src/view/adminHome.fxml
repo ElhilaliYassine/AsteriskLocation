@@ -79,6 +79,12 @@
                         </ImageView>
                         <Label fx:id="name" alignment="CENTER" layoutY="96.0" prefHeight="16.0" prefWidth="218.0" text="Name" textFill="WHITE" />
                         <Label fx:id="email" alignment="CENTER" layoutY="119.0" prefHeight="16.0" prefWidth="218.0" text="gmail" textFill="WHITE" />
+                  <Button fx:id="btnParking" layoutY="358.0" mnemonicParsing="false" onAction="#parking" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Parking">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <FontAwesomeIconView fill="WHITE" glyphName="MAP" layoutX="51.0" layoutY="383.0" size="20" />
                     </children>
                 </Pane>
             </children>
