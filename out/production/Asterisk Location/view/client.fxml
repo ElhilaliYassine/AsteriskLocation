@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.clientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.clientController">
    <children>
       <AnchorPane fx:id="rootPane" layoutX="150.0" layoutY="116.0" prefHeight="461.0" prefWidth="371.0">
          <effect>
@@ -83,9 +83,9 @@
       </AnchorPane>
       <AnchorPane fx:id="blur" prefHeight="668.0" prefWidth="659.0">
          <children>
-            <HBox prefHeight="103.0" prefWidth="659.0" style="-fx-background-color: #ececec; -fx-background-radius: 10 0 0 10;">
+            <HBox prefHeight="103.0" prefWidth="683.0" style="-fx-background-color: #ececec; -fx-background-radius: 10 0 0 10;">
                <children>
-                  <Pane prefHeight="103.0" prefWidth="650.0">
+                  <Pane prefHeight="103.0" prefWidth="661.0">
                      <children>
                         <Label layoutX="79.0" layoutY="34.0" style="-fx-text-fill: #30475e;" text="Gestion des clients">
                            <font>
@@ -97,12 +97,12 @@
                   </Pane>
                </children>
             </HBox>
-            <TableView fx:id="table" layoutX="8.0" layoutY="156.0" prefHeight="337.0" prefWidth="643.0" style="-fx-background-color: white;" stylesheets="@../Style/table.css">
+            <TableView fx:id="table" layoutX="8.0" layoutY="156.0" prefHeight="337.0" prefWidth="671.0" style="-fx-background-color: white;" stylesheets="@../Style/table.css">
                <columns>
-                  <TableColumn fx:id="col_codeClient" prefWidth="90.00001239776611" text="Code Client" />
-                  <TableColumn fx:id="col_nomComplet" prefWidth="137.9999771118164" text="Nom Complet" />
-                  <TableColumn fx:id="col_adresse" prefWidth="243.99998474121094" text="Adresse" />
-                  <TableColumn fx:id="col_numGsm" prefWidth="165.0" text="Numéro Gsm" />
+                  <TableColumn fx:id="col_codeClient" prefWidth="103.0" text="Code Client" />
+                  <TableColumn fx:id="col_nomComplet" prefWidth="126.0" text="Nom Complet" />
+                  <TableColumn fx:id="col_adresse" prefWidth="282.0" text="Adresse" />
+                  <TableColumn fx:id="col_numGsm" prefWidth="154.0" text="Numéro Gsm" />
                </columns>
             </TableView>
             <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="504.0" onAction="#createClient" onMouseClicked="#createClient" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
@@ -136,7 +136,7 @@
             <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" layoutX="169.0" layoutY="527.0" size="17" />
          </children>
       </AnchorPane>
-      <Pane fx:id="msgPane" layoutX="146.0" layoutY="167.0" prefHeight="15.0" prefWidth="363.0">
+      <Pane fx:id="msgPane" layoutX="150.0" layoutY="167.0" prefHeight="15.0" prefWidth="363.0">
          <children>
             <StackPane fx:id="myStackPane" layoutX="23.0" layoutY="6.0" prefHeight="4.0" prefWidth="318.0" />
          </children>

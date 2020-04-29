@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="709.0" prefWidth="876.0" style="-fx-background-radius: 30; -fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.adminHomeController">
+<AnchorPane prefHeight="709.0" prefWidth="900.0" style="-fx-background-radius: 30; -fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.adminHomeController">
     <children>
-        <Button fx:id="btnClose" focusTraversable="false" layoutX="843.0" layoutY="11.0" mnemonicParsing="false" onAction="#close" onMouseClicked="#close" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
+        <Button fx:id="btnClose" focusTraversable="false" layoutX="863.0" layoutY="11.0" mnemonicParsing="false" onAction="#close" onMouseClicked="#close" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="7.0" />
             </font>
@@ -22,7 +22,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button focusTraversable="false" layoutX="825.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#minimize" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: #feb72b; -fx-background-radius: 50; -fx-border-radius: 20;" text="_" textFill="WHITE">
+        <Button focusTraversable="false" layoutX="845.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#minimize" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: #feb72b; -fx-background-radius: 50; -fx-border-radius: 20;" text="_" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="7.0" />
             </font>
@@ -94,6 +94,6 @@
                 <Font name="System Bold" size="13.0" />
             </font>
         </Label>
-        <AnchorPane fx:id="rootPane" layoutX="217.0" layoutY="41.0" prefHeight="668.0" prefWidth="659.0" style="-fx-background-radius: 30 0 30 0;" />
+        <AnchorPane fx:id="rootPane" layoutX="217.0" layoutY="41.0" prefHeight="668.0" prefWidth="683.0" style="-fx-background-radius: 30 0 30 0;" />
     </children>
 </AnchorPane>

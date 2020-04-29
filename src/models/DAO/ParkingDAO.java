@@ -88,14 +88,14 @@ public class ParkingDAO extends DAO<Parking>{
     public ObservableList<Parking> list() {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM parking DESC");
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM parking");
             ResultSet resultSet = preparedStmt.executeQuery();
             ObservableList<Parking> listParkings = FXCollections.observableArrayList();
             while(resultSet.next())
             {
                 listParkings.add(new Parking(resultSet.getInt("NParking"),resultSet.getInt("capacite"),resultSet.getString("rue"),resultSet.getString("arrondissement"),resultSet.getInt("nbrPlacesOccupees")));
             }
-            Collections.sort(listParkings, Comparator.comparing(Parking::getPlacesVides).reversed());
+            //Collections.sort(listParkings, Comparator.comparing(Parking::getPlacesVides).reversed());
             return listParkings;
         }
         catch(SQLException e)

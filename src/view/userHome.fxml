@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="709.0" prefWidth="876.0" style="-fx-background-radius: 30; -fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.userHomeController">
+<AnchorPane prefHeight="709.0" prefWidth="900.0" style="-fx-background-radius: 30; -fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.userHomeController">
    <children>
-      <Button fx:id="btnClose" focusTraversable="false" layoutX="842.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" onMouseClicked="#close" prefHeight="16.0" prefWidth="4.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
+      <Button fx:id="btnClose" focusTraversable="false" layoutX="871.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" onMouseClicked="#close" prefHeight="16.0" prefWidth="4.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
          <font>
             <Font name="System Bold" size="8.0" />
          </font>
@@ -22,7 +22,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button focusTraversable="false" layoutX="824.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#minimize" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: #feb72b; -fx-background-radius: 50; -fx-border-radius: 20;" text="-" textFill="WHITE">
+      <Button focusTraversable="false" layoutX="853.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#minimize" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: #feb72b; -fx-background-radius: 50; -fx-border-radius: 20;" text="-" textFill="WHITE">
          <font>
             <Font name="System Bold" size="8.0" />
          </font>
@@ -59,7 +59,7 @@
                   </Button>
                   <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="56.0" layoutY="238.0" size="20" />
                   <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="53.0" layoutY="193.0" size="20" />
-                  <Button fx:id="btnVehicule" layoutY="260.0" mnemonicParsing="false" onAction="#vehicule" onMouseClicked="#vehicule" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Vehicule">
+                  <Button fx:id="btnVehicule" layoutY="260.0" mnemonicParsing="false" onAction="#vehicule" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Vehicule">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -72,6 +72,12 @@
                   </ImageView>
                   <Label fx:id="name" alignment="CENTER" layoutY="93.0" prefHeight="16.0" prefWidth="218.0" text="name" textAlignment="CENTER" textFill="WHITE" />
                   <Label fx:id="email" alignment="CENTER" layoutY="114.0" prefHeight="16.0" prefWidth="218.0" text="gmail" textFill="WHITE" />
+                  <Button fx:id="btnParking" layoutY="308.0" mnemonicParsing="false" onAction="#parking" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Parking">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <FontAwesomeIconView fill="WHITE" glyphName="MAP" layoutX="52.0" layoutY="332.0" size="20" />
                </children>
             </Pane>
          </children></VBox>
@@ -80,6 +86,6 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="rootPane" layoutX="217.0" layoutY="41.0" prefHeight="668.0" prefWidth="659.0" style="-fx-background-radius: 30 0 30 0;" />
+      <AnchorPane fx:id="rootPane" layoutX="217.0" layoutY="41.0" prefHeight="668.0" prefWidth="683.0" style="-fx-background-radius: 30 0 30 0;" />
    </children>
 </AnchorPane>

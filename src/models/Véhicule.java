@@ -10,8 +10,9 @@ public class Véhicule {
     private double compteurKm;
     private LocalDate dateMiseEnCirculation;
     private int idParking;
+    private boolean disponibilite;
     //Constructors
-    public Véhicule(int NImmatriculation, String marque, String type, String carburant, double compteurKm, LocalDate dateMiseEnCirculation,int idParking) {
+    public Véhicule(int NImmatriculation, String marque, String type, String carburant, double compteurKm, LocalDate dateMiseEnCirculation, int idParking, boolean disponibilite) {
         this.NImmatriculation = NImmatriculation;
         this.marque = marque;
         this.type = type;
@@ -19,6 +20,7 @@ public class Véhicule {
         this.compteurKm = compteurKm;
         this.dateMiseEnCirculation = dateMiseEnCirculation;
         this.idParking=idParking;
+        this.disponibilite = disponibilite;
     }
     //Getters and setters
     public int getIdParking() {
@@ -75,5 +77,13 @@ public class Véhicule {
 
     public void setDateMiseEnCirculation(LocalDate dateMiseEnCirculation) {
         this.dateMiseEnCirculation = dateMiseEnCirculation;
+    }
+
+    public boolean isDisponibilite() {
+        return disponibilite;
+    }
+
+    public void setDisponibilite(boolean disponibilite) {
+        this.disponibilite = disponibilite;
     }
 }

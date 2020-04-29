@@ -6,6 +6,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,9 +16,14 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.vehiculeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.parkingController">
    <children>
-      <AnchorPane fx:id="rootPane" layoutX="150.0" layoutY="116.0" prefHeight="461.0" prefWidth="371.0">
+      <Pane fx:id="msgPane" layoutX="153.0" layoutY="164.0" prefHeight="15.0" prefWidth="363.0">
+         <children>
+            <StackPane fx:id="myStackPane" layoutX="24.0" layoutY="6.0" prefHeight="4.0" prefWidth="318.0" />
+         </children>
+      </Pane>
+      <AnchorPane fx:id="rootPane" layoutX="154.0" layoutY="116.0" prefHeight="461.0" prefWidth="371.0">
          <effect>
             <DropShadow height="11.89" radius="5.445" width="11.89" />
          </effect>
@@ -41,7 +47,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="rootPane1" layoutX="150.0" layoutY="117.0" prefHeight="461.0" prefWidth="371.0" visible="false">
+      <AnchorPane fx:id="rootPane1" layoutX="154.0" layoutY="116.0" prefHeight="461.0" prefWidth="371.0" visible="false">
          <effect>
             <DropShadow height="11.89" radius="5.445" width="11.89" />
          </effect>
@@ -82,7 +88,7 @@
       </AnchorPane>
       <AnchorPane fx:id="blur" prefHeight="668.0" prefWidth="659.0">
          <children>
-            <HBox prefHeight="103.0" prefWidth="659.0" style="-fx-background-color: #ececec; -fx-background-radius: 10 0 0 10;">
+            <HBox prefHeight="103.0" prefWidth="683.0" style="-fx-background-color: #ececec; -fx-background-radius: 10 0 0 10;">
                <children>
                   <Pane prefHeight="103.0" prefWidth="650.0">
                      <children>
@@ -96,7 +102,14 @@
                   </Pane>
                </children>
             </HBox>
-            <TableView fx:id="table" layoutX="8.0" layoutY="156.0" prefHeight="337.0" prefWidth="643.0" style="-fx-background-color: white;" stylesheets="@../Style/table.css" />
+            <TableView fx:id="table" layoutX="8.0" layoutY="156.0" prefHeight="337.0" prefWidth="670.0" style="-fx-background-color: white;" stylesheets="@../Style/table.css">
+               <columns>
+                  <TableColumn fx:id="col_Nparking" prefWidth="103.0" text="N.Parking" />
+                  <TableColumn fx:id="col_capacité" prefWidth="94.0" text="Capacité" />
+                  <TableColumn fx:id="col_Rue" prefWidth="163.0" text="Rue" />
+                  <TableColumn fx:id="col_Arondissement" prefWidth="154.0" text="Arondissement" />
+                  <TableColumn fx:id="col_nbrplacesOccupées" prefWidth="149.0" text="Places occupées" />
+               </columns></TableView>
             <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="504.0" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
                <font>
                   <Font size="16.0" />
@@ -128,10 +141,5 @@
             <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" layoutX="169.0" layoutY="527.0" size="17" />
          </children>
       </AnchorPane>
-      <Pane fx:id="msgPane" layoutX="146.0" layoutY="167.0" prefHeight="15.0" prefWidth="363.0">
-         <children>
-            <StackPane fx:id="myStackPane" layoutX="23.0" layoutY="6.0" prefHeight="4.0" prefWidth="318.0" />
-         </children>
-      </Pane>
    </children>
 </AnchorPane>
