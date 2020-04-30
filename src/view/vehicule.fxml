@@ -30,7 +30,7 @@
          <children>
             <Pane prefHeight="47.0" prefWidth="371.0">
                <children>
-                  <Button fx:id="btnClose" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
+                  <Button fx:id="btnClose" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
                      <font>
                         <Font name="System Bold" size="7.0" />
                      </font>
@@ -113,7 +113,7 @@
                   <TableColumn fx:id="col_Parking" prefWidth="67.0" text="Parking" />
                   <TableColumn fx:id="col_disponibilite" prefWidth="90.0" text="disponible" />
                </columns></TableView>
-            <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="504.0" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="504.0" onAction="#createVehicule" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -122,7 +122,7 @@
                </cursor>
             </JFXButton>
             <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="61.0" layoutY="527.0" size="19" />
-            <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" />
+            <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" />
             <FontAwesomeIconView glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
             <JFXButton alignment="BOTTOM_LEFT" layoutX="201.0" layoutY="504.0" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
                <font>

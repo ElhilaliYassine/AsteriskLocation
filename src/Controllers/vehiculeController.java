@@ -2,12 +2,16 @@ package Controllers;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -16,8 +20,8 @@ import models.DAO.VéhiculeDAO;
 import models.Parking;
 import models.Véhicule;
 
+import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -104,4 +108,38 @@ public class vehiculeController implements Initializable {
         col_disponibilite.setCellValueFactory(new PropertyValueFactory<>("disponibilite"));
         table.setItems(list);
     }
+    public void search() {
+        FilteredList<Véhicule> filteredData = new FilteredList<>(list, p -> true);
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(véhicule -> {
+                if (newValue == null || newValue.isEmpty()) return true;
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (véhicule.getMarque().toLowerCase().contains(lowerCaseFilter)) return true;
+                if (véhicule.getType().toLowerCase().contains(lowerCaseFilter)) return true;
+                String matricule = String.valueOf(véhicule.getNImmatriculation());
+                if (matricule.toLowerCase().contains(lowerCaseFilter)) return true;
+                return false;
+            });
+        });
+        SortedList<Véhicule> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
+    }
+    public void createVehicule() throws IOException {
+        blur.setEffect(new GaussianBlur(10));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/createVehicule.fxml"));
+        loadPane.getChildren().setAll(pane);
+        rootPane.setVisible(true);
+        rootPane.toFront();
+        btnClose.setVisible(true);
+        btnClose.toFront();
+    }
+    public void btnReturn() {
+        blur.setEffect(null);
+        rootPane.setVisible(false);
+        rootPane.toBack();
+        list = véhiculeDAO.list();
+        dataUser();
+    }
+
 }

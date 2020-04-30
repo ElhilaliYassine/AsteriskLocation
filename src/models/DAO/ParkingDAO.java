@@ -103,4 +103,23 @@ public class ParkingDAO extends DAO<Parking>{
             return null;
         }
     }
+    //bessmellah
+    public ObservableList<Integer> select(){
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT NParking FROM parking");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<Integer> listParkings = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                listParkings.add(resultSet.getInt("NParking"));
+            }
+            return listParkings;
+        }
+        catch(SQLException e)
+        {
+            return null;
+        }
+    }
+
 }

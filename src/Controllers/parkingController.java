@@ -2,6 +2,8 @@ package Controllers;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -91,6 +93,21 @@ public class parkingController implements Initializable {
         col_Arondissement.setCellValueFactory(new PropertyValueFactory<>("arrondissement"));
         col_nbrplacesOccupées.setCellValueFactory(new PropertyValueFactory<>("nbrPlacesOccupées"));
         table.setItems(list);
+    }
+    public void search() {
+        FilteredList<Parking> filteredData = new FilteredList<>(list, p -> true);
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(parking -> {
+                if (newValue == null || newValue.isEmpty()) return true;
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (parking.getRue().toLowerCase().contains(lowerCaseFilter)) return true;
+                if (parking.getArrondissement().toLowerCase().contains(lowerCaseFilter)) return true;
+                return false;
+            });
+        });
+        SortedList<Parking> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
     }
 
 }

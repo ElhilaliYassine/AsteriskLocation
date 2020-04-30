@@ -19,13 +19,16 @@ public class VéhiculeDAO extends DAO<Véhicule>{
     public boolean create(Véhicule obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO vehicule(marque,type,carburant,compteurKm,dateMiseEnCirculation,idParking) VALUES(?,?,?,?,?,?)");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO vehicule(marque,type,carburant,compteurKm,dateMiseEnCirculation,idParking,disponibilite) VALUES(?,?,?,?,?,?,?)");
             preparedStmt.setString(1,obj.getMarque());
             preparedStmt.setString(2,obj.getType());
             preparedStmt.setString(3,obj.getCarburant());
             preparedStmt.setDouble(4,obj.getCompteurKm());
-            preparedStmt.setObject(5,obj.getDateMiseEnCirculation());
+            LocalDate dateMiseEnCirculation = obj.getDateMiseEnCirculation();
+            Date date = Date.valueOf(dateMiseEnCirculation);
+            preparedStmt.setObject(5,date);
             preparedStmt.setInt(6,obj.getIdParking());
+            preparedStmt.setBoolean(7,obj.isDisponibilite());
             preparedStmt.execute();
             return true;
         }
@@ -78,13 +81,18 @@ public class VéhiculeDAO extends DAO<Véhicule>{
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM vehicule WHERE NImmatriculation=?");
             preparedStmt.setInt(1,id);
             ResultSet resultSet = preparedStmt.executeQuery();
-            LocalDate dateMiseEnCirculation = (LocalDate) resultSet.getObject("dateMiseEnCirculation");
-            return new Véhicule(id,resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation,resultSet.getInt("idParking"),resultSet.getBoolean("disponibilite"));
+            while(resultSet.next()){
+                Date date = resultSet.getDate("dateMiseEnCirculation");
+                LocalDate dateMiseEnCirculation = date.toLocalDate();
+                return new Véhicule(id,resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation,resultSet.getInt("idParking"),resultSet.getBoolean("disponibilite"));
+            }
+
         }
         catch(SQLException e)
         {
-            return new Véhicule(id,"","","",0.0,null,0, false);
+            return new Véhicule(0,"","","",0.0,null,0, false);
         }
+            return new Véhicule(0,"","","",0.0,null,0, false);
     }
 
     @Override
@@ -100,7 +108,7 @@ public class VéhiculeDAO extends DAO<Véhicule>{
                 LocalDate dateMiseEnCirculation = date.toLocalDate();
                 listVéhicules.add(new Véhicule(resultSet.getInt("NImmatriculation"),resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation,resultSet.getInt("idParking"), resultSet.getBoolean("disponibilite")));
             }
-            Collections.sort(listVéhicules, Comparator.comparing(Véhicule::getNImmatriculation).reversed());
+            //Collections.sort(listVéhicules, Comparator.comparing(Véhicule::getNImmatriculation).reversed());
             return listVéhicules;
         }
         catch(SQLException e)

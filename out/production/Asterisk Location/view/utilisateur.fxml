@@ -107,7 +107,7 @@
                   <TableColumn fx:id="col_password" prefWidth="100.0" text="Password" />
                   <TableColumn fx:id="col_email" prefWidth="180.0" text="Email" />
                   <TableColumn fx:id="col_numeroGsm" prefWidth="101.0" text="Telephone" />
-                  <TableColumn fx:id="col_adresse" minWidth="0.0" prefWidth="117.0" text="Adresse" />
+                  <TableColumn fx:id="col_adresse" minWidth="0.0" prefWidth="143.0" text="Adresse" />
                </columns>
             </TableView>
             <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="504.0" onAction="#createUser" onMouseClicked="#createUser" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
