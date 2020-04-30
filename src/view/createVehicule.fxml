@@ -15,14 +15,14 @@
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: #ececec; -fx-background-radius: 12;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.createVehiculeController">
    <children>
       <StackPane fx:id="myStackPane" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
-      <Label layoutX="37.0" layoutY="13.0" text="Nouveau Client" textFill="#1d71bf">
+      <Label layoutX="37.0" layoutY="13.0" text="Nouveau Véhicule" textFill="#1d71bf">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
       <JFXTextField fx:id="matriculeField" labelFloat="true" layoutX="37.0" layoutY="55.0" prefHeight="26.0" prefWidth="255.0" promptText="Matricule" unFocusColor="#1d71bf" />
       <JFXTextField fx:id="marqueField" labelFloat="true" layoutX="37.0" layoutY="100.0" prefHeight="26.0" prefWidth="255.0" promptText="Marque" unFocusColor="#1d71bf" />
-      <FontAwesomeIconView fill="#1d71bf" glyphName="USERS" layoutX="14.0" layoutY="28.0" size="14" />
+      <FontAwesomeIconView fill="#1d71bf" glyphName="CAR" layoutX="14.0" layoutY="28.0" size="14" />
       <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
       <JFXTextField fx:id="typeField" labelFloat="true" layoutX="37.0" layoutY="143.0" prefHeight="26.0" prefWidth="255.0" promptText="Type" unFocusColor="#1d71bf" />
       <JFXTextField fx:id="carburantField" labelFloat="true" layoutX="37.0" layoutY="186.0" prefHeight="26.0" prefWidth="255.0" promptText="Carburant" unFocusColor="#1d71bf" />

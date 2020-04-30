@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -23,6 +26,57 @@
             <StackPane fx:id="myStackPane" layoutX="23.0" layoutY="6.0" prefHeight="4.0" prefWidth="318.0" />
          </children>
       </Pane>
+      <AnchorPane fx:id="rootPane1" layoutX="150.0" layoutY="117.0" prefHeight="461.0" prefWidth="371.0" visible="false">
+         <effect>
+            <DropShadow height="11.89" radius="5.445" width="11.89" />
+         </effect>
+         <children>
+            <Pane prefHeight="47.0" prefWidth="371.0">
+               <children>
+                  <Button fx:id="btnClose1" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnUpdate" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="System Bold" size="7.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </Pane>
+            <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: #ececec; -fx-background-radius: 12;">
+               <children>
+                  <StackPane fx:id="myStackPane1" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
+                  <Label layoutX="37.0" layoutY="13.0" text="Modifier Véhicule" textFill="#1d71bf">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="matriculeField" labelFloat="true" layoutX="37.0" layoutY="55.0" prefHeight="26.0" prefWidth="255.0" promptText="Matricule" unFocusColor="#1d71bf" />
+                  <JFXTextField fx:id="marqueField" labelFloat="true" layoutX="37.0" layoutY="100.0" prefHeight="26.0" prefWidth="255.0" promptText="Marque" unFocusColor="#1d71bf" />
+                  <FontAwesomeIconView fill="#1d71bf" glyphName="CAR" layoutX="14.0" layoutY="28.0" size="14" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+                  <JFXTextField fx:id="typeField" labelFloat="true" layoutX="37.0" layoutY="143.0" prefHeight="26.0" prefWidth="255.0" promptText="Type" unFocusColor="#1d71bf" />
+                  <JFXTextField fx:id="carburantField" labelFloat="true" layoutX="37.0" layoutY="186.0" prefHeight="26.0" prefWidth="255.0" promptText="Carburant" unFocusColor="#1d71bf" />
+                  <JFXTextField fx:id="compteurKmField" labelFloat="true" layoutX="37.0" layoutY="230.0" prefHeight="26.0" prefWidth="255.0" promptText="Compteur KM" unFocusColor="#1d71bf" />
+                  <DatePicker fx:id="dateField" layoutX="37.0" layoutY="270.0" prefHeight="26.0" prefWidth="255.0" promptText="Date de mise en circulation" />
+                  <JFXRadioButton fx:id="ouiRadio" layoutX="154.0" layoutY="310.0" text="Oui" />
+                  <JFXComboBox fx:id="selectParking" layoutX="116.0" layoutY="341.0" prefHeight="26.0" prefWidth="175.0" unFocusColor="#1d71bf" />
+                  <JFXRadioButton fx:id="nonRadio" layoutX="236.0" layoutY="310.0" text="Non" />
+                  <Label layoutX="37.0" layoutY="308.0" text="Disponibilité :">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="38.0" layoutY="345.0" text="Parking :">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <JFXButton layoutX="288.0" layoutY="387.0" onAction="#modifyVehicule" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Modifier" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="rootPane" layoutX="150.0" layoutY="116.0" prefHeight="461.0" prefWidth="371.0">
          <effect>
             <DropShadow height="11.89" radius="5.445" width="11.89" />
@@ -44,45 +98,6 @@
                <effect>
                   <DropShadow height="11.89" radius="5.445" width="11.89" />
                </effect>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="rootPane1" layoutX="150.0" layoutY="117.0" prefHeight="461.0" prefWidth="371.0" visible="false">
-         <effect>
-            <DropShadow height="11.89" radius="5.445" width="11.89" />
-         </effect>
-         <children>
-            <Pane prefHeight="47.0" prefWidth="371.0">
-               <children>
-                  <Button fx:id="btnClose1" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
-                     <font>
-                        <Font name="System Bold" size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </Pane>
-            <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: #ececec; -fx-background-radius: 12;">
-               <children>
-                  <Label layoutX="37.0" layoutY="13.0" text="Modifier client" textFill="#1d71bf">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <JFXTextField fx:id="nomCompletField" labelFloat="true" layoutX="37.0" layoutY="107.0" prefHeight="26.0" prefWidth="221.0" promptText="Nom Complet" unFocusColor="#1d71bf" />
-                  <FontAwesomeIconView fill="#1d71bf" glyphName="USERS" layoutX="14.0" layoutY="28.0" size="14" />
-                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
-                  <JFXTextField fx:id="adresseField" labelFloat="true" layoutX="37.0" layoutY="167.0" prefHeight="26.0" prefWidth="221.0" promptText="Adresse" unFocusColor="#1d71bf" />
-                  <JFXTextField fx:id="numGsmField" labelFloat="true" layoutX="37.0" layoutY="225.0" prefHeight="26.0" prefWidth="221.0" promptText="Numéro Gsm" unFocusColor="#1d71bf" />
-                  <StackPane fx:id="myStackPane1" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
-                  <JFXButton layoutX="273.0" layoutY="375.0" prefHeight="26.0" prefWidth="81.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </JFXButton>
-               </children>
             </AnchorPane>
          </children>
       </AnchorPane>
@@ -124,7 +139,7 @@
             <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="61.0" layoutY="527.0" size="19" />
             <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" />
             <FontAwesomeIconView glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
-            <JFXButton alignment="BOTTOM_LEFT" layoutX="201.0" layoutY="504.0" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="201.0" layoutY="504.0" onAction="#deleteVehicule" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -133,7 +148,7 @@
                </cursor>
             </JFXButton>
             <FontAwesomeIconView fill="WHITE" glyphName="TRASH" layoutX="274.0" layoutY="527.0" size="17" />
-            <JFXButton alignment="BOTTOM_LEFT" layoutX="95.0" layoutY="504.0" prefHeight="32.0" prefWidth="97.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Update" textFill="WHITE">
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="95.0" layoutY="504.0" onAction="#updateVehicule" prefHeight="32.0" prefWidth="97.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Update" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>

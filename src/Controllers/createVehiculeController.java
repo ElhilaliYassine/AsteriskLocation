@@ -99,7 +99,7 @@ public class createVehiculeController implements Initializable {
         dialog.setStyle("-fx-background-radius : 18");
         close.setOnAction(e -> {
             dialog.close();
-            //clear();
+            clear();
         });
         if (matriculeField.getText().isEmpty() || typeField.getText().isEmpty() || marqueField.getText().isEmpty() || carburantField.getText().isEmpty() || compteurKmField.getText().isEmpty() || dateField.getValue()== null || group.getSelectedToggle()== null || selectParking.getValue()==null) {
             dialogContent.setBody(new Text("Véhicule invalide!"));

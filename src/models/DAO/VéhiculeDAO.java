@@ -42,7 +42,7 @@ public class VéhiculeDAO extends DAO<Véhicule>{
     public boolean delete(Véhicule obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("DELETE * FROM vehicule WHERE NImmatriculation=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("DELETE FROM vehicule WHERE NImmatriculation=?");
             preparedStmt.setInt(1,obj.getNImmatriculation());
             preparedStmt.execute();
             return true;
@@ -61,7 +61,9 @@ public class VéhiculeDAO extends DAO<Véhicule>{
             preparedStmt.setString(2,obj.getType());
             preparedStmt.setString(3,obj.getCarburant());
             preparedStmt.setDouble(4,obj.getCompteurKm());
-            preparedStmt.setObject(5,obj.getDateMiseEnCirculation());
+            LocalDate dateMiseEnCirculation = obj.getDateMiseEnCirculation();
+            Date date = Date.valueOf(dateMiseEnCirculation);
+            preparedStmt.setObject(5,date);
             preparedStmt.setInt(6,obj.getIdParking());
             preparedStmt.setBoolean(7,obj.isDisponibilite());
             preparedStmt.setInt(8, id);
