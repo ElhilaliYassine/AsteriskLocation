@@ -250,12 +250,19 @@ public class vehiculeController implements Initializable {
         });
         Véhicule véhicule = null;
         Parking parking = parkingDAO.find(selectParking.getValue());
-        if(group.getSelectedToggle()==ouiRadio)
-        {
+        if(parking.getCapacité()-parkingDAO.nombreVehicule(parking.getNParking())>0){
+            if(group.getSelectedToggle()==ouiRadio)
+            {
 
-           véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true);
-        } else{
-           véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false);
+                véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true);
+            } else{
+                véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false);
+            }
+        }else if(parking.getCapacité()-parkingDAO.nombreVehicule(parking.getNParking())<=0)
+        {
+            dialogContent.setBody(new Text("Le parking est saturé"));
+            dialog.show();
+            return;
         }
 
         if (véhiculeDAO.update(véhicule, table.getSelectionModel().getSelectedItem().getNImmatriculation())) {

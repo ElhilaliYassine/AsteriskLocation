@@ -121,12 +121,22 @@ public class parkingController implements Initializable {
 
     }
     private void dataUser() {
+
+        for(int i=0;i<list.size();i++)
+        {
+            Parking selected = list.get(i);
+            Parking parking = parkingDAO.find(selected.getNParking());
+            parking.setNbrPlacesOccupées(parkingDAO.nombreVehicule(selected.getNParking()));
+            parkingDAO.update(parking,selected.getNParking());
+        }
+        list = parkingDAO.list();
         col_Nparking.setCellValueFactory(new PropertyValueFactory<>("NParking"));
         col_capacité.setCellValueFactory(new PropertyValueFactory<>("capacité"));
         col_Rue.setCellValueFactory(new PropertyValueFactory<>("rue"));
         col_Arondissement.setCellValueFactory(new PropertyValueFactory<>("arrondissement"));
         col_nbrplacesOccupées.setCellValueFactory(new PropertyValueFactory<>("nbrPlacesOccupées"));
         table.setItems(list);
+
     }
     private void dataVehicule(int i)
     {
@@ -192,6 +202,7 @@ public class parkingController implements Initializable {
             numeroParking.setText(String.valueOf(table.getSelectionModel().getSelectedItem().getNParking()));
             dataVehicule(table.getSelectionModel().getSelectedItem().getNParking());
             nombreVehicule.setText(String.valueOf(parkingDAO.nombreVehicule(table.getSelectionModel().getSelectedItem().getNParking())));
+
         }
     }
 

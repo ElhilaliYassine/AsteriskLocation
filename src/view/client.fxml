@@ -59,7 +59,7 @@
                   </Button>
                </children>
             </Pane>
-            <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: #ececec; -fx-background-radius: 12;">
+            <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                <children>
                   <Label layoutX="37.0" layoutY="13.0" text="Modifier client" textFill="#1d71bf">
                      <font>

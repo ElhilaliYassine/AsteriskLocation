@@ -14,7 +14,7 @@ public class Parking {
         this.capacité = capacité;
         this.rue = rue;
         this.arrondissement = arrondissement;
-        this.nbrPlacesOccupées++;
+        this.nbrPlacesOccupées = nbrPlacesOccupées;
     }
     //Getters and setters
 

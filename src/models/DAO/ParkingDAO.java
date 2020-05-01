@@ -54,11 +54,12 @@ public class ParkingDAO extends DAO<Parking>{
     @Override
     public boolean update(Parking obj, int id) {
         try {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE parking SET capacite=?,rue=?,arronidissement=? WHERE NParking=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE parking SET capacite=?,rue=?,arrondissement=?,nbrPlacesOccupees=? WHERE NParking=?");
             preparedStmt.setInt(1,obj.getCapacité());
             preparedStmt.setString(2,obj.getRue());
             preparedStmt.setString(3,obj.getArrondissement());
-            preparedStmt.setInt(4, id);
+            preparedStmt.setInt(4,obj.getNbrPlacesOccupées());
+            preparedStmt.setInt(5, id);
             preparedStmt.execute();
             return true;
         }
