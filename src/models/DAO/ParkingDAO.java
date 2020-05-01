@@ -4,11 +4,10 @@ import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Parking;
+import models.Véhicule;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -73,15 +72,37 @@ public class ParkingDAO extends DAO<Parking>{
     public Parking find(int id) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM vehicule WHERE NImmatriculation=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM parking WHERE NParking=?");
             preparedStmt.setInt(1,id);
             ResultSet resultSet = preparedStmt.executeQuery();
-            return new Parking(id,resultSet.getInt("capacite"),resultSet.getString("rue"),resultSet.getString("arrondissement"),resultSet.getInt("nbrPlacesOccupees"));
+            while(resultSet.next()){
+                return new Parking(id,resultSet.getInt("capacite"),resultSet.getString("rue"),resultSet.getString("arrondissement"),resultSet.getInt("nbrPlacesOccupees"));
+            }
         }
         catch(SQLException e)
         {
             return new Parking(id,0,"","",0);
         }
+        return new Parking(id,0,"","",0);
+
+    }
+
+    public Parking find(String rue) {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM parking WHERE rue=?");
+            preparedStmt.setString(1,rue);
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next()){
+                return new Parking(resultSet.getInt("NParking"),resultSet.getInt("capacite"),rue,resultSet.getString("arrondissement"),resultSet.getInt("nbrPlacesOccupees"));
+            }
+        }
+        catch(SQLException e)
+        {
+            return new Parking(0,0,rue,"",0);
+        }
+        return new Parking(0,0,rue,"",0);
+
     }
 
     @Override
@@ -104,21 +125,59 @@ public class ParkingDAO extends DAO<Parking>{
         }
     }
     //bessmellah
-    public ObservableList<Integer> select(){
+    public ObservableList<String> select(){
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("SELECT NParking FROM parking");
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT rue FROM parking");
             ResultSet resultSet = preparedStmt.executeQuery();
-            ObservableList<Integer> listParkings = FXCollections.observableArrayList();
+            ObservableList<String> listParkings = FXCollections.observableArrayList();
             while(resultSet.next())
             {
-                listParkings.add(resultSet.getInt("NParking"));
+                listParkings.add(resultSet.getString("rue"));
             }
             return listParkings;
         }
         catch(SQLException e)
         {
             return null;
+        }
+    }
+    public ObservableList<Véhicule> vehiculeParking(int id){
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM vehicule WHERE idParking = ?");
+            preparedStmt.setInt(1,id);
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<Véhicule> listParkings = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                Date date = resultSet.getDate("dateMiseEnCirculation");
+                LocalDate dateMiseEnCirculation = date.toLocalDate();
+                listParkings.add(new Véhicule(resultSet.getInt("NImmatriculation"),resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation,id, resultSet.getBoolean("disponibilite")));
+            }
+            return listParkings;
+        }
+        catch(SQLException e)
+        {
+            return null;
+        }
+    }
+    public int nombreVehicule(int id)
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT COUNT(*) FROM vehicule WHERE idParking = ?");
+            preparedStmt.setInt(1,id);
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next())
+            {
+                return resultSet.getInt("COUNT(*)");
+            }
+             return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
         }
     }
 

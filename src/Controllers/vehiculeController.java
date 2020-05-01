@@ -105,7 +105,7 @@ public class vehiculeController implements Initializable {
     @FXML
     private JFXRadioButton nonRadio;
     @FXML
-    private JFXComboBox<Integer> selectParking;
+    private JFXComboBox<String> selectParking;
 
     final ToggleGroup group = new ToggleGroup();
     VéhiculeDAO véhiculeDAO;
@@ -126,7 +126,7 @@ public class vehiculeController implements Initializable {
             System.out.println("Connection Failed");
         }
     }
-    ObservableList<Integer> select = parkingDAO.select();
+    ObservableList<String> select = parkingDAO.select();
 
     ObservableList<Véhicule> list = véhiculeDAO.list();
 
@@ -219,7 +219,10 @@ public class vehiculeController implements Initializable {
             else
                 group.selectToggle(nonRadio);
             dateField.setValue(véhicule.getDateMiseEnCirculation());
-            selectParking.setValue(véhicule.getIdParking());
+            //String for better Ux
+            Parking parking = parkingDAO.find(véhicule.getIdParking());
+            selectParking.setValue(parking.getRue());
+            //selectParking.setValue(véhicule.getIdParking());
             carburantField.setText(véhicule.getCarburant());
             compteurKmField.setText(String.valueOf(véhicule.getCompteurKm()));
         }
@@ -246,11 +249,13 @@ public class vehiculeController implements Initializable {
             dialog.close();
         });
         Véhicule véhicule = null;
+        Parking parking = parkingDAO.find(selectParking.getValue());
         if(group.getSelectedToggle()==ouiRadio)
         {
-           véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), selectParking.getValue(), true);
+
+           véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true);
         } else{
-           véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), selectParking.getValue(), false);
+           véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false);
         }
 
         if (véhiculeDAO.update(véhicule, table.getSelectionModel().getSelectedItem().getNImmatriculation())) {

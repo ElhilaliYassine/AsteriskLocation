@@ -56,7 +56,7 @@ public class createVehiculeController implements Initializable {
     @FXML
     private JFXRadioButton nonRadio;
     @FXML
-    private JFXComboBox<Integer> selectParking;
+    private JFXComboBox<String> selectParking;
 
     final ToggleGroup group = new ToggleGroup();
     VéhiculeDAO véhiculeDAO;
@@ -77,7 +77,7 @@ public class createVehiculeController implements Initializable {
             System.out.println("Connection Failed");
         }
     }
-    ObservableList<Integer> list = parkingDAO.select();
+    ObservableList<String> list = parkingDAO.select();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -112,11 +112,12 @@ public class createVehiculeController implements Initializable {
             dialogContent.setBody(new Text("Le véhicule déjà enregistré!"));
         }else {
             Véhicule véhicule = null;
+            Parking parking = parkingDAO.find(selectParking.getValue());
             try {
                 if (group.getSelectedToggle() == ouiRadio)
-                    véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), selectParking.getValue(), true);
+                    véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true);
                 else if (group.getSelectedToggle() == nonRadio)
-                    véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), selectParking.getValue(), false);
+                    véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false);
             } catch (NumberFormatException e) {
                 dialogContent.setBody(new Text("Veuillez ajouter le code du pays!"));
                 dialog.show();
