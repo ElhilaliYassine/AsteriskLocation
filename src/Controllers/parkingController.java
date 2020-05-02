@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,6 +26,7 @@ import models.DAO.ParkingDAO;
 import models.Parking;
 import models.Véhicule;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -41,16 +43,7 @@ public class parkingController implements Initializable {
     @FXML
     private AnchorPane rootPane1,rootPane2;
     @FXML
-    private Button btnClose1,btnClose2;
-    @FXML
-    private JFXTextField nomCompletField;
-    @FXML
-    private JFXTextField adresseField;
-
-    @FXML
-    private JFXTextField numGsmField;
-    @FXML
-    private StackPane myStackPane1;
+    private Button btnClose1;
     @FXML
     private AnchorPane blur;
     @FXML
@@ -58,7 +51,7 @@ public class parkingController implements Initializable {
     @FXML
     private Pane msgPane;
     @FXML
-    private StackPane myStackPane;
+    private StackPane myStackPane,myStackPane1;
 
     @FXML
     private TableView<Parking> table;
@@ -102,7 +95,15 @@ public class parkingController implements Initializable {
     private TableColumn<Véhicule, Boolean> col_disponibilite;
 
     @FXML
-    private Label numeroParking,nombreVehicule;
+    private Label numeroParking,nombreVehicule,nombrePlace;
+    @FXML
+    private JFXTextField capaciteField;
+
+    @FXML
+    private JFXTextField rueField;
+
+    @FXML
+    private JFXTextField arrondissementField;
     ParkingDAO parkingDAO;
 
     {
@@ -199,9 +200,126 @@ public class parkingController implements Initializable {
             blur.setEffect(new GaussianBlur(10));
             rootPane2.setVisible(true);
             rootPane2.toFront();
+            Parking parking = parkingDAO.find(table.getSelectionModel().getSelectedItem().getNParking());
             numeroParking.setText(String.valueOf(table.getSelectionModel().getSelectedItem().getNParking()));
             dataVehicule(table.getSelectionModel().getSelectedItem().getNParking());
             nombreVehicule.setText(String.valueOf(parkingDAO.nombreVehicule(table.getSelectionModel().getSelectedItem().getNParking())));
+            nombrePlace.setText(String.valueOf(parking.getCapacité()-parkingDAO.nombreVehicule(parking.getNParking())));
+
+        }
+    }
+    public void createParking() throws IOException {
+        blur.setEffect(new GaussianBlur(10));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/createParking.fxml"));
+        loadPane.getChildren().setAll(pane);
+        rootPane.setVisible(true);
+        rootPane.toFront();
+        btnClose.setVisible(true);
+        btnClose.toFront();
+    }
+    public void btnReturn() {
+        blur.setEffect(null);
+        rootPane.setVisible(false);
+        rootPane.toBack();
+        dataUser();
+    }
+    public void updateParking() {
+        String title = "Asterisk Location - Message :";
+        JFXDialogLayout dialogContent = new JFXDialogLayout();
+        JFXButton close = new JFXButton("Close");
+        dialogContent.setHeading(new Text(title));
+        close.setButtonType(JFXButton.ButtonType.RAISED);
+        close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
+        dialogContent.setActions(close);
+        JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+        msgPane.toFront();
+        dialog.setStyle("-fx-background-radius : 18");
+        close.setOnAction(e -> {
+            dialog.close();
+            blur.setEffect(null);
+            dataUser();
+        });
+        if (table.getSelectionModel().isEmpty()) {
+            dialogContent.setBody(new Text("Veuillez selectionner le parking à modifier!"));
+            dialog.show();
+            blur.setEffect(new GaussianBlur(10));
+            return;
+        } else {
+            Parking parking = parkingDAO.find(table.getSelectionModel().getSelectedItem().getNParking());
+            blur.setEffect(new GaussianBlur(10));
+            rootPane1.setVisible(true);
+            rootPane1.toFront();
+            btnClose1.setVisible(true);
+            btnClose1.toFront();
+            capaciteField.setText(String.valueOf(parking.getCapacité()));
+            rueField.setText(parking.getRue());
+            arrondissementField.setText(parking.getArrondissement());
+
+        }
+    }
+    public void returnUpdate() {
+        blur.setEffect(null);
+        rootPane1.setVisible(false);
+        rootPane1.toBack();
+        dataUser();
+    }
+    public void modifyParking() {
+        String title = "Asterisk Location - Message :";
+        JFXDialogLayout dialogContent = new JFXDialogLayout();
+        JFXButton close = new JFXButton("Close");
+        dialogContent.setHeading(new Text(title));
+        close.setButtonType(JFXButton.ButtonType.RAISED);
+        close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
+        dialogContent.setActions(close);
+        JFXDialog dialog = new JFXDialog(myStackPane1, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+        dialog.setStyle("-fx-background-radius : 18");
+        myStackPane1.toFront();
+        close.setOnAction(e -> {
+            dialog.close();
+        });
+        Parking parking = new Parking(0,Integer.parseInt(capaciteField.getText()),rueField.getText(),arrondissementField.getText(),0);
+
+        if (parkingDAO.update(parking, table.getSelectionModel().getSelectedItem().getNParking())) {
+            dialogContent.setBody(new Text("Le parking à été modifié!"));
+            dialog.show();
+            return;
+        }
+    }
+    public void deleteVehicule() {
+        String title = "Asterisk Location - Message :";
+        JFXDialogLayout dialogContent = new JFXDialogLayout();
+        JFXButton close = new JFXButton("Close");
+        dialogContent.setHeading(new Text(title));
+        close.setButtonType(JFXButton.ButtonType.RAISED);
+        close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
+        dialogContent.setActions(close);
+        JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+        msgPane.toFront();
+        dialog.setStyle("-fx-background-radius : 18");
+        close.setOnAction(e -> {
+            dialog.close();
+            blur.setEffect(null);
+            dataUser();
+        });
+        if (table.getSelectionModel().isEmpty()) {
+            dialogContent.setBody(new Text("Veuillez selectionner le véhicule à supprimer!"));
+            dialog.show();
+            blur.setEffect(new GaussianBlur(10));
+            return;
+        }
+        else {
+            Parking parking = parkingDAO.find(table.getSelectionModel().getSelectedItem().getNParking());
+            if(parkingDAO.nombreVehicule(parking.getNParking())==0)
+            {
+                parkingDAO.delete(parking);
+                dialogContent.setBody(new Text("Le parking a été supprimé!"));
+            }else{
+                dialogContent.setBody(new Text("\nVeuillez déplacer les véhicules avant de supprimer\nle parking !"));
+
+            }
+            dialog.show();
+            blur.setEffect(new GaussianBlur(10));
+            return;
 
         }
     }

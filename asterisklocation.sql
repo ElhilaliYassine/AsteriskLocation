@@ -2,10 +2,10 @@
 -- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 16, 2020 at 06:34 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Hôte : localhost
+-- Généré le : sam. 02 mai 2020 à 03:36
+-- Version du serveur :  10.4.11-MariaDB
+-- Version de PHP : 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `asterisklocation`
+-- Base de données : `asterisklocation`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `client`
+-- Structure de la table `client`
 --
 
 CREATE TABLE `client` (
@@ -36,10 +36,18 @@ CREATE TABLE `client` (
   `uriImage` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `client`
+--
+
+INSERT INTO `client` (`codeClient`, `nomComplet`, `adresse`, `numGsm`, `uriImage`) VALUES
+(2, 'yassine', 'yassine adresse', 3111, ''),
+(3, 'oussama', 'oussama adresse', 345345, '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contrat`
+-- Structure de la table `contrat`
 --
 
 CREATE TABLE `contrat` (
@@ -52,7 +60,7 @@ CREATE TABLE `contrat` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `facture`
+-- Structure de la table `facture`
 --
 
 CREATE TABLE `facture` (
@@ -65,21 +73,31 @@ CREATE TABLE `facture` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `parking`
+-- Structure de la table `parking`
 --
 
 CREATE TABLE `parking` (
   `NParking` int(11) NOT NULL,
   `capacite` int(11) NOT NULL,
-  `rue` int(11) NOT NULL,
-  `arrondissement` int(11) NOT NULL,
+  `rue` varchar(255) NOT NULL,
+  `arrondissement` varchar(255) NOT NULL,
   `nbrPlacesOccupees` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `parking`
+--
+
+INSERT INTO `parking` (`NParking`, `capacite`, `rue`, `arrondissement`, `nbrPlacesOccupees`) VALUES
+(1, 34, 'Rue Ibn Batouta', 'Secteur Z', 1),
+(2, 23, 'Rue de la Jeunesse', 'Secteur D', 2),
+(3, 2, 'Rue Yacoub El Mansour', 'Secteur B', 1),
+(4, 30, 'Rue Hassane 2', 'Secteur A', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservation`
+-- Structure de la table `reservation`
 --
 
 CREATE TABLE `reservation` (
@@ -92,7 +110,7 @@ CREATE TABLE `reservation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sanction`
+-- Structure de la table `sanction`
 --
 
 CREATE TABLE `sanction` (
@@ -104,7 +122,7 @@ CREATE TABLE `sanction` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utilisateur`
+-- Structure de la table `utilisateur`
 --
 
 CREATE TABLE `utilisateur` (
@@ -118,17 +136,19 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `utilisateur`
+-- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`codeUtilisateur`, `nomComplet`, `adresse`, `numGsm`, `uriImage`, `password`, `email`) VALUES
-(1, 'admin', 'adresse admin', 64323232, 'Image', 'admin', 'admin@asterisk.com'),
-(2, 'adams', 'Adams adresse', 64323243, 'Adams image', 'adams', 'adams@asterisk.com');
+(1, 'admin', 'admin adress', 5344535, 'admin pic', 'admin', 'admin@asterisk.com'),
+(2, 'adams', 'Adams adresse', 64323243, 'Adams image', 'adams', 'adams@asterisk.com'),
+(3, 'oussama', 'adresse', 534534, '', 'oussama', 'oussama@asterisk.com'),
+(17, 'yassine', 'tikiouine', 975382, '', 'yassine', 'yassine@asterisk.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vehicule`
+-- Structure de la table `vehicule`
 --
 
 CREATE TABLE `vehicule` (
@@ -138,112 +158,129 @@ CREATE TABLE `vehicule` (
   `carburant` varchar(255) NOT NULL,
   `compteurKm` double NOT NULL,
   `dateMiseEnCirculation` date NOT NULL,
-  `idParking` int(11) NOT NULL
+  `idParking` int(11) NOT NULL,
+  `disponibilite` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Déchargement des données de la table `vehicule`
+--
+
+INSERT INTO `vehicule` (`NImmatriculation`, `marque`, `type`, `carburant`, `compteurKm`, `dateMiseEnCirculation`, `idParking`, `disponibilite`) VALUES
+(123, 'Alfa Romeo', 'Stelvio', 'Diesel', 23, '2020-05-16', 1, 1),
+(23232, 'ford', 'focus', 'diesel', 232, '2020-04-08', 4, 1),
+(23237, 'dacia', 'dacia', 'Essence', 123, '2020-04-18', 3, 0),
+(23240, 'Renault', 'Megane', 'Diesel', 34, '2020-05-02', 3, 0),
+(23241, 'Renault', 'Clio', 'Diesel', 231, '2020-05-02', 2, 0);
+
+--
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `client`
+-- Index pour la table `client`
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`codeClient`);
 
 --
--- Indexes for table `contrat`
+-- Index pour la table `contrat`
 --
 ALTER TABLE `contrat`
   ADD PRIMARY KEY (`NContrat`);
 
 --
--- Indexes for table `facture`
+-- Index pour la table `facture`
 --
 ALTER TABLE `facture`
   ADD PRIMARY KEY (`NFacture`);
 
 --
--- Indexes for table `parking`
+-- Index pour la table `parking`
 --
 ALTER TABLE `parking`
   ADD PRIMARY KEY (`NParking`);
 
 --
--- Indexes for table `reservation`
+-- Index pour la table `reservation`
 --
 ALTER TABLE `reservation`
   ADD PRIMARY KEY (`codeReservation`);
 
 --
--- Indexes for table `sanction`
+-- Index pour la table `sanction`
 --
 ALTER TABLE `sanction`
   ADD PRIMARY KEY (`idSanction`);
 
 --
--- Indexes for table `utilisateur`
+-- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`codeUtilisateur`);
 
 --
--- Indexes for table `vehicule`
+-- Index pour la table `vehicule`
 --
 ALTER TABLE `vehicule`
-  ADD PRIMARY KEY (`NImmatriculation`);
+  ADD PRIMARY KEY (`NImmatriculation`),
+  ADD KEY `idParking` (`idParking`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `client`
+-- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `codeClient` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codeClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `contrat`
+-- AUTO_INCREMENT pour la table `contrat`
 --
 ALTER TABLE `contrat`
   MODIFY `NContrat` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `facture`
+-- AUTO_INCREMENT pour la table `facture`
 --
 ALTER TABLE `facture`
   MODIFY `NFacture` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `parking`
+-- AUTO_INCREMENT pour la table `parking`
 --
 ALTER TABLE `parking`
-  MODIFY `NParking` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `NParking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `reservation`
+-- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
   MODIFY `codeReservation` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `sanction`
+-- AUTO_INCREMENT pour la table `sanction`
 --
 ALTER TABLE `sanction`
   MODIFY `idSanction` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `utilisateur`
+-- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `codeUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `codeUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `vehicule`
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `vehicule`
 --
 ALTER TABLE `vehicule`
-  MODIFY `NImmatriculation` int(11) NOT NULL AUTO_INCREMENT;
+  ADD CONSTRAINT `vehicule_ibfk_1` FOREIGN KEY (`idParking`) REFERENCES `parking` (`NParking`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

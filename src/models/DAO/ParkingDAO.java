@@ -23,15 +23,17 @@ public class ParkingDAO extends DAO<Parking>{
     public boolean create(Parking obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO parking(capacite,rue,arronidissement) VALUES(?,?,?)");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO parking(capacite,rue,arrondissement,nbrPlacesOccupees) VALUES(?,?,?,?)");
             preparedStmt.setInt(1,obj.getCapacité());
             preparedStmt.setString(2,obj.getRue());
             preparedStmt.setString(3,obj.getArrondissement());
+            preparedStmt.setInt(4,obj.getNbrPlacesOccupées());
             preparedStmt.execute();
             return true;
         }
         catch(SQLException e)
         {
+            System.out.println(e);
             return false;
         }
     }

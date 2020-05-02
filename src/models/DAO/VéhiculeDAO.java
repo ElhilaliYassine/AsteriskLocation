@@ -19,16 +19,17 @@ public class VéhiculeDAO extends DAO<Véhicule>{
     public boolean create(Véhicule obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO vehicule(marque,type,carburant,compteurKm,dateMiseEnCirculation,idParking,disponibilite) VALUES(?,?,?,?,?,?,?)");
-            preparedStmt.setString(1,obj.getMarque());
-            preparedStmt.setString(2,obj.getType());
-            preparedStmt.setString(3,obj.getCarburant());
-            preparedStmt.setDouble(4,obj.getCompteurKm());
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO vehicule(NImmatriculation,marque,type,carburant,compteurKm,dateMiseEnCirculation,idParking,disponibilite) VALUES(?,?,?,?,?,?,?,?)");
+            preparedStmt.setInt(1,obj.getNImmatriculation());
+            preparedStmt.setString(2,obj.getMarque());
+            preparedStmt.setString(3,obj.getType());
+            preparedStmt.setString(4,obj.getCarburant());
+            preparedStmt.setDouble(5,obj.getCompteurKm());
             LocalDate dateMiseEnCirculation = obj.getDateMiseEnCirculation();
             Date date = Date.valueOf(dateMiseEnCirculation);
-            preparedStmt.setObject(5,date);
-            preparedStmt.setInt(6,obj.getIdParking());
-            preparedStmt.setBoolean(7,obj.isDisponibilite());
+            preparedStmt.setObject(6,date);
+            preparedStmt.setInt(7,obj.getIdParking());
+            preparedStmt.setBoolean(8,obj.isDisponibilite());
             preparedStmt.execute();
             return true;
         }

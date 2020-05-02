@@ -30,7 +30,7 @@
          <children>
             <Pane prefHeight="47.0" prefWidth="371.0">
                <children>
-                  <Button fx:id="btnClose" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
+                  <Button fx:id="btnClose" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
                      <font>
                         <Font name="System Bold" size="7.0" />
                      </font>
@@ -54,7 +54,7 @@
          <children>
             <Pane prefHeight="47.0" prefWidth="371.0">
                <children>
-                  <Button fx:id="btnClose1" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
+                  <Button fx:id="btnClose1" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnUpdate" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
                      <font>
                         <Font name="System Bold" size="7.0" />
                      </font>
@@ -64,20 +64,20 @@
                   </Button>
                </children>
             </Pane>
-            <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: #ececec; -fx-background-radius: 12;">
+            <AnchorPane layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                <children>
-                  <Label layoutX="37.0" layoutY="13.0" text="Modifier client" textFill="#1d71bf">
+                  <Label layoutX="37.0" layoutY="13.0" text="Modifier Parking" textFill="#1d71bf">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="nomCompletField" labelFloat="true" layoutX="37.0" layoutY="107.0" prefHeight="26.0" prefWidth="221.0" promptText="Nom Complet" unFocusColor="#1d71bf" />
-                  <FontAwesomeIconView fill="#1d71bf" glyphName="USERS" layoutX="14.0" layoutY="28.0" size="14" />
+                  <JFXTextField fx:id="capaciteField" labelFloat="true" layoutX="37.0" layoutY="97.0" prefHeight="26.0" prefWidth="221.0" promptText="Capacité du parking" unFocusColor="#1d71bf" />
+                  <FontAwesomeIconView fill="#1d71bf" glyphName="MAP" layoutX="14.0" layoutY="28.0" size="14" />
                   <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
-                  <JFXTextField fx:id="adresseField" labelFloat="true" layoutX="37.0" layoutY="167.0" prefHeight="26.0" prefWidth="221.0" promptText="Adresse" unFocusColor="#1d71bf" />
-                  <JFXTextField fx:id="numGsmField" labelFloat="true" layoutX="37.0" layoutY="225.0" prefHeight="26.0" prefWidth="221.0" promptText="Numéro Gsm" unFocusColor="#1d71bf" />
-                  <StackPane fx:id="myStackPane1" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
-                  <JFXButton layoutX="273.0" layoutY="375.0" prefHeight="26.0" prefWidth="81.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
+                  <JFXTextField fx:id="rueField" labelFloat="true" layoutX="37.0" layoutY="165.0" prefHeight="26.0" prefWidth="221.0" promptText="Rue" unFocusColor="#1d71bf" />
+                  <JFXTextField fx:id="arrondissementField" labelFloat="true" layoutX="37.0" layoutY="242.0" prefHeight="26.0" prefWidth="221.0" promptText="Arondissement" unFocusColor="#1d71bf" />
+                  <StackPane fx:id="myStackPane1" layoutX="63.0" layoutY="132.0" prefHeight="5.0" prefWidth="241.0" />
+                  <JFXButton layoutX="267.0" layoutY="371.0" onAction="#modifyParking" prefHeight="30.0" prefWidth="83.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -111,7 +111,7 @@
                   <TableColumn fx:id="col_nbrplacesOccupées" prefWidth="149.0" text="Places occupées" />
                </columns>
             </TableView>
-            <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="504.0" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="504.0" onAction="#createParking" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -122,7 +122,7 @@
             <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="61.0" layoutY="527.0" size="19" />
             <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" />
             <FontAwesomeIconView glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
-            <JFXButton alignment="BOTTOM_LEFT" layoutX="201.0" layoutY="504.0" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="201.0" layoutY="504.0" onAction="#deleteVehicule" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -131,7 +131,7 @@
                </cursor>
             </JFXButton>
             <FontAwesomeIconView fill="WHITE" glyphName="TRASH" layoutX="274.0" layoutY="527.0" size="17" />
-            <JFXButton alignment="BOTTOM_LEFT" layoutX="95.0" layoutY="504.0" prefHeight="32.0" prefWidth="97.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Update" textFill="WHITE">
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="95.0" layoutY="504.0" onAction="#updateParking" prefHeight="32.0" prefWidth="97.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Update" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -203,6 +203,16 @@
                         <TableColumn fx:id="col_disponibilite" prefWidth="106.0" text="disponible" />
                      </columns>
                   </TableView>
+                  <Label layoutX="281.0" layoutY="57.0" text="Nombre de places restantes :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nombrePlace" layoutX="532.0" layoutY="58.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

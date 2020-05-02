@@ -114,16 +114,10 @@ public class createVehiculeController implements Initializable {
             Véhicule véhicule = null;
             Parking parking = parkingDAO.find(selectParking.getValue());
             if(parking.getCapacité()-parkingDAO.nombreVehicule(parking.getNParking())>0) {
-                try {
                     if (group.getSelectedToggle() == ouiRadio)
                         véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true);
                     else if (group.getSelectedToggle() == nonRadio)
                         véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false);
-                } catch (NumberFormatException e) {
-                    dialogContent.setBody(new Text("Veuillez ajouter le code du pays!"));
-                    dialog.show();
-                    return;
-                }
             }else if(parking.getCapacité()-parkingDAO.nombreVehicule(parking.getNParking())<=0){
                 dialogContent.setBody(new Text("Le parking est saturé"));
                 dialog.show();

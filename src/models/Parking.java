@@ -7,7 +7,7 @@ public class Parking {
     private int capacité;
     private String rue;
     private String arrondissement;
-    private int nbrPlacesOccupées=0;
+    private int nbrPlacesOccupées;
     //Constructors
     public Parking(int NParking, int capacité, String rue, String arrondissement,int nbrPlacesOccupées) {
         this.NParking = NParking;

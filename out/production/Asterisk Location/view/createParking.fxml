@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.createParkingController">
+   <children>
+      <Label layoutX="37.0" layoutY="13.0" text="Nouveau Parking" textFill="#1d71bf">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="capaciteField" labelFloat="true" layoutX="37.0" layoutY="97.0" prefHeight="26.0" prefWidth="221.0" promptText="Capacité du parking" unFocusColor="#1d71bf" />
+      <FontAwesomeIconView fill="#1d71bf" glyphName="MAP" layoutX="14.0" layoutY="28.0" size="14" />
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+      <JFXTextField fx:id="rueField" labelFloat="true" layoutX="37.0" layoutY="165.0" prefHeight="26.0" prefWidth="221.0" promptText="Rue" unFocusColor="#1d71bf" />
+      <JFXTextField fx:id="arrondissementField" labelFloat="true" layoutX="37.0" layoutY="242.0" prefHeight="26.0" prefWidth="221.0" promptText="Arondissement" unFocusColor="#1d71bf" />
+      <StackPane fx:id="myStackPane" layoutX="63.0" layoutY="132.0" prefHeight="5.0" prefWidth="241.0" />
+      <JFXButton layoutX="232.0" layoutY="375.0" onAction="#clear" style="-fx-background-color: #dd2c2c;" text="Clear" textFill="WHITE" />
+      <JFXButton layoutX="288.0" layoutY="375.0" onAction="#nouveauParking" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Create" textFill="WHITE" />
+   </children>
+</AnchorPane>
