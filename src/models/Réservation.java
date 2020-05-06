@@ -2,18 +2,21 @@ package models;
 
 import java.time.LocalDate;
 
-public class Réservation {
+public class
+Réservation {
     private int codeRéservation;
     private LocalDate dateDépart;
     private LocalDate dateRetour;
     private int idClient;
+    private int idVehicule;
 
     //constructors
-    public Réservation(int codeRéservation, LocalDate dateDépart, LocalDate dateRetour,int idClient) {
+    public Réservation(int codeRéservation, LocalDate dateDépart, LocalDate dateRetour, int idClient, int idVehicule) {
         this.codeRéservation = codeRéservation;
         this.dateDépart = dateDépart;
         this.dateRetour = dateRetour;
         this.idClient=idClient;
+        this.idVehicule = idVehicule;
     }
 
     public int getIdClient() {
@@ -47,5 +50,13 @@ public class Réservation {
 
     public void setDateRetour(LocalDate dateRetour) {
         this.dateRetour = dateRetour;
+    }
+
+    public int getIdVehicule() {
+        return idVehicule;
+    }
+
+    public void setIdVehicule(int idVehicule) {
+        this.idVehicule = idVehicule;
     }
 }
