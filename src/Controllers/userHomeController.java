@@ -38,7 +38,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Controllers.LoginController;
 
 import static models.DAO.DAO.connect;
 
@@ -95,9 +94,9 @@ public class userHomeController implements Initializable, Window {
 
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("../view/Login.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../view/login.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(loginController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -119,7 +118,7 @@ public class userHomeController implements Initializable, Window {
     }
     private void afficheInfos()
     {
-        Utilisateur user = utilisateurDAO.find(LoginController.username.getText());
+        Utilisateur user = utilisateurDAO.find(loginController.username.getText());
         name.setText(user.getNomComplet());
         email.setText(user.getEmail());
     }
