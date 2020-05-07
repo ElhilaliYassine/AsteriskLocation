@@ -46,8 +46,6 @@ public class loginController implements Initializable, Window {
     @FXML
     private JFXPasswordField passwordField;
     @FXML
-    private JFXButton loginButton;
-    @FXML
     private AnchorPane fadePane;
     @FXML
     private ProgressBar bar;
@@ -73,24 +71,21 @@ public class loginController implements Initializable, Window {
 
     public void fade()
     {
-        /*Timeline timeline = new Timeline(
+        Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(bar.progressProperty(), 0)),
-                new KeyFrame(Duration.seconds(8), e-> {
+                new KeyFrame(Duration.seconds(7), e-> {
                     FadeTransition fadeTransition = new FadeTransition();
-                    fadeTransition.setDuration(Duration.millis(1000));
+                    fadeTransition.setDuration(Duration.millis(2000));
                     fadeTransition.setNode(fadePane);
                     fadeTransition.setFromValue(1);
                     fadeTransition.setToValue(0);
                     fadeTransition.setOnFinished(a-> fadePane.setVisible(false));
                     fadeTransition.play();
                     bar.setVisible(false);
-
                 }, new KeyValue(bar.progressProperty(), 1))
         );
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
-        //fadePane.toFront();
-*/
     }
     @FXML
     private void handleButtonLogin() {
