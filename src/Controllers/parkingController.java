@@ -41,7 +41,7 @@ public class parkingController implements Initializable {
     @FXML
     private AnchorPane loadPane;
     @FXML
-    private AnchorPane rootPane1,rootPane2;
+    private AnchorPane updatePane,detailPane;
     @FXML
     private Button btnClose1;
     @FXML
@@ -168,8 +168,8 @@ public class parkingController implements Initializable {
     }
     public void returnDetail() {
         blur.setEffect(null);
-        rootPane2.setVisible(false);
-        rootPane2.toBack();
+        detailPane.setVisible(false);
+        detailPane.toBack();
         list = parkingDAO.list();
         dataUser();
     }
@@ -198,8 +198,8 @@ public class parkingController implements Initializable {
         }
         else{
             blur.setEffect(new GaussianBlur(10));
-            rootPane2.setVisible(true);
-            rootPane2.toFront();
+            detailPane.setVisible(true);
+            detailPane.toFront();
             Parking parking = parkingDAO.find(table.getSelectionModel().getSelectedItem().getNParking());
             numeroParking.setText(String.valueOf(table.getSelectionModel().getSelectedItem().getNParking()));
             dataVehicule(table.getSelectionModel().getSelectedItem().getNParking());
@@ -247,8 +247,8 @@ public class parkingController implements Initializable {
         } else {
             Parking parking = parkingDAO.find(table.getSelectionModel().getSelectedItem().getNParking());
             blur.setEffect(new GaussianBlur(10));
-            rootPane1.setVisible(true);
-            rootPane1.toFront();
+            updatePane.setVisible(true);
+            updatePane.toFront();
             btnClose1.setVisible(true);
             btnClose1.toFront();
             capaciteField.setText(String.valueOf(parking.getCapacité()));
@@ -259,8 +259,8 @@ public class parkingController implements Initializable {
     }
     public void returnUpdate() {
         blur.setEffect(null);
-        rootPane1.setVisible(false);
-        rootPane1.toBack();
+        updatePane.setVisible(false);
+        updatePane.toBack();
         dataUser();
     }
     public void modifyParking() {

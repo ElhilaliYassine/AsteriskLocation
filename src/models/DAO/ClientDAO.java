@@ -91,12 +91,15 @@ public class ClientDAO extends DAO<Client>{
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM client WHERE codeClient=?");
             preparedStmt.setInt(1,id);
             ResultSet resultSet = preparedStmt.executeQuery();
-            return new Client(id,resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("uriImage"));
+            while(resultSet.next()){
+                return new Client(id,resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("uriImage"));
+            }
         }
         catch(SQLException e)
         {
             return new Client(id,"","",0,"");
         }
+            return new Client(id,"","",0,"");
     }
     public ObservableList<Client> list()
     {

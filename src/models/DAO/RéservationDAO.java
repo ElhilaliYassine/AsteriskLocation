@@ -82,16 +82,19 @@ public class RéservationDAO extends DAO<Réservation>{
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM reservation WHERE codeReservation=?");
             preparedStmt.setInt(1,id);
             ResultSet resultSet = preparedStmt.executeQuery();
-            Date dateD = resultSet.getDate("dateDepart");
-            LocalDate dateDepart = dateD.toLocalDate();
-            Date dateR = resultSet.getDate("dateRetour");
-            LocalDate dateRetour = dateR.toLocalDate();
-            return new Réservation(id,dateDepart,dateRetour,resultSet.getInt("idClient"), resultSet.getInt("idVehicule"));
+            while(resultSet.next()) {
+                Date dateD = resultSet.getDate("dateDepart");
+                LocalDate dateDepart = dateD.toLocalDate();
+                Date dateR = resultSet.getDate("dateRetour");
+                LocalDate dateRetour = dateR.toLocalDate();
+                return new Réservation(id, dateDepart, dateRetour, resultSet.getInt("idClient"), resultSet.getInt("idVehicule"));
+            }
         }
         catch(SQLException e)
         {
             return new Réservation(id,null,null,0, 0);
         }
+            return new Réservation(id,null,null,0, 0);
     }
 
     @Override

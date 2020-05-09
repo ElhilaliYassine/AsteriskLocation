@@ -37,7 +37,7 @@
             <Font size="14.0" />
          </font>
       </JFXPasswordField>
-      <JFXButton buttonType="RAISED" layoutX="391.0" layoutY="361.0" onMouseClicked="#handleButtonLogin" prefHeight="38.0" prefWidth="116.0" ripplerFill="#11bfff" style="-fx-background-color: #4059a9; -fx-background-radius: 18;" text="Login" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="391.0" layoutY="361.0" onMouseClicked="#handleButtonLogin" prefHeight="38.0" prefWidth="116.0" ripplerFill="#11bfff" style="-fx-background-color: #074684; -fx-background-radius: 18;" text="Login" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
@@ -45,7 +45,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Button fx:id="btnClose" focusTraversable="false" layoutX="568.0" layoutY="5.0" mnemonicParsing="false" onAction="#close" onMouseClicked="#close" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
+      <Button fx:id="btnClose" focusTraversable="false" layoutX="566.0" layoutY="7.0" mnemonicParsing="false" onAction="#close" onMouseClicked="#close" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
          <font>
             <Font name="System Bold" size="7.0" />
          </font>
@@ -53,7 +53,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button focusTraversable="false" layoutX="550.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#minimize" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: #feb72b; -fx-background-radius: 50; -fx-border-radius: 20;" text="_" textFill="WHITE">
+      <Button focusTraversable="false" layoutX="548.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#minimize" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: #feb72b; -fx-background-radius: 50; -fx-border-radius: 20;" text="_" textFill="WHITE">
          <font>
             <Font name="System Bold" size="7.0" />
          </font>
@@ -61,14 +61,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <AnchorPane fx:id="fadePane" prefHeight="452.0" prefWidth="590.0" style="-fx-background-radius: 20; -fx-background-color: #05071F;">
+      <AnchorPane fx:id="fadePane" prefHeight="452.0" prefWidth="590.0" style="-fx-background-radius: 20; -fx-background-color: black;">
          <children>
-            <ImageView fitHeight="341.0" fitWidth="525.0" layoutX="37.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="317.0" fitWidth="557.0" layoutX="16.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Pictures/logo_1.png" />
                </image>
             </ImageView>
-            <ProgressBar fx:id="bar" layoutX="190.0" layoutY="325.0" prefHeight="8.0" prefWidth="220.0" />
+            <ProgressBar fx:id="bar" layoutX="170.0" layoutY="343.0" prefHeight="8.0" prefWidth="250.0" />
          </children>
       </AnchorPane>
    </children>

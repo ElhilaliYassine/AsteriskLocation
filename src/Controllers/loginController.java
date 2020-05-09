@@ -71,6 +71,8 @@ public class loginController implements Initializable, Window {
 
     public void fade()
     {
+        fadePane.setStyle("-fx-background-radius: 14;-fx-background-color: linear-gradient(from 25% 25% to 100% 5%, #074684,#bf316f);");
+        //4f81c7
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(bar.progressProperty(), 0)),
                 new KeyFrame(Duration.seconds(7), e-> {
@@ -86,6 +88,7 @@ public class loginController implements Initializable, Window {
         );
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+
     }
     @FXML
     private void handleButtonLogin() {
@@ -107,6 +110,7 @@ public class loginController implements Initializable, Window {
 
         JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
         dialog.setStyle("-fx-background-radius : 18");
+        myStackPane.toFront();
 
         close.setOnAction(e -> dialog.close());
         if (!usernameField.getText().matches("[a-zA-Z0-9_]{4,}") || usernameField.getText() == "") {

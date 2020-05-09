@@ -14,7 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import models.Client;
 import models.DAO.ParkingDAO;
 import models.DAO.VéhiculeDAO;
 import models.Parking;
@@ -34,15 +33,9 @@ public class vehiculeController implements Initializable {
     @FXML
     private AnchorPane loadPane;
     @FXML
-    private AnchorPane rootPane1;
+    private AnchorPane updatePane;
     @FXML
     private Button btnClose1;
-    @FXML
-    private JFXTextField nomCompletField;
-    @FXML
-    private JFXTextField adresseField;
-    @FXML
-    private JFXTextField numGsmField;
     @FXML
     private StackPane myStackPane1;
     @FXML
@@ -207,8 +200,8 @@ public class vehiculeController implements Initializable {
         } else {
             Véhicule véhicule = véhiculeDAO.find(table.getSelectionModel().getSelectedItem().getNImmatriculation());
             blur.setEffect(new GaussianBlur(10));
-            rootPane1.setVisible(true);
-            rootPane1.toFront();
+            updatePane.setVisible(true);
+            updatePane.toFront();
             btnClose1.setVisible(true);
             btnClose1.toFront();
             matriculeField.setText(String.valueOf(véhicule.getNImmatriculation()));
@@ -222,15 +215,14 @@ public class vehiculeController implements Initializable {
             //String for better Ux
             Parking parking = parkingDAO.find(véhicule.getIdParking());
             selectParking.setValue(parking.getRue());
-            //selectParking.setValue(véhicule.getIdParking());
             carburantField.setText(véhicule.getCarburant());
             compteurKmField.setText(String.valueOf(véhicule.getCompteurKm()));
         }
     }
     public void returnUpdate() {
         blur.setEffect(null);
-        rootPane1.setVisible(false);
-        rootPane1.toBack();
+        updatePane.setVisible(false);
+        updatePane.toBack();
         list = véhiculeDAO.list();
         dataUser();
     }

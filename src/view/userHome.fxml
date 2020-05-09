@@ -14,14 +14,6 @@
 
 <AnchorPane prefHeight="709.0" prefWidth="900.0" style="-fx-background-radius: 30; -fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.userHomeController">
    <children>
-      <Button fx:id="btnClose" focusTraversable="false" layoutX="871.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" onMouseClicked="#close" prefHeight="16.0" prefWidth="4.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="8.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Button focusTraversable="false" layoutX="853.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#minimize" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: #feb72b; -fx-background-radius: 50; -fx-border-radius: 20;" text="-" textFill="WHITE">
          <font>
             <Font name="System Bold" size="8.0" />
@@ -35,7 +27,7 @@
             <Image url="@../Pictures/logo.png" />
          </image>
       </ImageView>
-      <VBox layoutX="-1.0" layoutY="121.0" prefHeight="588.0" prefWidth="218.0" style="-fx-background-radius: 0 10 0 30; -fx-background-color: #05071F;">
+      <VBox layoutX="-1.0" layoutY="121.0" prefHeight="588.0" prefWidth="218.0" style="-fx-background-radius: 0 10 0 30; -fx-background-color: #074684;">
          <children>
             <Pane prefHeight="574.0" prefWidth="211.0">
                <children>
@@ -43,7 +35,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <JFXButton buttonType="RAISED" layoutX="62.0" layoutY="489.0" onAction="#logout" onMouseClicked="#logout" prefHeight="31.0" prefWidth="88.0" ripplerFill="#11bfff" style="-fx-background-color: #4059a9; -fx-background-radius: 18;" text="     Logout" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" layoutX="62.0" layoutY="489.0" onAction="#logout" onMouseClicked="#logout" prefHeight="31.0" prefWidth="88.0" ripplerFill="#ff0978" style="-fx-background-color: #bf316f; -fx-background-radius: 18;" text="     Logout" textFill="WHITE">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -93,5 +85,13 @@
          </font>
       </Label>
       <AnchorPane fx:id="rootPane" layoutX="217.0" layoutY="41.0" prefHeight="668.0" prefWidth="683.0" style="-fx-background-radius: 30 0 30 0;" />
+      <Button fx:id="btnClose" focusTraversable="false" layoutX="873.0" layoutY="15.0" mnemonicParsing="false" onAction="#close" onMouseClicked="#close" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="7.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

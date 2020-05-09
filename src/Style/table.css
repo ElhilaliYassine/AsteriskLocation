@@ -2,6 +2,6 @@
 .table-view .column-header .filler,
 .table-view .column-header .label,
 .table-view .column-header-background .filler {
-    -fx-background-color: #30475e;
+    -fx-background-color:  #074684;
     -fx-text-fill: white;
 }

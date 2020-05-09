@@ -46,7 +46,7 @@ public class clientController implements Initializable {
     @FXML
     private AnchorPane rootPane;
     @FXML
-    private AnchorPane rootPane1;
+    private AnchorPane updatePane;
     @FXML
     private Button btnClose, btnClose1;
     @FXML
@@ -178,8 +178,8 @@ public class clientController implements Initializable {
         } else {
             Client client = clientDAO.find(table.getSelectionModel().getSelectedItem().getNomComplet());
             blur.setEffect(new GaussianBlur(10));
-            rootPane1.setVisible(true);
-            rootPane1.toFront();
+            updatePane.setVisible(true);
+            updatePane.toFront();
             btnClose1.setVisible(true);
             btnClose1.toFront();
             nomCompletField.setText(client.getNomComplet());
@@ -190,8 +190,8 @@ public class clientController implements Initializable {
 
     public void returnUpdate() {
         blur.setEffect(null);
-        rootPane1.setVisible(false);
-        rootPane1.toBack();
+        updatePane.setVisible(false);
+        updatePane.toBack();
         list = clientDAO.list();
         DataUser();
     }

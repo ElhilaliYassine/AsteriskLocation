@@ -30,7 +30,7 @@
          <children>
             <Pane prefHeight="47.0" prefWidth="371.0">
                <children>
-                  <Button fx:id="btnClose" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
+                  <Button fx:id="btnClose" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
                      <font>
                         <Font name="System Bold" size="7.0" />
                      </font>
@@ -92,12 +92,12 @@
                <children>
                   <Pane prefHeight="103.0" prefWidth="661.0">
                      <children>
-                        <Label layoutX="79.0" layoutY="34.0" style="-fx-text-fill: #30475e;" text="Gestion des réservations">
+                        <Label layoutX="79.0" layoutY="34.0" style="-fx-text-fill: #074684;" text="Gestion des réservations">
                            <font>
                               <Font name="System Bold" size="27.0" />
                            </font>
                         </Label>
-                        <FontAwesomeIconView fill="#30475e" glyphName="FILE" layoutX="34.0" layoutY="62.0" selectionFill="#30475e" size="30" />
+                        <FontAwesomeIconView fill="#074684" glyphName="FILE" layoutX="34.0" layoutY="62.0" selectionFill="#30475e" size="30" />
                      </children>
                   </Pane>
                </children>
@@ -110,7 +110,7 @@
                   <TableColumn fx:id="col_idClient" prefWidth="102.0" text="Id Client" />
                   <TableColumn fx:id="col_idVehicule" prefWidth="125.0" text="Id Vehicule" />
                </columns></TableView>
-            <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="504.0" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="504.0" onAction="#createReservation" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -119,8 +119,8 @@
                </cursor>
             </JFXButton>
             <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="61.0" layoutY="527.0" size="19" />
-            <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" />
-            <FontAwesomeIconView glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
+            <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" unFocusColor="#074684" />
+            <FontAwesomeIconView fill="#074684" glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
             <JFXButton alignment="BOTTOM_LEFT" layoutX="201.0" layoutY="504.0" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
                <font>
                   <Font size="16.0" />
@@ -139,6 +139,203 @@
                </cursor>
             </JFXButton>
             <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" layoutX="169.0" layoutY="527.0" size="17" />
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="308.0" layoutY="504.0" onAction="#detailReservation" prefHeight="32.0" prefWidth="97.0" style="-fx-background-color: #bfbdbd;" text="Detail" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="INFO" layoutX="387.0" layoutY="527.0" size="19" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="detailPane" layoutX="6.0" layoutY="104.0" prefHeight="548.0" prefWidth="670.0" visible="false">
+         <effect>
+            <DropShadow height="11.89" radius="5.445" width="11.89" />
+         </effect>
+         <children>
+            <Pane prefHeight="34.0" prefWidth="670.0">
+               <children>
+                  <Button fx:id="btnClose2" focusTraversable="false" layoutX="638.0" layoutY="13.0" mnemonicParsing="false" onAction="#returnDetail" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="7.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </Pane>
+            <AnchorPane layoutX="7.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="658.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+               <children>
+                  <Label layoutX="37.0" layoutY="13.0" text="Réservation Nᵒ" textFill="#1d71bf">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="#1d71bf" glyphName="FILE" layoutX="14.0" layoutY="28.0" size="14" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="140.0" />
+                  <Label fx:id="numeroReservation" layoutX="178.0" layoutY="13.0" text="N" textFill="#1d71bf">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="idClient" layoutX="120.0" layoutY="59.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nomClient" layoutX="139.0" layoutY="88.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="adresseClient" layoutX="164.0" layoutY="120.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="118.0" layoutY="76.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="135.0" layoutY="105.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="303.0" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="159.0" layoutY="137.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="280.0" />
+                  <Label fx:id="numeroClient" layoutX="168.0" layoutY="150.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="163.0" layoutY="167.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="280.0" />
+                  <Label layoutX="2.0" layoutY="177.0" prefHeight="19.0" prefWidth="658.0" text="---------------------------------------------------------------------------------------------------------">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="matriculeVehicule" layoutX="197.0" layoutY="205.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="195.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="240.0" />
+                  <Label fx:id="marqueVehicule" layoutX="196.0" layoutY="234.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="194.0" layoutY="251.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="240.0" />
+                  <Label fx:id="typeVehicule" layoutX="163.0" layoutY="265.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="161.0" layoutY="282.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="280.0" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="262.0" layoutY="312.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="180.0" />
+                  <Label fx:id="dateVehicule" layoutX="263.0" layoutY="295.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="2.0" layoutY="415.0" prefHeight="19.0" prefWidth="658.0" text="---------------------------------------------------------------------------------------------------------">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="25.0" layoutY="61.0" text="Id Client :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="89.0" text="Nom Client :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="24.0" layoutY="120.0" text="Adresse Client :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="24.0" layoutY="150.0" text="Numéro Gsm :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="205.0" text="Matricule Véhicule :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="234.0" text="Marque Véhicule :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="21.0" layoutY="265.0" text="Type Véhicule :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="20.0" layoutY="296.0" text="Date de mise en Circulation : ">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="358.0" text="Carburant :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="20.0" layoutY="326.0" text="Compteur km :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="21.0" layoutY="387.0" text="Parking :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="151.0" layoutY="345.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="290.0" />
+                  <Label fx:id="compteurVehicule" layoutX="152.0" layoutY="328.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="121.0" layoutY="375.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
+                  <Label fx:id="carburantVehicule" layoutX="122.0" layoutY="358.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="121.0" layoutY="404.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
+                  <Label fx:id="parkingVehicule" layoutX="122.0" layoutY="387.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="8.0" layoutY="455.0" text="Date de Départ :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="337.0" layoutY="455.0" text="Date de Retour :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="150.0" layoutY="472.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
+                  <Label fx:id="dateDepart" layoutX="151.0" layoutY="455.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="471.0" layoutY="473.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
+                  <Label fx:id="dateRetour" layoutX="472.0" layoutY="456.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

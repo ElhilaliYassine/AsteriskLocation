@@ -43,7 +43,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="rootPane1" layoutX="150.0" layoutY="117.0" prefHeight="461.0" prefWidth="371.0" visible="false">
+      <AnchorPane fx:id="updatePane" layoutX="150.0" layoutY="117.0" prefHeight="461.0" prefWidth="371.0" visible="false">
          <effect>
             <DropShadow height="11.89" radius="5.445" width="11.89" />
          </effect>
@@ -90,12 +90,12 @@
                <children>
                   <Pane prefHeight="103.0" prefWidth="663.0">
                      <children>
-                        <Label layoutX="79.0" layoutY="34.0" style="-fx-text-fill: #30475e;" text="Gestion des utilisateurs">
+                        <Label layoutX="79.0" layoutY="34.0" style="-fx-text-fill: #074684;" text="Gestion des utilisateurs">
                            <font>
                               <Font name="System Bold" size="27.0" />
                            </font>
                         </Label>
-                        <FontAwesomeIconView fill="#30475e" glyphName="USERS" layoutX="34.0" layoutY="62.0" selectionFill="#30475e" size="30" />
+                        <FontAwesomeIconView fill="#074684" glyphName="USERS" layoutX="34.0" layoutY="62.0" selectionFill="#30475e" size="30" />
                      </children>
                   </Pane>
                </children>
@@ -119,8 +119,8 @@
                </cursor>
             </JFXButton>
             <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="61.0" layoutY="527.0" size="19" />
-            <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" />
-            <FontAwesomeIconView glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
+            <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" unFocusColor="#074684" />
+            <FontAwesomeIconView fill="#074684" glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
             <JFXButton alignment="BOTTOM_LEFT" layoutX="201.0" layoutY="504.0" onAction="#deleteUser" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
                <font>
                   <Font size="16.0" />

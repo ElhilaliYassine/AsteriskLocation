@@ -62,7 +62,7 @@ public class utilisateurController implements Initializable {
     private AnchorPane rootPane;
 
     @FXML
-    private AnchorPane rootPane1;
+    private AnchorPane updatePane;
 
     @FXML
     private Button btnClose, btnClose1;
@@ -216,8 +216,8 @@ public class utilisateurController implements Initializable {
         } else {
             Utilisateur userUpdate = utilisateurDAO.find(table.getSelectionModel().getSelectedItem().getNomComplet());
             blur.setEffect(new GaussianBlur(10));
-            rootPane1.setVisible(true);
-            rootPane1.toFront();
+            updatePane.setVisible(true);
+            updatePane.toFront();
             btnClose1.setVisible(true);
             btnClose1.toFront();
             usernameField.setText(userUpdate.getNomComplet());
@@ -230,8 +230,8 @@ public class utilisateurController implements Initializable {
 
     public void returnUpdate() {
         blur.setEffect(null);
-        rootPane1.setVisible(false);
-        rootPane1.toBack();
+        updatePane.setVisible(false);
+        updatePane.toBack();
         list = utilisateurDAO.list();
         DataUser();
     }

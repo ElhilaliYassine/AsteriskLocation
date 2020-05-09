@@ -127,38 +127,38 @@ public class userHomeController implements Initializable, Window {
     private void client() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/client.fxml"));
         rootPane.getChildren().setAll(pane);
-        btnClient.setStyle("-fx-background-color : #1620A1;");
-        btnVehicule.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
-        btnParking.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
-        btnReservation.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+        btnClient.setStyle("-fx-background-color : #278ef4;");
+        btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
 
     @FXML
     private void vehicule() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/vehicule.fxml"));
         rootPane.getChildren().setAll(pane);
-        btnVehicule.setStyle("-fx-background-color : #1620A1;");
-        btnClient.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
-        btnParking.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
-        btnReservation.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+        btnVehicule.setStyle("-fx-background-color : #278ef4;");
+        btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
     @FXML
     private void parking() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/parking.fxml"));
         rootPane.getChildren().setAll(pane);
-        btnParking.setStyle("-fx-background-color : #1620A1;");
-        btnClient.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
-        btnVehicule.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
-        btnReservation.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+        btnParking.setStyle("-fx-background-color : #278ef4;");
+        btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
     @FXML
     private void reservation() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/reservation.fxml"));
         rootPane.getChildren().setAll(pane);
-        btnReservation.setStyle("-fx-background-color : #1620A1;");
-        btnClient.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
-        btnVehicule.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
-        btnParking.setStyle("{-fx-background-color : #05071F;}:hover{fx-background-color : #10165F;}");
+        btnReservation.setStyle("-fx-background-color : #278ef4;");
+        btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
 
 
