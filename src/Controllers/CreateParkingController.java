@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 import models.DAO.ParkingDAO;
 import models.Parking;
 
-public class createParkingController implements Initializable {
+public class CreateParkingController implements Initializable {
     @FXML
     private AnchorPane rootPane;
 

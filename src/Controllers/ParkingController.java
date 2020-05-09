@@ -32,7 +32,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class parkingController implements Initializable {
+public class ParkingController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;

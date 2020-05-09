@@ -19,15 +19,19 @@ public class RéservationDAO extends DAO<Réservation>{
     public boolean create(Réservation obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO reservation(dateDépart,dateRetour,idClient,idVehicule) VALUES(?,?,?,?)");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO reservation(dateReservation,dateDépart,dateRetour,idClient,idVehicule,etatReservation) VALUES(?,?,?,?,?,?)");
             LocalDate dateD = obj.getDateDépart();
             Date dateDepart = Date.valueOf(dateD);
             LocalDate dateR = obj.getDateRetour();
             Date dateRetour = Date.valueOf(dateR);
-            preparedStmt.setObject(1,dateDepart);
-            preparedStmt.setObject(2,dateRetour);
-            preparedStmt.setObject(3,obj.getIdClient());
-            preparedStmt.setObject(4,obj.getIdVehicule());
+            LocalDate date = obj.getDateReservation();
+            Date dateReservation = Date.valueOf(date);
+            preparedStmt.setObject(1,dateReservation);
+            preparedStmt.setObject(2,dateDepart);
+            preparedStmt.setObject(3,dateRetour);
+            preparedStmt.setObject(4,obj.getIdClient());
+            preparedStmt.setObject(5,obj.getIdVehicule());
+            preparedStmt.setObject(6,obj.getEtatReservation());
             preparedStmt.execute();
             return true;
         }
@@ -87,14 +91,16 @@ public class RéservationDAO extends DAO<Réservation>{
                 LocalDate dateDepart = dateD.toLocalDate();
                 Date dateR = resultSet.getDate("dateRetour");
                 LocalDate dateRetour = dateR.toLocalDate();
-                return new Réservation(id, dateDepart, dateRetour, resultSet.getInt("idClient"), resultSet.getInt("idVehicule"));
+                Date date = resultSet.getDate("dateReservation");
+                LocalDate dateReservation = date.toLocalDate();
+                return new Réservation(id, dateReservation, dateDepart, dateRetour, resultSet.getInt("idClient"), resultSet.getInt("idVehicule"), resultSet.getString("etatReservation"));
             }
         }
         catch(SQLException e)
         {
-            return new Réservation(id,null,null,0, 0);
+            return new Réservation(id, null, null,null,0, 0, "");
         }
-            return new Réservation(id,null,null,0, 0);
+            return new Réservation(id, null, null,null,0, 0, "");
     }
 
     @Override
@@ -110,7 +116,9 @@ public class RéservationDAO extends DAO<Réservation>{
                 LocalDate dateDepart = dateD.toLocalDate();
                 Date dateR = resultSet.getDate("dateRetour");
                 LocalDate dateRetour = dateR.toLocalDate();
-                listRéservations.add(new Réservation(resultSet.getInt("codeReservation"),dateDepart,dateRetour,resultSet.getInt("idClient"), resultSet.getInt("idVehicule")));
+                Date date = resultSet.getDate("dateReservation");
+                LocalDate dateReservation = date.toLocalDate();
+                listRéservations.add(new Réservation(resultSet.getInt("codeReservation"), dateReservation, dateDepart,dateRetour,resultSet.getInt("idClient"), resultSet.getInt("idVehicule"), resultSet.getString("etatReservation")));
             }
             Collections.sort(listRéservations, Comparator.comparing(Réservation::getDateDépart).reversed());
             return listRéservations;

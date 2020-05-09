@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 
 import static models.DAO.DAO.connect;
 
-public class createVehiculeController implements Initializable {
+public class CreateVehiculeController implements Initializable {
     
     @FXML
     private AnchorPane rootPane;

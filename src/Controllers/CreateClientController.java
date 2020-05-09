@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 import static models.DAO.DAO.connect;
 
-public class createClientController implements Initializable {
+public class CreateClientController implements Initializable {
     @FXML
     private JFXTextField nomCompletField;
     @FXML

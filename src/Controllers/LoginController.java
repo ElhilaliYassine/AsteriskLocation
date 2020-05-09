@@ -34,7 +34,7 @@ import java.util.logging.Logger;
 
 import static models.DAO.DAO.connect;
 
-public class loginController implements Initializable, Window {
+public class LoginController implements Initializable, Window {
 
     static JFXTextField username;
     @FXML
@@ -148,7 +148,7 @@ public class loginController implements Initializable, Window {
                         root = FXMLLoader.load(getClass().getResource("../view/userHome.fxml"));
                     }
                 } catch (IOException ex) {
-                    Logger.getLogger(loginController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 Scene scene = new Scene(root);
                 stage.setScene(scene);

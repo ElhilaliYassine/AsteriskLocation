@@ -25,7 +25,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class vehiculeController implements Initializable {
+public class VehiculeController implements Initializable {
     @FXML
     private AnchorPane rootPane;
     @FXML

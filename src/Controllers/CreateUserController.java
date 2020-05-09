@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 import static models.DAO.DAO.connect;
 
-public class createUserController implements Initializable {
+public class CreateUserController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;

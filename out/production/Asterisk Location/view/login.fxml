@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="590.0" style="-fx-background-color: transparent; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.loginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="590.0" style="-fx-background-color: transparent; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
       <Rectangle arcHeight="41.0" arcWidth="41.0" fill="WHITE" height="452.0" stroke="WHITE" strokeType="INSIDE" width="590.0" />
       <ImageView fitHeight="500.0" fitWidth="334.0" layoutX="-16.0" layoutY="-24.0" pickOnBounds="true" preserveRatio="true">

@@ -1,15 +1,10 @@
 package Controllers;
 
 import Controllers.interfaces.Window;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,9 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -41,7 +35,7 @@ import java.util.logging.Logger;
 
 import static models.DAO.DAO.connect;
 
-public class userHomeController implements Initializable, Window {
+public class AdminHomeController implements Initializable, Window {
     @FXML
     private Button btnClose;
     @FXML
@@ -50,6 +44,8 @@ public class userHomeController implements Initializable, Window {
     private Label name;
     @FXML
     private Label email;
+    @FXML
+    private Button btnUtilisateur;
     @FXML
     private AnchorPane rootPane;
     @FXML
@@ -60,9 +56,8 @@ public class userHomeController implements Initializable, Window {
     private Button btnParking;
     @FXML
     private Button btnReservation;
-
-
     UtilisateurDAO utilisateurDAO;
+
     {
         try {
             utilisateurDAO = new UtilisateurDAO(connect);
@@ -78,25 +73,26 @@ public class userHomeController implements Initializable, Window {
         afficheInfos();
 
     }
-    @FXML
-    public void close(){
+
+    public void close() {
         Platform.exit();
     }
-    @FXML
-    public void minimize(MouseEvent event){
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+    public void minimize(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
+
     }
+
     @FXML
-    private void logout()
-    {
+    private void logout() {
         Stage stage = (Stage) btnClose.getScene().getWindow();
 
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("../view/login.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(loginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -108,7 +104,6 @@ public class userHomeController implements Initializable, Window {
 
 
     private void initClock() {
-
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH : mm : ss");
             dateTime.setText(LocalDateTime.now().format(formatter));
@@ -116,11 +111,23 @@ public class userHomeController implements Initializable, Window {
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
     }
-    private void afficheInfos()
-    {
-        Utilisateur user = utilisateurDAO.find(loginController.username.getText());
+
+    private void afficheInfos() {
+        Utilisateur user = utilisateurDAO.find(LoginController.username.getText());
         name.setText(user.getNomComplet());
         email.setText(user.getEmail());
+
+    }
+
+    @FXML
+    private void user() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/utilisateur.fxml"));
+        rootPane.getChildren().setAll(pane);
+        btnUtilisateur.setStyle("-fx-background-color : #278ef4;");
+        btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
 
     @FXML
@@ -128,6 +135,7 @@ public class userHomeController implements Initializable, Window {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/client.fxml"));
         rootPane.getChildren().setAll(pane);
         btnClient.setStyle("-fx-background-color : #278ef4;");
+        btnUtilisateur.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
@@ -138,15 +146,18 @@ public class userHomeController implements Initializable, Window {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/vehicule.fxml"));
         rootPane.getChildren().setAll(pane);
         btnVehicule.setStyle("-fx-background-color : #278ef4;");
+        btnUtilisateur.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
+
     @FXML
     private void parking() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/parking.fxml"));
         rootPane.getChildren().setAll(pane);
         btnParking.setStyle("-fx-background-color : #278ef4;");
+        btnUtilisateur.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
@@ -156,10 +167,10 @@ public class userHomeController implements Initializable, Window {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/reservation.fxml"));
         rootPane.getChildren().setAll(pane);
         btnReservation.setStyle("-fx-background-color : #278ef4;");
+        btnUtilisateur.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
-
 
 }
