@@ -25,9 +25,6 @@ import java.util.ResourceBundle;
 import static models.DAO.DAO.connect;
 
 public class CreateVehiculeController implements Initializable {
-    
-    @FXML
-    private AnchorPane rootPane;
 
     @FXML
     private StackPane myStackPane;
@@ -51,14 +48,16 @@ public class CreateVehiculeController implements Initializable {
     private DatePicker dateField;
 
     @FXML
+    private JFXComboBox<String> selectParking;
+
+    @FXML
     private JFXRadioButton ouiRadio;
 
     @FXML
     private JFXRadioButton nonRadio;
-    @FXML
-    private JFXComboBox<String> selectParking;
 
     final ToggleGroup group = new ToggleGroup();
+
     VéhiculeDAO véhiculeDAO;
 
     {

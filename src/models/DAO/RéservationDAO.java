@@ -19,7 +19,7 @@ public class RéservationDAO extends DAO<Réservation>{
     public boolean create(Réservation obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO reservation(dateReservation,dateDépart,dateRetour,idClient,idVehicule,etatReservation) VALUES(?,?,?,?,?,?)");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO reservation(dateReservation,dateDepart,dateRetour,idClient,idVehicule,etatReservation) VALUES(?,?,?,?,?,?)");
             LocalDate dateD = obj.getDateDépart();
             Date dateDepart = Date.valueOf(dateD);
             LocalDate dateR = obj.getDateRetour();
@@ -37,6 +37,7 @@ public class RéservationDAO extends DAO<Réservation>{
         }
         catch(SQLException e)
         {
+            System.out.println(e);
             return false;
         }
     }
@@ -108,6 +109,54 @@ public class RéservationDAO extends DAO<Réservation>{
         try
         {
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM reservation");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<Réservation> listRéservations = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                Date dateD = resultSet.getDate("dateDepart");
+                LocalDate dateDepart = dateD.toLocalDate();
+                Date dateR = resultSet.getDate("dateRetour");
+                LocalDate dateRetour = dateR.toLocalDate();
+                Date date = resultSet.getDate("dateReservation");
+                LocalDate dateReservation = date.toLocalDate();
+                listRéservations.add(new Réservation(resultSet.getInt("codeReservation"), dateReservation, dateDepart,dateRetour,resultSet.getInt("idClient"), resultSet.getInt("idVehicule"), resultSet.getString("etatReservation")));
+            }
+            Collections.sort(listRéservations, Comparator.comparing(Réservation::getDateDépart).reversed());
+            return listRéservations;
+        }
+        catch(SQLException e)
+        {
+            return null;
+        }
+    }
+    public boolean checker(int idClient , int idVehicule , LocalDate dateReservation , LocalDate dateDepart , LocalDate dateRetour) {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM reservation WHERE dateDepart=? AND dateRetour=? AND idClient=? AND idVehicule=? AND dateReservation=?");
+            Date dateD = Date.valueOf(dateDepart);
+            Date dateR = Date.valueOf(dateRetour);
+            Date date = Date.valueOf(dateReservation);
+            preparedStmt.setObject(1, dateD);
+            preparedStmt.setObject(2, dateR);
+            preparedStmt.setObject(3, idClient);
+            preparedStmt.setObject(4, idVehicule);
+            preparedStmt.setObject(5, date);
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next()) {
+                return true;
+            }
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+            return false;
+    }
+    public ObservableList<Réservation> listReservation(String etat) {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM reservation WHERE etatReservation=?");
+            preparedStmt.setString(1,etat);
             ResultSet resultSet = preparedStmt.executeQuery();
             ObservableList<Réservation> listRéservations = FXCollections.observableArrayList();
             while(resultSet.next())

@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +19,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import models.Client;
 import models.DAO.ClientDAO;
@@ -51,19 +54,13 @@ public class ReservationController implements Initializable {
     private AnchorPane loadPane;
 
     @FXML
+    private Rectangle rectangleAnnuler,rectangleValidee,rectangleNonValide,rectangleTous;
+
+    @FXML
     private AnchorPane rootPane1;
 
     @FXML
     private Button btnClose1;
-
-    @FXML
-    private JFXTextField nomCompletField;
-
-    @FXML
-    private JFXTextField adresseField;
-
-    @FXML
-    private JFXTextField numGsmField;
 
     @FXML
     private StackPane myStackPane1;
@@ -88,6 +85,8 @@ public class ReservationController implements Initializable {
 
     @FXML
     private TableColumn<Réservation, Integer> col_idVehicule;
+    @FXML
+    private TableColumn<Réservation, LocalDate> col_dateReservation;
 
     @FXML
     private JFXTextField filterField;
@@ -130,7 +129,9 @@ public class ReservationController implements Initializable {
     private Label dateDepart;
 
     @FXML
-    private Label dateRetour;
+    private Label dateRetour,etatReservation;
+    @FXML
+    private Label dateReservation;
 
 
     RéservationDAO reservationDAO;
@@ -180,6 +181,7 @@ public class ReservationController implements Initializable {
         col_dateRetour.setCellValueFactory(new PropertyValueFactory<>("dateRetour"));
         col_idClient.setCellValueFactory(new PropertyValueFactory<>("idClient"));
         col_idVehicule.setCellValueFactory(new PropertyValueFactory<>("idVehicule"));
+        col_dateReservation.setCellValueFactory(new PropertyValueFactory<>("dateReservation"));
         table.setItems(list);
     }
     public void returnDetail() {
@@ -235,6 +237,22 @@ public class ReservationController implements Initializable {
             parkingVehicule.setText(parking.getRue());
             dateDepart.setText(String.valueOf(reservation.getDateDépart()));
             dateRetour.setText(String.valueOf(reservation.getDateRetour()));
+            dateReservation.setText(String.valueOf(reservation.getDateReservation()));
+            etatReservation.setText(reservation.getEtatReservation());
+            if(reservation.getEtatReservation().equals("annuler"))
+            {
+                etatReservation.setText("Reservation annulée");
+                etatReservation.setStyle("-fx-text-fill :  #e73535");
+            }else if(reservation.getEtatReservation().equals("validé"))
+            {
+                etatReservation.setText("Reservation validée");
+                etatReservation.setStyle("-fx-text-fill : green");
+            }else if(reservation.getEtatReservation().equals("non validé"))
+            {
+                etatReservation.setText("Reservation non validée");
+                etatReservation.setStyle("-fx-text-fill :  #f2a51a");
+            }
+
         }
     }
     public void createReservation() throws IOException {
@@ -250,7 +268,60 @@ public class ReservationController implements Initializable {
         blur.setEffect(null);
         rootPane.setVisible(false);
         rootPane.toBack();
+        list = reservationDAO.list();
         dataReservation();
     }
-    
+    public void search() {
+        FilteredList<Réservation> filteredData = new FilteredList<>(list, p -> true);
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(réservation -> {
+                if (newValue == null || newValue.isEmpty()) return true;
+                String lowerCaseFilter = newValue.toLowerCase();
+                String codeReservation = String.valueOf(réservation.getCodeRéservation());
+                if (codeReservation.toLowerCase().contains(lowerCaseFilter)) return true;
+                return false;
+            });
+        });
+        SortedList<Réservation> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
+    }
+    public void reservationAnnule()
+    {
+        rectangleAnnuler.setVisible(true);
+        rectangleValidee.setVisible(false);
+        rectangleNonValide.setVisible(false);
+        rectangleTous.setVisible(false);
+        list = reservationDAO.listReservation("annuler");
+        dataReservation();
+
+    }
+    public void reservationValide()
+    {
+        rectangleValidee.setVisible(true);
+        rectangleNonValide.setVisible(false);
+        rectangleTous.setVisible(false);
+        rectangleAnnuler.setVisible(false);
+        list = reservationDAO.listReservation("validé");
+        dataReservation();
+    }
+    public void reservationNonValide()
+    {
+        rectangleNonValide.setVisible(true);
+        rectangleTous.setVisible(false);
+        rectangleValidee.setVisible(false);
+        rectangleAnnuler.setVisible(false);
+        list = reservationDAO.listReservation("non validé");
+        dataReservation();
+    }
+    public void reservationlist()
+    {
+        rectangleTous.setVisible(true);
+        rectangleNonValide.setVisible(false);
+        rectangleValidee.setVisible(false);
+        rectangleAnnuler.setVisible(false);
+        list = reservationDAO.list();
+        dataReservation();
+    }
+
 }

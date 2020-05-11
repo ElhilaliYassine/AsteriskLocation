@@ -119,4 +119,38 @@ public class VéhiculeDAO extends DAO<Véhicule>{
             return null;
         }
     }
+    public ObservableList<String> select(){
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT marque,type FROM vehicule");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<String> listVehicule = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                listVehicule.add(resultSet.getString("marque")+" - "+resultSet.getString("type"));
+            }
+            return listVehicule;
+        }
+        catch(SQLException e)
+        {
+            return null;
+        }
+    }
+    public ObservableList<Integer> selectMatricule(){
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT NImmatriculation FROM vehicule");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<Integer> listVehicule = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                listVehicule.add(resultSet.getInt("NImmatriculation"));
+            }
+            return listVehicule;
+        }
+        catch(SQLException e)
+        {
+            return null;
+        }
+    }
 }

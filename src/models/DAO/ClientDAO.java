@@ -136,4 +136,21 @@ public class ClientDAO extends DAO<Client>{
         }
         return new Client(0,fullName,"",0,"");
     }
+    public ObservableList<String> select(){
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT nomComplet FROM client");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<String> listClient = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                listClient.add(resultSet.getString("nomComplet"));
+            }
+            return listClient;
+        }
+        catch(SQLException e)
+        {
+            return null;
+        }
+    }
 }
