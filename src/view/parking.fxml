@@ -76,7 +76,7 @@
                   <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
                   <JFXTextField fx:id="rueField" labelFloat="true" layoutX="37.0" layoutY="165.0" prefHeight="26.0" prefWidth="221.0" promptText="Rue" unFocusColor="#1d71bf" />
                   <JFXTextField fx:id="arrondissementField" labelFloat="true" layoutX="37.0" layoutY="242.0" prefHeight="26.0" prefWidth="221.0" promptText="Arondissement" unFocusColor="#1d71bf" />
-                  <StackPane fx:id="myStackPane1" layoutX="63.0" layoutY="132.0" prefHeight="5.0" prefWidth="241.0" />
+                  <StackPane fx:id="myStackUpdate" layoutX="63.0" layoutY="132.0" prefHeight="5.0" prefWidth="241.0" />
                   <JFXButton layoutX="267.0" layoutY="371.0" onAction="#modifyParking" prefHeight="30.0" prefWidth="83.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
                      <font>
                         <Font size="15.0" />

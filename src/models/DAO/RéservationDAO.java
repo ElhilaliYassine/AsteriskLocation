@@ -61,7 +61,7 @@ public class RéservationDAO extends DAO<Réservation>{
     public boolean update(Réservation obj, int id) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE reservation SET dateDepart=?,dateRetour=?,idClient=?,idVehicule=? WHERE codeReservation=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE reservation SET dateDepart=?,dateRetour=?,idClient=?,idVehicule=?,etatReservation=? WHERE codeReservation=?");
             LocalDate dateD = obj.getDateDépart();
             Date dateDepart = Date.valueOf(dateD);
             LocalDate dateR = obj.getDateRetour();
@@ -70,7 +70,8 @@ public class RéservationDAO extends DAO<Réservation>{
             preparedStmt.setObject(2,dateRetour);
             preparedStmt.setObject(3,obj.getIdClient());
             preparedStmt.setObject(4,obj.getIdVehicule());
-            preparedStmt.setInt(5,id);
+            preparedStmt.setObject(5,obj.getEtatReservation());
+            preparedStmt.setInt(6,id);
             preparedStmt.execute();
             return true;
         }
@@ -176,5 +177,21 @@ public class RéservationDAO extends DAO<Réservation>{
         {
             return null;
         }
+    }
+    public boolean disponibiliteVehicule(int matricule) {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM reservation WHERE idVehicule=?");
+            preparedStmt.setObject(1, matricule);
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next()) {
+                return true;
+            }
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+        return false;
     }
 }

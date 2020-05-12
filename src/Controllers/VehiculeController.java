@@ -33,7 +33,7 @@ public class VehiculeController implements Initializable {
     @FXML
     private AnchorPane updatePane;
     @FXML
-    private StackPane myStackPane1;
+    private StackPane myStackUpdate;
     @FXML
     private AnchorPane blur;
     @FXML
@@ -228,9 +228,9 @@ public class VehiculeController implements Initializable {
         close.setButtonType(JFXButton.ButtonType.RAISED);
         close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
         dialogContent.setActions(close);
-        JFXDialog dialog = new JFXDialog(myStackPane1, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+        JFXDialog dialog = new JFXDialog(myStackUpdate, dialogContent, JFXDialog.DialogTransition.BOTTOM);
         dialog.setStyle("-fx-background-radius : 18");
-        myStackPane1.toFront();
+        myStackUpdate.toFront();
         close.setOnAction(e -> {
             dialog.close();
         });
@@ -295,9 +295,14 @@ public class VehiculeController implements Initializable {
             return;
         }
         else {
-            Véhicule user = véhiculeDAO.find(table.getSelectionModel().getSelectedItem().getNImmatriculation());
-            véhiculeDAO.delete(user);
-            dialogContent.setBody(new Text("Le véhicule a été supprimé!"));
+            Véhicule vehicule = véhiculeDAO.find(table.getSelectionModel().getSelectedItem().getNImmatriculation());
+            if(vehicule.isDisponibilite())
+            {
+                véhiculeDAO.delete(vehicule);
+                dialogContent.setBody(new Text("Le véhicule a été supprimé!"));
+            }else{
+                dialogContent.setBody(new Text("Veuillez vérifier la Réservation du véhicule!"));
+            }
             dialog.show();
             blur.setEffect(new GaussianBlur(10));
             return;

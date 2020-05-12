@@ -68,7 +68,7 @@ public class UtilisateurController implements Initializable {
     private JFXTextField filterField;
 
     @FXML
-    private StackPane myStackPane, myStackPane1;
+    private StackPane myStackPane, myStackUpdate;
 
     @FXML
     private JFXTextField usernameField;
@@ -244,7 +244,7 @@ public class UtilisateurController implements Initializable {
         close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
         dialogContent.setActions(close);
 
-        JFXDialog dialog = new JFXDialog(myStackPane1, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+        JFXDialog dialog = new JFXDialog(myStackUpdate, dialogContent, JFXDialog.DialogTransition.BOTTOM);
         dialog.setStyle("-fx-background-radius : 18");
 
 

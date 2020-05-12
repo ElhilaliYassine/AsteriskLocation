@@ -74,7 +74,7 @@
                   <JFXTextField fx:id="emailField" labelFloat="true" layoutX="37.0" layoutY="192.0" prefHeight="26.0" prefWidth="221.0" promptText="email" unFocusColor="#1d71bf" />
                   <JFXTextField fx:id="adresseField" labelFloat="true" layoutX="37.0" layoutY="252.0" prefHeight="26.0" prefWidth="221.0" promptText="adresse" unFocusColor="#1d71bf" />
                   <JFXTextField fx:id="telephoneField" labelFloat="true" layoutX="37.0" layoutY="312.0" prefHeight="26.0" prefWidth="221.0" promptText="Telephone" unFocusColor="#1d71bf" />
-                  <StackPane fx:id="myStackPane1" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
+                  <StackPane fx:id="myStackUpdate" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
                   <JFXButton layoutX="273.0" layoutY="375.0" onAction="#modifierUtilisateur" prefHeight="26.0" prefWidth="81.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
                      <font>
                         <Font size="15.0" />

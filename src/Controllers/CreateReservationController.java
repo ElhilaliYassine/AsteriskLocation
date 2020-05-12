@@ -128,7 +128,7 @@ public class CreateReservationController implements Initializable {
             dialog.show();
             return;
         }else if(dateDepartField.getValue().compareTo(dateRetourField.getValue()) > 0) {
-            dialogContent.setBody(new Text("Veuillez selectionner les dates correctement"));
+            dialogContent.setBody(new Text("Veuillez vérifier les dates"));
             dialog.show();
             return;
         }else{
@@ -144,7 +144,6 @@ public class CreateReservationController implements Initializable {
             dialog.show();
             return;
         }
-
     }
 
 }

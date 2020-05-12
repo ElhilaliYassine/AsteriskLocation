@@ -38,7 +38,8 @@ public class ReservationController implements Initializable {
 
     @FXML
     private StackPane myStackPane;
-
+    @FXML
+    private StackPane myStackUpdate;
     @FXML
     private AnchorPane rootPane;
 
@@ -50,9 +51,6 @@ public class ReservationController implements Initializable {
 
     @FXML
     private AnchorPane updatePane;
-
-    @FXML
-    private StackPane myStackPane1;
 
     @FXML
     private AnchorPane blur;
@@ -81,8 +79,6 @@ public class ReservationController implements Initializable {
     private JFXTextField filterField;
     @FXML
     private AnchorPane detailPane;
-    @FXML
-    private Button btnClose2;
     @FXML
     private Label numeroReservation;
     @FXML
@@ -121,8 +117,6 @@ public class ReservationController implements Initializable {
     private Label dateRetour,etatReservation;
     @FXML
     private Label dateReservation;
-    @FXML
-    private StackPane myStackUpdate;
     @FXML
     private DatePicker dateDepartField;
 
@@ -172,6 +166,7 @@ public class ReservationController implements Initializable {
             System.out.println("Connection Failed");
         }
     }
+    static int vehiculeMatricule;
     ObservableList<String> listVehicule = véhiculeDAO.select();
     ObservableList<String> listClient = clientDAO.select();
     ObservableList<String> listEtat = select();
@@ -380,6 +375,8 @@ public class ReservationController implements Initializable {
             Client client = clientDAO.find(reservation.getIdClient());
             selectClient.setValue(client.getNomComplet());
             selectEtat.setValue(reservation.getEtatReservation());
+            vehiculeMatricule = vehicule.getNImmatriculation();
+            disponibiliteVehicule();
 
 
         }
@@ -391,6 +388,109 @@ public class ReservationController implements Initializable {
         updatePane.toBack();
         list = reservationDAO.list();
         dataReservation();
+        disponibiliteVehicule();
     }
+    public void disponibiliteVehicule()
+    {
+        for(int i=0;i<listMatricule.size();i++)
+        {
+            Véhicule vehicule = véhiculeDAO.find(listMatricule.get(i));
+            if(reservationDAO.disponibiliteVehicule(listMatricule.get(i)))
+            {
+                vehicule.setDisponibilite(false);
+
+            }else{
+                vehicule.setDisponibilite(true);
+            }
+            véhiculeDAO.update(vehicule,vehicule.getNImmatriculation());
+        }
+    }
+    public void modifyReservation()
+    {
+        disponibiliteVehicule();
+        String title = "Asterisk Location - Message :";
+        JFXDialogLayout dialogContent = new JFXDialogLayout();
+        JFXButton close = new JFXButton("Close");
+        dialogContent.setHeading(new Text(title));
+        close.setButtonType(JFXButton.ButtonType.RAISED);
+        close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
+        dialogContent.setActions(close);
+        JFXDialog dialog = new JFXDialog(myStackUpdate, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+        dialog.setStyle("-fx-background-radius : 18");
+        myStackUpdate.toFront();
+        close.setOnAction(e -> {
+            dialog.close();
+            dataReservation();
+        });
+        Réservation reservation = null;
+        Client client = clientDAO.find(selectClient.getValue());
+        Véhicule vehicule = véhiculeDAO.find(listMatricule.get(selectVehicule.getSelectionModel().getSelectedIndex()));
+        if(vehicule.getNImmatriculation()==vehiculeMatricule)
+        {
+            if(dateDepartField.getValue().compareTo(dateRetourField.getValue()) > 0) {
+                dialogContent.setBody(new Text("Veuillez vérifier les dates"));
+                dialog.show();
+                return;
+            }
+            reservation = new Réservation(0,dateReservationField.getValue(),dateDepartField.getValue(),dateRetourField.getValue(),client.getCodeClient(),vehicule.getNImmatriculation(),selectEtat.getValue());
+            if (reservationDAO.update(reservation, table.getSelectionModel().getSelectedItem().getCodeRéservation())) {
+                dialogContent.setBody(new Text("La Réservation à été modifié!"));
+                dialog.show();
+                return;
+            }
+        }
+        if(!vehicule.isDisponibilite())
+        {
+            dialogContent.setBody(new Text("Le véhicule n'est pas disponible!"));
+            dialog.show();
+            return;
+        }else if(dateDepartField.getValue().compareTo(dateRetourField.getValue()) > 0) {
+            dialogContent.setBody(new Text("Veuillez vérifier les dates"));
+            dialog.show();
+            return;
+        }else {
+            reservation = new Réservation(0,dateReservationField.getValue(),dateDepartField.getValue(),dateRetourField.getValue(),client.getCodeClient(),vehicule.getNImmatriculation(),selectEtat.getValue());
+            if (reservationDAO.update(reservation, table.getSelectionModel().getSelectedItem().getCodeRéservation()))
+            {
+                dialogContent.setBody(new Text("La Réservation à été modifié!"));
+                dialog.show();
+                return;
+            }
+        }
+        disponibiliteVehicule();
+    }
+    public void deleteReservation() {
+        String title = "Asterisk Location - Message :";
+        JFXDialogLayout dialogContent = new JFXDialogLayout();
+        JFXButton close = new JFXButton("Close");
+        dialogContent.setHeading(new Text(title));
+        close.setButtonType(JFXButton.ButtonType.RAISED);
+        close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
+        dialogContent.setActions(close);
+        JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+        msgPane.toFront();
+        dialog.setStyle("-fx-background-radius : 18");
+        close.setOnAction(e -> {
+            dialog.close();
+            blur.setEffect(null);
+            dataReservation();
+        });
+        if (table.getSelectionModel().isEmpty()) {
+            dialogContent.setBody(new Text("Veuillez selectionner le véhicule à supprimer!"));
+            dialog.show();
+            blur.setEffect(new GaussianBlur(10));
+            return;
+        }
+        else {
+            Réservation reservation = reservationDAO.find(table.getSelectionModel().getSelectedItem().getCodeRéservation());
+            reservationDAO.delete(reservation);
+            dialogContent.setBody(new Text("La Réservation a été supprimé!"));
+            dialog.show();
+            blur.setEffect(new GaussianBlur(10));
+            return;
+
+        }
+    }
+
 
 }

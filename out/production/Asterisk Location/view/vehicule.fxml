@@ -45,7 +45,7 @@
             </Pane>
             <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                <children>
-                  <StackPane fx:id="myStackPane1" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
+                  <StackPane fx:id="myStackUpdate" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
                   <Label layoutX="37.0" layoutY="13.0" text="Modifier Véhicule" textFill="#1d71bf">
                      <font>
                         <Font name="System Bold" size="16.0" />

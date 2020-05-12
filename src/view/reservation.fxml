@@ -76,7 +76,7 @@
                   <FontAwesomeIconView fill="#1d71bf" glyphName="FILE" layoutX="14.0" layoutY="28.0" size="14" />
                   <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
                   <StackPane fx:id="myStackUpdate" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
-                  <JFXButton layoutX="273.0" layoutY="375.0" prefHeight="26.0" prefWidth="81.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
+                  <JFXButton layoutX="273.0" layoutY="375.0" onAction="#modifyReservation" prefHeight="26.0" prefWidth="81.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -142,7 +142,7 @@
             <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="61.0" layoutY="570.0" size="19" />
             <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" unFocusColor="#074684" />
             <FontAwesomeIconView fill="#074684" glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
-            <JFXButton alignment="BOTTOM_LEFT" layoutX="201.0" layoutY="547.0" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="201.0" layoutY="547.0" onAction="#deleteReservation" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>

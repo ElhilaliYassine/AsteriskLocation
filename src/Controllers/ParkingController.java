@@ -47,7 +47,7 @@ public class ParkingController implements Initializable {
     @FXML
     private Pane msgPane;
     @FXML
-    private StackPane myStackPane,myStackPane1;
+    private StackPane myStackPane,myStackUpdate;
 
     @FXML
     private TableView<Parking> table;
@@ -263,9 +263,9 @@ public class ParkingController implements Initializable {
         close.setButtonType(JFXButton.ButtonType.RAISED);
         close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
         dialogContent.setActions(close);
-        JFXDialog dialog = new JFXDialog(myStackPane1, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+        JFXDialog dialog = new JFXDialog(myStackUpdate, dialogContent, JFXDialog.DialogTransition.BOTTOM);
         dialog.setStyle("-fx-background-radius : 18");
-        myStackPane1.toFront();
+        myStackUpdate.toFront();
         close.setOnAction(e -> {
             dialog.close();
         });

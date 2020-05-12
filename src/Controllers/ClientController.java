@@ -50,7 +50,7 @@ public class ClientController implements Initializable {
     @FXML
     private JFXTextField filterField;
     @FXML
-    private StackPane myStackPane, myStackPane1;
+    private StackPane myStackPane, myStackUpdate;
     @FXML
     private JFXTextField nomCompletField;
     @FXML
@@ -198,7 +198,7 @@ public class ClientController implements Initializable {
         close.setButtonType(JFXButton.ButtonType.RAISED);
         close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
         dialogContent.setActions(close);
-        JFXDialog dialog = new JFXDialog(myStackPane1, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+        JFXDialog dialog = new JFXDialog(myStackUpdate, dialogContent, JFXDialog.DialogTransition.BOTTOM);
         dialog.setStyle("-fx-background-radius : 18");
         close.setOnAction(e -> {
             dialog.close();
