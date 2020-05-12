@@ -71,7 +71,6 @@ public class CreateReservationController implements Initializable {
     ObservableList<String> listEtat = select();
     ObservableList<Integer> listMatricule = véhiculeDAO.selectMatricule();
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         selectClient.setItems(listClient);

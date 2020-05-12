@@ -1,19 +1,14 @@
 package Controllers;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
@@ -48,19 +43,13 @@ public class ReservationController implements Initializable {
     private AnchorPane rootPane;
 
     @FXML
-    private Button btnClose;
-
-    @FXML
     private AnchorPane loadPane;
 
     @FXML
     private Rectangle rectangleAnnuler,rectangleValidee,rectangleNonValide,rectangleTous;
 
     @FXML
-    private AnchorPane rootPane1;
-
-    @FXML
-    private Button btnClose1;
+    private AnchorPane updatePane;
 
     @FXML
     private StackPane myStackPane1;
@@ -132,6 +121,23 @@ public class ReservationController implements Initializable {
     private Label dateRetour,etatReservation;
     @FXML
     private Label dateReservation;
+    @FXML
+    private StackPane myStackUpdate;
+    @FXML
+    private DatePicker dateDepartField;
+
+    @FXML
+    private DatePicker dateReservationField;
+    @FXML
+    private DatePicker dateRetourField;
+    @FXML
+    private JFXComboBox<String> selectVehicule;
+
+    @FXML
+    private JFXComboBox<String> selectClient;
+
+    @FXML
+    private JFXComboBox<String> selectEtat;
 
 
     RéservationDAO reservationDAO;
@@ -166,13 +172,28 @@ public class ReservationController implements Initializable {
             System.out.println("Connection Failed");
         }
     }
+    ObservableList<String> listVehicule = véhiculeDAO.select();
+    ObservableList<String> listClient = clientDAO.select();
+    ObservableList<String> listEtat = select();
+    ObservableList<Integer> listMatricule = véhiculeDAO.selectMatricule();
 
     ObservableList<Réservation> list = reservationDAO.list();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dataReservation();
+        reservationlist();
+        selectClient.setItems(listClient);
+        selectVehicule.setItems(listVehicule);
+        selectEtat.setItems(listEtat);
 
+    }
+    public ObservableList<String> select() {
+        ObservableList<String> listEtat = FXCollections.observableArrayList();
+        listEtat.add("validé");
+        listEtat.add("non validé");
+        listEtat.add("annuler");
+        return listEtat;
     }
     private void dataReservation()
     {
@@ -261,8 +282,6 @@ public class ReservationController implements Initializable {
         loadPane.getChildren().setAll(pane);
         rootPane.setVisible(true);
         rootPane.toFront();
-        btnClose.setVisible(true);
-        btnClose.toFront();
     }
     public void btnReturn() {
         blur.setEffect(null);
@@ -320,6 +339,56 @@ public class ReservationController implements Initializable {
         rectangleNonValide.setVisible(false);
         rectangleValidee.setVisible(false);
         rectangleAnnuler.setVisible(false);
+        list = reservationDAO.list();
+        dataReservation();
+    }
+    public void updateReservation()
+    {
+        //rendre le vehicule false en disponibilité pour ne pas eviter le cas de
+        //erreur ( le vehicule n'est pas disponible)
+        String title = "Asterisk Location - Message :";
+        JFXDialogLayout dialogContent = new JFXDialogLayout();
+        JFXButton close = new JFXButton("Close");
+        dialogContent.setHeading(new Text(title));
+        close.setButtonType(JFXButton.ButtonType.RAISED);
+        close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
+        dialogContent.setActions(close);
+        JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+        msgPane.toFront();
+        dialog.setStyle("-fx-background-radius : 18");
+        close.setOnAction(e -> {
+            dialog.close();
+            blur.setEffect(null);
+            //list = véhiculeDAO.list();
+            dataReservation();
+        });
+        if (table.getSelectionModel().isEmpty()) {
+            dialogContent.setBody(new Text("Veuillez selectionner la réservation à modifier!"));
+            dialog.show();
+            blur.setEffect(new GaussianBlur(10));
+            return;
+        } else {
+            Réservation reservation = reservationDAO.find(table.getSelectionModel().getSelectedItem().getCodeRéservation());
+            blur.setEffect(new GaussianBlur(10));
+            updatePane.setVisible(true);
+            updatePane.toFront();
+            dateReservationField.setValue(reservation.getDateReservation());
+            dateDepartField.setValue(reservation.getDateDépart());
+            dateRetourField.setValue(reservation.getDateRetour());
+            Véhicule vehicule = véhiculeDAO.find(reservation.getIdVehicule());
+            selectVehicule.setValue(vehicule.getMarque()+" - "+vehicule.getType());
+            Client client = clientDAO.find(reservation.getIdClient());
+            selectClient.setValue(client.getNomComplet());
+            selectEtat.setValue(reservation.getEtatReservation());
+
+
+        }
+
+    }
+    public void returnUpdate() {
+        blur.setEffect(null);
+        updatePane.setVisible(false);
+        updatePane.toBack();
         list = reservationDAO.list();
         dataReservation();
     }

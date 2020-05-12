@@ -48,8 +48,6 @@ public class ClientController implements Initializable {
     @FXML
     private AnchorPane updatePane;
     @FXML
-    private Button btnClose, btnClose1;
-    @FXML
     private JFXTextField filterField;
     @FXML
     private StackPane myStackPane, myStackPane1;
@@ -92,8 +90,6 @@ public class ClientController implements Initializable {
         loadPane.getChildren().setAll(pane);
         rootPane.setVisible(true);
         rootPane.toFront();
-        btnClose.setVisible(true);
-        btnClose.toFront();
     }
 
     public void btnReturn() {
@@ -180,8 +176,6 @@ public class ClientController implements Initializable {
             blur.setEffect(new GaussianBlur(10));
             updatePane.setVisible(true);
             updatePane.toFront();
-            btnClose1.setVisible(true);
-            btnClose1.toFront();
             nomCompletField.setText(client.getNomComplet());
             adresseField.setText(client.getAdresse());
             numGsmField.setText(String.valueOf(client.getNumGsm()));

@@ -19,14 +19,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UtilisateurController">
    <children>
-      <AnchorPane fx:id="rootPane" layoutX="150.0" layoutY="116.0" prefHeight="461.0" prefWidth="371.0">
+      <AnchorPane fx:id="rootPane" layoutX="150.0" layoutY="116.0" prefHeight="461.0" prefWidth="371.0" visible="false">
          <effect>
             <DropShadow height="11.89" radius="5.445" width="11.89" />
          </effect>
          <children>
             <Pane prefHeight="47.0" prefWidth="371.0">
                <children>
-                  <Button fx:id="btnClose" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnReturn" onMouseClicked="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
+                  <Button focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnReturn" onMouseClicked="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="7.0" />
                      </font>
@@ -50,7 +50,7 @@
          <children>
             <Pane prefHeight="47.0" prefWidth="371.0">
                <children>
-                  <Button fx:id="btnClose1" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnUpdate" onMouseClicked="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
+                  <Button focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnUpdate" onMouseClicked="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="7.0" />
                      </font>

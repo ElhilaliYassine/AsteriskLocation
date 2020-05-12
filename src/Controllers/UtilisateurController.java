@@ -65,9 +65,6 @@ public class UtilisateurController implements Initializable {
     private AnchorPane updatePane;
 
     @FXML
-    private Button btnClose, btnClose1;
-
-    @FXML
     private JFXTextField filterField;
 
     @FXML
@@ -120,8 +117,6 @@ public class UtilisateurController implements Initializable {
         loadPane.getChildren().setAll(pane);
         rootPane.setVisible(true);
         rootPane.toFront();
-        btnClose.setVisible(true);
-        btnClose.toFront();
     }
 
     @FXML
@@ -218,8 +213,6 @@ public class UtilisateurController implements Initializable {
             blur.setEffect(new GaussianBlur(10));
             updatePane.setVisible(true);
             updatePane.toFront();
-            btnClose1.setVisible(true);
-            btnClose1.toFront();
             usernameField.setText(userUpdate.getNomComplet());
             passwordField.setText(userUpdate.getPassword());
             emailField.setText(userUpdate.getEmail());

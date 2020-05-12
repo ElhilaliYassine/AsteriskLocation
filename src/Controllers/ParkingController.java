@@ -37,13 +37,9 @@ public class ParkingController implements Initializable {
     @FXML
     private AnchorPane rootPane;
     @FXML
-    private Button btnClose;
-    @FXML
     private AnchorPane loadPane;
     @FXML
     private AnchorPane updatePane,detailPane;
-    @FXML
-    private Button btnClose1;
     @FXML
     private AnchorPane blur;
     @FXML
@@ -214,8 +210,6 @@ public class ParkingController implements Initializable {
         loadPane.getChildren().setAll(pane);
         rootPane.setVisible(true);
         rootPane.toFront();
-        btnClose.setVisible(true);
-        btnClose.toFront();
     }
     public void btnReturn() {
         blur.setEffect(null);
@@ -249,8 +243,6 @@ public class ParkingController implements Initializable {
             blur.setEffect(new GaussianBlur(10));
             updatePane.setVisible(true);
             updatePane.toFront();
-            btnClose1.setVisible(true);
-            btnClose1.toFront();
             capaciteField.setText(String.valueOf(parking.getCapacité()));
             rueField.setText(parking.getRue());
             arrondissementField.setText(parking.getArrondissement());

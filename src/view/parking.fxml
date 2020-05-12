@@ -23,14 +23,14 @@
             <StackPane fx:id="myStackPane" layoutX="24.0" layoutY="6.0" prefHeight="4.0" prefWidth="318.0" />
          </children>
       </Pane>
-      <AnchorPane fx:id="rootPane" layoutX="154.0" layoutY="116.0" prefHeight="461.0" prefWidth="371.0">
+      <AnchorPane fx:id="rootPane" layoutX="154.0" layoutY="116.0" prefHeight="461.0" prefWidth="371.0" visible="false">
          <effect>
             <DropShadow height="11.89" radius="5.445" width="11.89" />
          </effect>
          <children>
             <Pane prefHeight="47.0" prefWidth="371.0">
                <children>
-                  <Button fx:id="btnClose" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
+                  <Button focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnReturn" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="7.0" />
                      </font>
@@ -54,7 +54,7 @@
          <children>
             <Pane prefHeight="47.0" prefWidth="371.0">
                <children>
-                  <Button fx:id="btnClose1" focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnUpdate" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE" visible="false">
+                  <Button focusTraversable="false" layoutX="347.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnUpdate" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="7.0" />
                      </font>
@@ -158,7 +158,7 @@
          <children>
             <Pane prefHeight="47.0" prefWidth="670.0">
                <children>
-                  <Button fx:id="btnClose2" focusTraversable="false" layoutX="638.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnDetail" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
+                  <Button focusTraversable="false" layoutX="638.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnDetail" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="7.0" />
                      </font>

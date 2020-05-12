@@ -20,28 +20,28 @@
       </Label>
       <FontAwesomeIconView fill="#1d71bf" glyphName="FILE" layoutX="14.0" layoutY="28.0" size="14" />
       <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
-      <DatePicker fx:id="dateRetourField" layoutX="47.0" layoutY="284.0" prefHeight="26.0" prefWidth="255.0" promptText="Date de retour" />
-      <JFXComboBox fx:id="selectVehicule" layoutX="127.0" layoutY="165.0" prefHeight="26.0" prefWidth="175.0" unFocusColor="#1d71bf" />
-      <Label layoutX="48.0" layoutY="169.0" text="Véhicule :">
+      <DatePicker fx:id="dateRetourField" layoutX="47.0" layoutY="284.0" prefHeight="26.0" prefWidth="288.0" promptText="Date de retour" />
+      <JFXComboBox fx:id="selectVehicule" layoutX="118.0" layoutY="165.0" prefHeight="26.0" prefWidth="204.0" unFocusColor="#1d71bf" />
+      <Label layoutX="38.0" layoutY="169.0" text="Véhicule :">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <JFXButton fx:id="clear" layoutX="232.0" layoutY="387.0" style="-fx-background-color: #dd2c2c;" text="Clear" textFill="WHITE" />
       <JFXButton layoutX="288.0" layoutY="387.0" onAction="#newReservation" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Create" textFill="WHITE" />
-      <JFXComboBox fx:id="selectClient" layoutX="109.0" layoutY="114.0" prefHeight="26.0" prefWidth="193.0" unFocusColor="#1d71bf" />
-      <Label layoutX="48.0" layoutY="120.0" text="Client :">
+      <JFXComboBox fx:id="selectClient" layoutX="105.0" layoutY="114.0" prefHeight="26.0" prefWidth="217.0" unFocusColor="#1d71bf" />
+      <Label layoutX="39.0" layoutY="120.0" text="Client :">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dateDepartField" layoutX="47.0" layoutY="230.0" prefHeight="26.0" prefWidth="255.0" promptText="Date de départ" />
-      <DatePicker fx:id="dateReservationField" layoutX="47.0" layoutY="64.0" prefHeight="26.0" prefWidth="255.0" promptText="Date de reservation" />
+      <DatePicker fx:id="dateDepartField" layoutX="47.0" layoutY="230.0" prefHeight="26.0" prefWidth="288.0" promptText="Date de départ" />
+      <DatePicker fx:id="dateReservationField" layoutX="40.0" layoutY="64.0" prefHeight="26.0" prefWidth="288.0" promptText="Date de reservation" />
       <Label layoutX="48.0" layoutY="339.0" text="Etat  :">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="selectEtat" layoutX="98.0" layoutY="329.0" prefHeight="26.0" prefWidth="204.0" unFocusColor="#1d71bf" />
+      <JFXComboBox fx:id="selectEtat" layoutX="98.0" layoutY="329.0" prefHeight="26.0" prefWidth="225.0" unFocusColor="#1d71bf" />
    </children>
 </AnchorPane>

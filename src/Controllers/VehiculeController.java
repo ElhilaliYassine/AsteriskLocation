@@ -29,13 +29,9 @@ public class VehiculeController implements Initializable {
     @FXML
     private AnchorPane rootPane;
     @FXML
-    private Button btnClose;
-    @FXML
     private AnchorPane loadPane;
     @FXML
     private AnchorPane updatePane;
-    @FXML
-    private Button btnClose1;
     @FXML
     private StackPane myStackPane1;
     @FXML
@@ -99,7 +95,7 @@ public class VehiculeController implements Initializable {
     private JFXRadioButton nonRadio;
     @FXML
     private JFXComboBox<String> selectParking;
-
+    static int nbrParking;
     final ToggleGroup group = new ToggleGroup();
     VéhiculeDAO véhiculeDAO;
 
@@ -165,8 +161,6 @@ public class VehiculeController implements Initializable {
         loadPane.getChildren().setAll(pane);
         rootPane.setVisible(true);
         rootPane.toFront();
-        btnClose.setVisible(true);
-        btnClose.toFront();
     }
     public void btnReturn() {
         blur.setEffect(null);
@@ -202,8 +196,6 @@ public class VehiculeController implements Initializable {
             blur.setEffect(new GaussianBlur(10));
             updatePane.setVisible(true);
             updatePane.toFront();
-            btnClose1.setVisible(true);
-            btnClose1.toFront();
             matriculeField.setText(String.valueOf(véhicule.getNImmatriculation()));
             marqueField.setText(véhicule.getMarque());
             typeField.setText(véhicule.getType());
@@ -217,6 +209,8 @@ public class VehiculeController implements Initializable {
             selectParking.setValue(parking.getRue());
             carburantField.setText(véhicule.getCarburant());
             compteurKmField.setText(String.valueOf(véhicule.getCompteurKm()));
+            nbrParking = véhicule.getIdParking();
+
         }
     }
     public void returnUpdate() {
@@ -242,26 +236,40 @@ public class VehiculeController implements Initializable {
         });
         Véhicule véhicule = null;
         Parking parking = parkingDAO.find(selectParking.getValue());
-        if(parking.getCapacité()-parkingDAO.nombreVehicule(parking.getNParking())>0){
+        if(nbrParking == parking.getNParking())
+        {
             if(group.getSelectedToggle()==ouiRadio)
             {
-
                 véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true);
             } else{
                 véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false);
             }
-        }else if(parking.getCapacité()-parkingDAO.nombreVehicule(parking.getNParking())<=0)
+            if (véhiculeDAO.update(véhicule, table.getSelectionModel().getSelectedItem().getNImmatriculation())) {
+                dialogContent.setBody(new Text("Le véhicule à été modifié!"));
+                dialog.show();
+                return;
+            }
+        }
+        int nombreVehicule = parkingDAO.nombreVehicule(parking.getNParking());
+        if(parking.getCapacité()-nombreVehicule>0){
+            if(group.getSelectedToggle()==ouiRadio)
+            {
+                véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true);
+            } else{
+                véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false);
+            }
+            if (véhiculeDAO.update(véhicule, table.getSelectionModel().getSelectedItem().getNImmatriculation())) {
+                dialogContent.setBody(new Text("Le véhicule à été modifié!"));
+                dialog.show();
+                return;
+            }
+        }else if(parking.getCapacité()-nombreVehicule<=0)
         {
             dialogContent.setBody(new Text("Le parking est saturé"));
             dialog.show();
             return;
         }
 
-        if (véhiculeDAO.update(véhicule, table.getSelectionModel().getSelectedItem().getNImmatriculation())) {
-            dialogContent.setBody(new Text("Le véhicule à été modifié!"));
-            dialog.show();
-            return;
-        }
     }
     public void deleteVehicule() {
         String title = "Asterisk Location - Message :";
