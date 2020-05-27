@@ -181,7 +181,6 @@ public class ReservationController implements Initializable {
         selectClient.setItems(listClient);
         selectVehicule.setItems(listVehicule);
         selectEtat.setItems(listEtat);
-
     }
     public ObservableList<String> select() {
         ObservableList<String> listEtat = FXCollections.observableArrayList();
@@ -268,7 +267,6 @@ public class ReservationController implements Initializable {
                 etatReservation.setText("Reservation non validée");
                 etatReservation.setStyle("-fx-text-fill :  #f2a51a");
             }
-
         }
     }
     public void createReservation() throws IOException {

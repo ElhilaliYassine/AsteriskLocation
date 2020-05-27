@@ -109,7 +109,7 @@ public class CreateReservationController implements Initializable {
             dialog.close();
             clear();
         });
-        if (dateRetourField.getValue()== null || dateDepartField.getValue()== null || dateReservationField.getValue()== null || selectEtat.getValue()==null || selectClient.getValue()==null || selectClient.getValue()==null) {
+        if (dateRetourField.getValue()== null || dateDepartField.getValue()== null || dateReservationField.getValue()== null || selectEtat.getValue()==null || selectClient.getValue()==null) {
             dialogContent.setBody(new Text("Réservation invalide!"));
             dialog.show();
             return;
@@ -118,13 +118,13 @@ public class CreateReservationController implements Initializable {
         Véhicule vehicule = véhiculeDAO.find(listMatricule.get(selectVehicule.getSelectionModel().getSelectedIndex()));
         if(reservationDAO.checker(client.getCodeClient(),vehicule.getNImmatriculation(),dateReservationField.getValue(),dateDepartField.getValue(),dateRetourField.getValue()))
         {
-            dialogContent.setBody(new Text("Réservation déjà enregistré!"));
+            dialogContent.setBody(new Text("Réservation déjà enregistrée!"));
             dialog.show();
             return;
         }
         if(!vehicule.isDisponibilite())
         {
-            dialogContent.setBody(new Text("Le véhicule n'est pas disponible!"));
+            dialogContent.setBody(new Text("La véhicule n'est pas disponible!"));
             dialog.show();
             return;
         }else if(dateDepartField.getValue().compareTo(dateRetourField.getValue()) > 0) {

@@ -60,8 +60,8 @@ public class UserHomeController implements Initializable, Window {
     private Button btnParking;
     @FXML
     private Button btnReservation;
-
-
+    @FXML
+    private Button btnContrat;
     UtilisateurDAO utilisateurDAO;
     {
         try {
@@ -159,7 +159,16 @@ public class UserHomeController implements Initializable, Window {
         btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnContrat.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
-
-
+    @FXML
+    private void contrat() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/contrat.fxml"));
+        rootPane.getChildren().setAll(pane);
+        btnContrat.setStyle("-fx-background-color : #278ef4;");
+        btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+    }
 }

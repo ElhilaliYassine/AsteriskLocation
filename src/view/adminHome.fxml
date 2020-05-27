@@ -79,18 +79,24 @@
                         </ImageView>
                         <Label fx:id="name" alignment="CENTER" layoutY="86.0" prefHeight="16.0" prefWidth="218.0" text="Name" textFill="WHITE" />
                         <Label fx:id="email" alignment="CENTER" layoutY="109.0" prefHeight="16.0" prefWidth="218.0" text="gmail" textFill="WHITE" />
-                  <Button fx:id="btnParking" layoutY="341.0" mnemonicParsing="false" onAction="#parking" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Parking">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <FontAwesomeIconView fill="WHITE" glyphName="MAP" layoutX="51.0" layoutY="366.0" size="20" />
-                  <Button fx:id="btnReservation" layoutY="391.0" mnemonicParsing="false" onAction="#reservation" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="     Reservation">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="51.0" layoutY="416.0" size="20" />
+                        <Button fx:id="btnParking" layoutY="341.0" mnemonicParsing="false" onAction="#parking" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Parking">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <FontAwesomeIconView fill="WHITE" glyphName="MAP" layoutX="51.0" layoutY="366.0" size="20" />
+                        <Button fx:id="btnReservation" layoutY="391.0" mnemonicParsing="false" onAction="#reservation" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="     Reservation">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="51.0" layoutY="416.0" size="20" />
+                        <Button fx:id="btnContrat" layoutY="441.0" mnemonicParsing="false" onAction="#contrat" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="     Contrat">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="51.0" layoutY="466.0" size="20" />
                     </children>
                 </Pane>
             </children>

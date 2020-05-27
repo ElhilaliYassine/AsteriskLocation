@@ -1,5 +1,6 @@
 package models.DAO;
 
+import Util.dateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Réservation;
@@ -88,21 +89,25 @@ public class RéservationDAO extends DAO<Réservation>{
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM reservation WHERE codeReservation=?");
             preparedStmt.setInt(1,id);
             ResultSet resultSet = preparedStmt.executeQuery();
-            while(resultSet.next()) {
+            LocalDate dateDepart=null;
+            LocalDate dateRetour=null;
+            LocalDate dateReservation=null;
+            while(resultSet.next())
+            {
                 Date dateD = resultSet.getDate("dateDepart");
-                LocalDate dateDepart = dateD.toLocalDate();
+                dateDepart = dateD.toLocalDate();
                 Date dateR = resultSet.getDate("dateRetour");
-                LocalDate dateRetour = dateR.toLocalDate();
+                dateRetour = dateR.toLocalDate();
                 Date date = resultSet.getDate("dateReservation");
-                LocalDate dateReservation = date.toLocalDate();
-                return new Réservation(id, dateReservation, dateDepart, dateRetour, resultSet.getInt("idClient"), resultSet.getInt("idVehicule"), resultSet.getString("etatReservation"));
+                dateReservation = date.toLocalDate();
+                break;
             }
+            return new Réservation(id, dateReservation, dateDepart, dateRetour, resultSet.getInt("idClient"), resultSet.getInt("idVehicule"), resultSet.getString("etatReservation"));
         }
         catch(SQLException e)
         {
             return new Réservation(id, null, null,null,0, 0, "");
         }
-            return new Réservation(id, null, null,null,0, 0, "");
     }
 
     @Override
@@ -151,7 +156,7 @@ public class RéservationDAO extends DAO<Réservation>{
         {
             return false;
         }
-            return false;
+        return false;
     }
     public ObservableList<Réservation> listReservation(String etat) {
         try
@@ -193,5 +198,43 @@ public class RéservationDAO extends DAO<Réservation>{
             return false;
         }
         return false;
+    }
+    public ObservableList<String> select(){
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM reservation");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<String> listReservation = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                listReservation.add(resultSet.getString("codeReservation"));
+            }
+            return listReservation;
+        }
+        catch(SQLException e)
+        {
+            return null;
+        }
+    }
+    public ObservableList<String> selectValableReservations()
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM reservation");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<String> listValable = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                if(dateUtil.olderThan2days(resultSet.getObject("dateReservation")) && resultSet.getString("etatReservation").equals("validé"))
+                {
+                    listValable.add(String.valueOf(resultSet.getInt("codeReservation")));
+                }
+            }
+            return listValable;
+        }
+        catch (SQLException e)
+        {
+            return null;
+        }
     }
 }

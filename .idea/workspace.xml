@@ -2,41 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Initial">
-      <change afterPath="$PROJECT_DIR$/src/Controllers/clientController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controllers/createClientController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/createClient.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/LoginController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/adminHomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/adminHomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/createUserController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/createUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/createUserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/userHomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/userHomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/utilisateurController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/utilisateurController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/utilisateurController$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/utilisateurController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/utilisateurController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/sample/Main$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/sample/Main$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/sample/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/view/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/view/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/AdminHomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/AdminHomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/CreateReservationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/CreateReservationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/ReservationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/ReservationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/UserHomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/UserHomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/VehiculeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/Controllers/VehiculeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/models/DAO/ClientDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/models/DAO/ClientDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/models/DAO/ContratDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/models/DAO/ContratDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/models/DAO/RéservationDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/models/DAO/RéservationDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/view/adminHome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/view/adminHome.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/view/client.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/view/client.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/view/createReservation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/view/createReservation.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/view/userHome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/view/userHome.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asterisk Location/view/utilisateur.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asterisk Location/view/utilisateur.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/adminHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/adminHomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/createUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/createUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/interfaces/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/interfaces/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/userHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/userHomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/utilisateurController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/utilisateurController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/AdminHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/AdminHomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/ContratController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/ContratController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/CreateContratController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/CreateContratController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/CreateReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/CreateReservationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/ReservationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/UserHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/UserHomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Util/dateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Util/dateUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/DAO/ClientDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/DAO/ClientDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/DAO/ContratDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/DAO/ContratDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/DAO/RéservationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/DAO/RéservationDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/adminHome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/adminHome.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/client.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/client.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/contrat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/contrat.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/createContrat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/createContrat.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/createReservation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/createReservation.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/userHome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/userHome.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/utilisateur.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilisateur.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,8 +83,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -247,7 +239,14 @@
       <workItem from="1586812399428" duration="6483000" />
       <workItem from="1586862938168" duration="25082000" />
       <workItem from="1586978378167" duration="4199000" />
-      <workItem from="1587791906931" duration="28737000" />
+      <workItem from="1587791906931" duration="28874000" />
+      <workItem from="1589361747117" duration="856000" />
+      <workItem from="1589362739776" duration="18000" />
+      <workItem from="1589702656050" duration="19390000" />
+      <workItem from="1589793558521" duration="11204000" />
+      <workItem from="1589821849105" duration="9849000" />
+      <workItem from="1590495988548" duration="42000" />
+      <workItem from="1590591351849" duration="57000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <created>1586793573886</created>
@@ -297,6 +296,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1587830588450" />
+    <state x="321" y="77" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1589361805015">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="321" y="77" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.680@0.0.1280.680" timestamp="1589361805015" />
+    <state x="424" y="235" width="432" height="216" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1589706644900">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="424" y="235" width="432" height="216" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.680@0.0.1280.680" timestamp="1589706644900" />
     <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1587837012489">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -313,22 +320,26 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="501" y="234" key="Github.ShareDialog/0.0.1280.680@0.0.1280.680" timestamp="1586793514296" />
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1587872378398">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1589840722738">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1587872378398" />
-    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1587872378398">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1589840722738" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1589840722738">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1587872378398" />
-    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1587872378397">
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1589840722738" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1589840722737">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1587872378397" />
-    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1587872378398">
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1589840722737" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1589840722738">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1587872378398" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1589840722738" />
+    <state x="221" y="84" key="IDE.errors.dialog" timestamp="1589804069275">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="221" y="84" key="IDE.errors.dialog/0.0.1280.680@0.0.1280.680" timestamp="1589804069275" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1586979848449">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
