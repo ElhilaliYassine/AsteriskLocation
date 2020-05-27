@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 13, 2020 at 12:57 AM
+-- Generation Time: May 28, 2020 at 12:43 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -56,6 +56,13 @@ CREATE TABLE `contrat` (
   `dateEchéance` date NOT NULL,
   `idReservation` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contrat`
+--
+
+INSERT INTO `contrat` (`NContrat`, `dateContrat`, `dateEchéance`, `idReservation`) VALUES
+(2, '2020-05-08', '2020-05-22', 2);
 
 -- --------------------------------------------------------
 
@@ -116,7 +123,7 @@ CREATE TABLE `reservation` (
 
 INSERT INTO `reservation` (`codeReservation`, `dateReservation`, `dateDepart`, `dateRetour`, `idClient`, `idVehicule`, `etatReservation`) VALUES
 (1, '2020-05-08', '2020-05-06', '2020-05-16', 3, 23240, 'annuler'),
-(2, '2020-05-01', '2020-05-16', '2020-05-16', 2, 23237, 'validé'),
+(2, '2020-05-01', '2020-05-16', '2020-05-16', 2, 23241, 'validé'),
 (3, '2020-05-08', '2020-05-02', '2020-05-04', 3, 123, 'non validé');
 
 -- --------------------------------------------------------
@@ -180,9 +187,9 @@ CREATE TABLE `vehicule` (
 
 INSERT INTO `vehicule` (`NImmatriculation`, `marque`, `type`, `carburant`, `compteurKm`, `dateMiseEnCirculation`, `idParking`, `disponibilite`) VALUES
 (123, 'Alfa Romeo', 'Stelvio', 'Diesel', 23, '2020-05-16', 1, 0),
-(23237, 'Renault', 'Dacia', 'Essence', 123, '2020-04-18', 3, 0),
+(23237, 'Renault', 'Dacia', 'Essence', 123, '2020-04-18', 3, 1),
 (23240, 'Renault', 'Megane', 'Diesel', 34, '2020-05-02', 3, 0),
-(23241, 'Renault', 'Clio', 'Diesel', 231, '2020-05-02', 3, 1);
+(23241, 'Renault', 'Clio', 'Diesel', 231, '2020-05-02', 3, 0);
 
 --
 -- Indexes for dumped tables
@@ -198,7 +205,8 @@ ALTER TABLE `client`
 -- Indexes for table `contrat`
 --
 ALTER TABLE `contrat`
-  ADD PRIMARY KEY (`NContrat`);
+  ADD PRIMARY KEY (`NContrat`),
+  ADD KEY `idReservation` (`idReservation`);
 
 --
 -- Indexes for table `facture`
@@ -253,7 +261,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `contrat`
 --
 ALTER TABLE `contrat`
-  MODIFY `NContrat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `NContrat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `facture`
@@ -271,7 +279,7 @@ ALTER TABLE `parking`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `codeReservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `codeReservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `sanction`
@@ -288,6 +296,12 @@ ALTER TABLE `utilisateur`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `contrat`
+--
+ALTER TABLE `contrat`
+  ADD CONSTRAINT `contrat_ibfk_1` FOREIGN KEY (`idReservation`) REFERENCES `reservation` (`codeReservation`);
 
 --
 -- Constraints for table `reservation`

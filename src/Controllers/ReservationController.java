@@ -191,6 +191,7 @@ public class ReservationController implements Initializable {
     }
     private void dataReservation()
     {
+        disponibiliteVehicule();
         col_codeReservation.setCellValueFactory(new PropertyValueFactory<>("codeRéservation"));
         col_dateDepart.setCellValueFactory(new PropertyValueFactory<>("dateDépart"));
         col_dateRetour.setCellValueFactory(new PropertyValueFactory<>("dateRetour"));
@@ -450,6 +451,7 @@ public class ReservationController implements Initializable {
             reservation = new Réservation(0,dateReservationField.getValue(),dateDepartField.getValue(),dateRetourField.getValue(),client.getCodeClient(),vehicule.getNImmatriculation(),selectEtat.getValue());
             if (reservationDAO.update(reservation, table.getSelectionModel().getSelectedItem().getCodeRéservation()))
             {
+                list = reservationDAO.list();
                 dialogContent.setBody(new Text("La Réservation à été modifié!"));
                 dialog.show();
                 return;
@@ -482,6 +484,8 @@ public class ReservationController implements Initializable {
         else {
             Réservation reservation = reservationDAO.find(table.getSelectionModel().getSelectedItem().getCodeRéservation());
             reservationDAO.delete(reservation);
+            list = reservationDAO.list();
+            disponibiliteVehicule();
             dialogContent.setBody(new Text("La Réservation a été supprimé!"));
             dialog.show();
             blur.setEffect(new GaussianBlur(10));
