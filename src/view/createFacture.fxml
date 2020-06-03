@@ -7,10 +7,10 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateContratController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateFactureController">
     <children>
         <StackPane fx:id="myStackPane" layoutX="61.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
-        <Label layoutX="37.0" layoutY="13.0" text="Nouveau Contrat :" textFill="#1d71bf">
+        <Label layoutX="37.0" layoutY="13.0" text="Nouvelle Facture :" textFill="#1d71bf">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
@@ -19,13 +19,12 @@
         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
         <JFXButton fx:id="clear" layoutX="232.0" layoutY="387.0" onAction="#clear" style="-fx-background-color: #dd2c2c;" text="Clear" textFill="WHITE" />
         <JFXButton layoutX="288.0" layoutY="387.0" onAction="#newContrat" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Create" textFill="WHITE" />
-        <JFXComboBox fx:id="selectReservation" layoutX="161.0" layoutY="99.0" prefHeight="26.0" prefWidth="174.0" unFocusColor="#1d71bf" />
-        <Label layoutX="49.0" layoutY="102.0" text="Réservation :">
+        <JFXComboBox fx:id="selectContrat" layoutX="120.0" layoutY="147.0" prefHeight="26.0" prefWidth="215.0" unFocusColor="#1d71bf" />
+        <Label layoutX="49.0" layoutY="150.0" text="Contrat :">
             <font>
                 <Font size="15.0" />
             </font>
         </Label>
-        <DatePicker fx:id="dateEcheanceField" layoutX="47.0" layoutY="261.0" prefHeight="26.0" prefWidth="288.0" promptText="Date d'échéance" />
-        <DatePicker fx:id="dateContratField" layoutX="47.0" layoutY="189.0" prefHeight="26.0" prefWidth="288.0" promptText="Date de contrat" />
+        <DatePicker fx:id="dateFactureField" layoutX="49.0" layoutY="215.0" prefHeight="26.0" prefWidth="288.0" promptText="Date de facture" />
     </children>
 </AnchorPane>

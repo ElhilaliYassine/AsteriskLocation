@@ -121,4 +121,31 @@ public class ContratDAO extends DAO<Contrat>{
             return false;
         }
     }
+
+    public Contrat findByVehicule(int idVehicule) {
+        try
+        {
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * " +
+                    "FROM contrat,reservation,vehicule" +
+                    "WHERE contrat.idReservation = reservation.codeReservation" +
+                    "AND reservation.idVehicule = vehicule.NImmatriculation" +
+                    "AND vehicule.NImmatriculation = ?");
+            preparedStatement.setInt(1,idVehicule);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                Date _dateContrat = resultSet.getDate("dateContrat");
+                LocalDate dateContrat = _dateContrat.toLocalDate();
+                Date _dateEchéance = resultSet.getDate("dateEchéance");
+                LocalDate dateEchéance = _dateEchéance.toLocalDate();
+                Contrat contrat = new Contrat(resultSet.getInt("NContrat"),dateContrat,dateEchéance,resultSet.getInt("idReservation"));
+                return contrat;
+            }
+        }
+        catch(SQLException e)
+        {
+            return new Contrat(0,null,null,0);
+        }
+        return new Contrat(0,null,null,0);
+    }
 }

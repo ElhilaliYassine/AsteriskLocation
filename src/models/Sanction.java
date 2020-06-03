@@ -2,12 +2,12 @@ package models;
 
 public class Sanction {
     public final static double amende = 2000;
-    private int nbrJoursRetards;
+    private int nbrJoursRetard;
     private int idContrat;
     private int idSanction;
     //Constructors
-    public Sanction(int nbrJoursRetards, int idContrat,int idSanction) {
-        this.nbrJoursRetards = nbrJoursRetards;
+    public Sanction(int nbrJoursRetard, int idContrat,int idSanction) {
+        this.nbrJoursRetard = nbrJoursRetard;
         this.idContrat = idContrat;
         this.idSanction=idSanction;
     }
@@ -25,12 +25,12 @@ public class Sanction {
         return amende;
     }
 
-    public int getNbrJoursRetards() {
-        return nbrJoursRetards;
+    public int getNbrJoursRetard() {
+        return nbrJoursRetard;
     }
 
     public void setNbrJoursRetards(int nbrJoursRetards) {
-        this.nbrJoursRetards = nbrJoursRetards;
+        this.nbrJoursRetard = nbrJoursRetards;
     }
 
     public int getIdContrat() {

@@ -106,4 +106,40 @@ public class FactureDAO extends DAO<Facture>{
             return null;
         }
     }
+
+    public ObservableList<String> listStrings()
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM contrat DESC");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<String> list = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                list.add(String.valueOf(resultSet.getInt("NContrat")));
+            }
+            return list;
+        }
+        catch(SQLException e)
+        {
+            return null;
+        }
+    }
+
+    public boolean containsContratId(int idContrat)
+    {
+        try
+        {
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM facture");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next())
+            {
+                if (resultSet.getInt("idContrat") == idContrat) return true;
+            }
+            return false;
+        }catch(SQLException e)
+        {
+            return false;
+        }
+    }
 }

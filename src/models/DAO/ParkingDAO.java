@@ -156,7 +156,7 @@ public class ParkingDAO extends DAO<Parking>{
             {
                 Date date = resultSet.getDate("dateMiseEnCirculation");
                 LocalDate dateMiseEnCirculation = date.toLocalDate();
-                listParkings.add(new Véhicule(resultSet.getInt("NImmatriculation"),resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation,id, resultSet.getBoolean("disponibilite")));
+                listParkings.add(new Véhicule(resultSet.getInt("NImmatriculation"),resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation,id, resultSet.getBoolean("disponibilite"),resultSet.getDouble("prix")));
             }
             return listParkings;
         }

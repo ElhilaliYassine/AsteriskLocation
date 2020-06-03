@@ -45,6 +45,9 @@ public class CreateVehiculeController implements Initializable {
     private JFXTextField compteurKmField;
 
     @FXML
+    private JFXTextField prixField;
+
+    @FXML
     private DatePicker dateField;
 
     @FXML
@@ -100,7 +103,7 @@ public class CreateVehiculeController implements Initializable {
             dialog.close();
             clear();
         });
-        if (matriculeField.getText().isEmpty() || typeField.getText().isEmpty() || marqueField.getText().isEmpty() || carburantField.getText().isEmpty() || compteurKmField.getText().isEmpty() || dateField.getValue()== null || group.getSelectedToggle()== null || selectParking.getValue()==null) {
+        if (matriculeField.getText().isEmpty() || typeField.getText().isEmpty() || marqueField.getText().isEmpty() || carburantField.getText().isEmpty() || prixField.getText().isEmpty() || compteurKmField.getText().isEmpty() || dateField.getValue()== null || group.getSelectedToggle()== null || selectParking.getValue()==null) {
             dialogContent.setBody(new Text("Véhicule invalide!"));
             dialog.show();
             return;
@@ -114,9 +117,9 @@ public class CreateVehiculeController implements Initializable {
             Parking parking = parkingDAO.find(selectParking.getValue());
             if(parking.getCapacité()-parkingDAO.nombreVehicule(parking.getNParking())>0) {
                     if (group.getSelectedToggle() == ouiRadio)
-                        véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true);
+                        véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true, Double.parseDouble(prixField.getText()));
                     else if (group.getSelectedToggle() == nonRadio)
-                        véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false);
+                        véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false, Double.parseDouble(prixField.getText()));
             }else if(parking.getCapacité()-parkingDAO.nombreVehicule(parking.getNParking())<=0){
                 dialogContent.setBody(new Text("Le parking est saturé"));
                 dialog.show();
@@ -138,11 +141,9 @@ public class CreateVehiculeController implements Initializable {
         typeField.setText("");
         carburantField.setText("");
         compteurKmField.setText("");
+        prixField.setText("");
         dateField.setValue(null);
         group.selectToggle(null);
         selectParking.setItems(list);
     }
-
-
-
 }

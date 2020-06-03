@@ -74,7 +74,7 @@
                         </JFXButton>
                         <DatePicker fx:id="dateEcheanceField" layoutX="42.0" layoutY="244.0" prefHeight="26.0" prefWidth="271.0" promptText="Date d'échéance" />
                         <DatePicker fx:id="dateContratField" layoutX="43.0" layoutY="180.0" prefHeight="26.0" prefWidth="271.0" promptText="Date de contrat" />
-                  <Label fx:id="idContrat" layoutX="179.0" layoutY="15.0" text="N">
+                  <Label fx:id="idContrat" layoutX="204.0" layoutY="14.0" text="N">
                      <font>
                         <Font size="16.0" />
                      </font></Label>
@@ -88,7 +88,7 @@
                     <children>
                         <Pane prefHeight="103.0" prefWidth="661.0">
                             <children>
-                                <Label layoutX="79.0" layoutY="34.0" style="-fx-text-fill: #074684;" text="Gestion des réservations">
+                                <Label layoutX="79.0" layoutY="34.0" style="-fx-text-fill: #074684;" text="Gestion des contrats">
                                     <font>
                                         <Font name="System Bold" size="27.0" />
                                     </font>
@@ -103,7 +103,7 @@
                         <TableColumn fx:id="col_numeroContrat" prefWidth="141.0" text="Numéro Contrat" />
                         <TableColumn fx:id="col_dateContrat" prefWidth="175.0" text="Date contrat" />
                         <TableColumn fx:id="col_dateEcheance" prefWidth="179.00003051757812" text="Date d'échéance" />
-                        <TableColumn fx:id="col_idReservation" prefWidth="173.33334350585938" text="Id réservation" />
+                        <TableColumn fx:id="col_idReservation" prefWidth="166.0" text="Id réservation" />
                     </columns></TableView>
                 <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="547.0" onAction="#createContrat" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
                     <font>
@@ -171,7 +171,7 @@
                         </Label>
                         <FontAwesomeIconView fill="#1d71bf" glyphName="FILE" layoutX="14.0" layoutY="28.0" size="14" />
                         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="140.0" />
-                        <Label fx:id="numeroContrat" layoutX="178.0" layoutY="13.0" text="N" textFill="#1d71bf">
+                        <Label fx:id="numeroContrat" layoutX="138.0" layoutY="13.0" text="N" textFill="#1d71bf">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -329,12 +329,12 @@
                                 <Font name="System Bold" size="15.0" />
                             </font>
                         </Label>
-                        <Label layoutX="475.0" layoutY="13.0" text="Le :">
+                        <Label layoutX="465.0" layoutY="13.0" text="Le :">
                             <font>
                                 <Font size="16.0" />
                             </font>
                         </Label>
-                        <Label fx:id="dateContrat" layoutX="512.0" layoutY="14.0" text="N">
+                        <Label fx:id="dateContrat" layoutX="502.0" layoutY="14.0" text="N">
                             <font>
                                 <Font name="System Bold" size="15.0" />
                             </font>
@@ -344,12 +344,12 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="dateEcheance" layoutX="150.0" layoutY="474.0" text="N">
+                  <Label fx:id="dateEcheance" layoutX="164.0" layoutY="474.0" text="N">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="151.0" layoutY="493.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="165.0" layoutY="493.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
                     </children>
                 </AnchorPane>
             </children>

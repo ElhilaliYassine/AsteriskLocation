@@ -62,6 +62,10 @@ public class UserHomeController implements Initializable, Window {
     private Button btnReservation;
     @FXML
     private Button btnContrat;
+    @FXML
+    private Button btnFacture;
+    @FXML
+    private Button btnSanction;
     UtilisateurDAO utilisateurDAO;
     {
         try {
@@ -131,6 +135,8 @@ public class UserHomeController implements Initializable, Window {
         btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnFacture.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnSanction.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
 
     @FXML
@@ -141,6 +147,8 @@ public class UserHomeController implements Initializable, Window {
         btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnFacture.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnSanction.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
     @FXML
     private void parking() throws IOException {
@@ -149,6 +157,8 @@ public class UserHomeController implements Initializable, Window {
         btnParking.setStyle("-fx-background-color : #278ef4;");
         btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnFacture.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnSanction.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
     @FXML
@@ -160,6 +170,8 @@ public class UserHomeController implements Initializable, Window {
         btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnContrat.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnFacture.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnSanction.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
     @FXML
     private void contrat() throws IOException {
@@ -170,5 +182,29 @@ public class UserHomeController implements Initializable, Window {
         btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+    }
+    @FXML
+    private void facture() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/facture.fxml"));
+        rootPane.getChildren().setAll(pane);
+        btnFacture.setStyle("-fx-background-color : #278ef4;");
+        btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnContrat.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnSanction.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+    }
+    @FXML
+    private void sanction() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/sanction.fxml"));
+        rootPane.getChildren().setAll(pane);
+        btnSanction.setStyle("-fx-background-color : #278ef4;");
+        btnClient.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnVehicule.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnParking.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnReservation.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnFacture.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnContrat.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
     }
 }

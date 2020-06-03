@@ -19,7 +19,7 @@ public class VéhiculeDAO extends DAO<Véhicule>{
     public boolean create(Véhicule obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO vehicule(NImmatriculation,marque,type,carburant,compteurKm,dateMiseEnCirculation,idParking,disponibilite) VALUES(?,?,?,?,?,?,?,?)");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO vehicule(NImmatriculation,marque,type,carburant,compteurKm,dateMiseEnCirculation,idParking,disponibilite,prix) VALUES(?,?,?,?,?,?,?,?,?)");
             preparedStmt.setInt(1,obj.getNImmatriculation());
             preparedStmt.setString(2,obj.getMarque());
             preparedStmt.setString(3,obj.getType());
@@ -30,6 +30,7 @@ public class VéhiculeDAO extends DAO<Véhicule>{
             preparedStmt.setObject(6,date);
             preparedStmt.setInt(7,obj.getIdParking());
             preparedStmt.setBoolean(8,obj.isDisponibilite());
+            preparedStmt.setDouble(9,obj.getPrix());
             preparedStmt.execute();
             return true;
         }
@@ -57,7 +58,7 @@ public class VéhiculeDAO extends DAO<Véhicule>{
     @Override
     public boolean update(Véhicule obj, int id) {
         try {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE vehicule SET marque=?,type=?,carburant=?,compteurKm=?,dateMiseEnCirculation=?,idParking=?,disponibilite=? WHERE NImmatriculation=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE vehicule SET marque=?,type=?,carburant=?,compteurKm=?,dateMiseEnCirculation=?,idParking=?,disponibilite=?,prix=? WHERE NImmatriculation=?");
             preparedStmt.setString(1,obj.getMarque());
             preparedStmt.setString(2,obj.getType());
             preparedStmt.setString(3,obj.getCarburant());
@@ -68,6 +69,7 @@ public class VéhiculeDAO extends DAO<Véhicule>{
             preparedStmt.setInt(6,obj.getIdParking());
             preparedStmt.setBoolean(7,obj.isDisponibilite());
             preparedStmt.setInt(8, id);
+            preparedStmt.setDouble(9,obj.getPrix());
             preparedStmt.execute();
             return true;
         }
@@ -87,15 +89,15 @@ public class VéhiculeDAO extends DAO<Véhicule>{
             while(resultSet.next()){
                 Date date = resultSet.getDate("dateMiseEnCirculation");
                 LocalDate dateMiseEnCirculation = date.toLocalDate();
-                return new Véhicule(id,resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation,resultSet.getInt("idParking"),resultSet.getBoolean("disponibilite"));
+                return new Véhicule(id,resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation,resultSet.getInt("idParking"),resultSet.getBoolean("disponibilite"),resultSet.getDouble("prix"));
             }
 
         }
         catch(SQLException e)
         {
-            return new Véhicule(0,"","","",0.0,null,0, false);
+            return new Véhicule(0,"","","",0.0,null,0, false,0.0);
         }
-            return new Véhicule(0,"","","",0.0,null,0, false);
+            return new Véhicule(0,"","","",0.0,null,0, false,0.0);
     }
 
     @Override
@@ -109,7 +111,7 @@ public class VéhiculeDAO extends DAO<Véhicule>{
             {
                 Date date = resultSet.getDate("dateMiseEnCirculation");
                 LocalDate dateMiseEnCirculation = date.toLocalDate();
-                listVéhicules.add(new Véhicule(resultSet.getInt("NImmatriculation"),resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation,resultSet.getInt("idParking"), resultSet.getBoolean("disponibilite")));
+                listVéhicules.add(new Véhicule(resultSet.getInt("NImmatriculation"),resultSet.getString("marque"),resultSet.getString("type"),resultSet.getString("carburant"),resultSet.getDouble("compteurKm"),dateMiseEnCirculation,resultSet.getInt("idParking"), resultSet.getBoolean("disponibilite"),resultSet.getDouble("prix")));
             }
             //Collections.sort(listVéhicules, Comparator.comparing(Véhicule::getNImmatriculation).reversed());
             return listVéhicules;

@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ContratController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FactureController">
     <children>
         <Pane fx:id="msgPane" layoutX="150.0" layoutY="189.0" prefHeight="5.0" prefWidth="363.0">
             <children>
@@ -59,7 +59,7 @@
                 </Pane>
                 <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                     <children>
-                        <Label layoutX="37.0" layoutY="13.0" text="Modifier Contrat :" textFill="#1d71bf">
+                        <Label layoutX="37.0" layoutY="13.0" text="Modifier Facture :" textFill="#1d71bf">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -72,12 +72,17 @@
                                 <Font size="15.0" />
                             </font>
                         </JFXButton>
-                        <DatePicker fx:id="dateEcheanceField" layoutX="42.0" layoutY="244.0" prefHeight="26.0" prefWidth="271.0" promptText="Date d'échéance" />
-                        <DatePicker fx:id="dateContratField" layoutX="43.0" layoutY="180.0" prefHeight="26.0" prefWidth="271.0" promptText="Date de contrat" />
-                  <Label fx:id="idContrat" layoutX="204.0" layoutY="14.0" text="N">
+                        <DatePicker fx:id="dateFactureField" layoutX="43.0" layoutY="163.0" prefHeight="26.0" prefWidth="271.0" promptText="Date de facture" />
+                  <Label fx:id="idFacture" layoutX="204.0" layoutY="14.0" text="N">
                      <font>
                         <Font size="16.0" />
                      </font></Label>
+                  <Label layoutX="43.0" layoutY="219.0" text="Montant à payer">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="montantAPayerField" layoutX="41.0" layoutY="242.0" prefHeight="25.0" prefWidth="280.0" />
                     </children>
                 </AnchorPane>
             </children>
@@ -88,7 +93,7 @@
                     <children>
                         <Pane prefHeight="103.0" prefWidth="661.0">
                             <children>
-                                <Label layoutX="79.0" layoutY="34.0" style="-fx-text-fill: #074684;" text="Gestion des contrats">
+                                <Label layoutX="79.0" layoutY="34.0" style="-fx-text-fill: #074684;" text="Gestion des factures">
                                     <font>
                                         <Font name="System Bold" size="27.0" />
                                     </font>
@@ -100,10 +105,10 @@
                 </HBox>
                 <TableView fx:id="table" layoutX="8.0" layoutY="157.0" prefHeight="379.0" prefWidth="671.0" style="-fx-background-color: white;" stylesheets="@../Style/table.css">
                     <columns>
-                        <TableColumn fx:id="col_numeroContrat" prefWidth="141.0" text="Numéro Contrat" />
-                        <TableColumn fx:id="col_dateContrat" prefWidth="175.0" text="Date contrat" />
-                        <TableColumn fx:id="col_dateEcheance" prefWidth="179.00003051757812" text="Date d'échéance" />
-                        <TableColumn fx:id="col_idReservation" prefWidth="166.0" text="Id réservation" />
+                        <TableColumn fx:id="col_numeroFacture" prefWidth="141.0" text="Numéro facture" />
+                        <TableColumn fx:id="col_dateFacture" prefWidth="175.0" text="Date facture" />
+                        <TableColumn fx:id="col_montantAPayer" prefWidth="179.00003051757812" text="Montant à payer" />
+                        <TableColumn fx:id="col_idContrat" prefWidth="166.0" text="Id contrat" />
                     </columns></TableView>
                 <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="547.0" onAction="#createContrat" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
                     <font>
@@ -164,14 +169,14 @@
                 </Pane>
                 <AnchorPane layoutX="7.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="658.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                     <children>
-                        <Label layoutX="37.0" layoutY="13.0" text="Contrat Nᵒ" textFill="#1d71bf">
+                        <Label layoutX="37.0" layoutY="13.0" text="Facture Nᵒ" textFill="#1d71bf">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
                         <FontAwesomeIconView fill="#1d71bf" glyphName="FILE" layoutX="14.0" layoutY="28.0" size="14" />
                         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="140.0" />
-                        <Label fx:id="numeroContrat" layoutX="138.0" layoutY="13.0" text="N" textFill="#1d71bf">
+                        <Label fx:id="numeroFacture" layoutX="138.0" layoutY="13.0" text="N" textFill="#1d71bf">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -284,7 +289,7 @@
                                 <Font size="16.0" />
                             </font>
                         </Label>
-                        <Label layoutX="21.0" layoutY="387.0" text="Parking :">
+                        <Label layoutX="20.0" layoutY="384.0" text="Parking :">
                             <font>
                                 <Font size="16.0" />
                             </font>
@@ -334,22 +339,53 @@
                                 <Font size="16.0" />
                             </font>
                         </Label>
-                        <Label fx:id="dateContrat" layoutX="502.0" layoutY="14.0" text="N">
+                        <Label fx:id="dateFacture" layoutX="502.0" layoutY="14.0" text="N">
                             <font>
                                 <Font name="System Bold" size="15.0" />
                             </font>
                         </Label>
-                  <Label layoutX="12.0" layoutY="472.0" text="Date d'échéance :">
+                  <Label layoutX="12.0" layoutY="472.0" text="Date contrat:">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="dateEcheance" layoutX="164.0" layoutY="474.0" text="N">
+                  <Label fx:id="dateContrat" layoutX="148.0" layoutY="474.0" text="N">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="165.0" layoutY="493.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="149.0" layoutY="493.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
+                  <Label layoutX="338.0" layoutY="473.0" text="Date d'échéance :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dateEcheance" layoutX="473.0" layoutY="474.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="471.0" layoutY="493.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
+                  <Label layoutX="20.0" layoutY="406.0" text="Prix :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="prixVehicule" layoutX="123.0" layoutY="408.0" text="N">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="173.0" layoutY="39.0" text="Montant à payer : ">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="montantAPayer" layoutX="297.0" layoutY="40.0" text="N">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
             </children>

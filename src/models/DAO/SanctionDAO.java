@@ -25,8 +25,8 @@ public class SanctionDAO extends DAO<Sanction>{
     public boolean create(Sanction obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO sanction(nbrJoursRetards,idContrat) VALUES(?,?)");
-            preparedStmt.setInt(1,obj.getNbrJoursRetards());
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO sanction(nbrJoursRetard,idContrat) VALUES(?,?)");
+            preparedStmt.setInt(1,obj.getNbrJoursRetard());
             preparedStmt.setInt(2,obj.getIdContrat());
             preparedStmt.execute();
             return true;
@@ -55,8 +55,8 @@ public class SanctionDAO extends DAO<Sanction>{
     @Override
     public boolean update(Sanction obj, int id) {
         try {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE sanction SET nbrJoursRetards=?,idContrat=?,idSanction=? WHERE NParking=?");
-            preparedStmt.setInt(1,obj.getNbrJoursRetards());
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE sanction SET nbrJoursRetard=?,idContrat=?,idSanction=? WHERE NParking=?");
+            preparedStmt.setInt(1,obj.getNbrJoursRetard());
             preparedStmt.setInt(2,obj.getIdContrat());
             preparedStmt.setInt(3,obj.getIdSanction());
             preparedStmt.setInt(4, id);
@@ -76,7 +76,7 @@ public class SanctionDAO extends DAO<Sanction>{
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM sanction WHERE idSanction=?");
             preparedStmt.setInt(1,id);
             ResultSet resultSet = preparedStmt.executeQuery();
-            return new Sanction(resultSet.getInt("nbrJoursRetards"),resultSet.getInt("idContrat"),id);
+            return new Sanction(resultSet.getInt("nbrJoursRetard"),resultSet.getInt("idContrat"),id);
         }
         catch(SQLException e)
         {
@@ -93,9 +93,8 @@ public class SanctionDAO extends DAO<Sanction>{
             ObservableList<Sanction> listSanctions = FXCollections.observableArrayList();
             while(resultSet.next())
             {
-                listSanctions.add(new Sanction(resultSet.getInt("nbrJoursRetards"),resultSet.getInt("idContrat"),resultSet.getInt("idSanction")));
+                listSanctions.add(new Sanction(resultSet.getInt("nbrJoursRetard"),resultSet.getInt("idContrat"),resultSet.getInt("idSanction")));
             }
-            Collections.sort(listSanctions, Comparator.comparing(Sanction::getNbrJoursRetards).reversed());
             return listSanctions;
         }
         catch(SQLException e)
