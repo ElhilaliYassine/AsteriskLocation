@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateVehiculeController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateVehiculeController">
    <children>
       <StackPane fx:id="myStackPane" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
       <Label layoutX="37.0" layoutY="13.0" text="Nouveau Véhicule" textFill="#1d71bf">
@@ -16,27 +21,27 @@
          </font>
       </Label>
       <JFXTextField fx:id="matriculeField" labelFloat="true" layoutX="37.0" layoutY="55.0" prefHeight="26.0" prefWidth="255.0" promptText="Matricule" unFocusColor="#1d71bf" />
-      <JFXTextField fx:id="marqueField" labelFloat="true" layoutX="37.0" layoutY="88.0" prefHeight="26.0" prefWidth="255.0" promptText="Marque" unFocusColor="#1d71bf" />
+      <JFXTextField fx:id="marqueField" labelFloat="true" layoutX="37.0" layoutY="98.0" prefHeight="26.0" prefWidth="255.0" promptText="Marque" unFocusColor="#1d71bf" />
       <FontAwesomeIconView fill="#1d71bf" glyphName="CAR" layoutX="14.0" layoutY="28.0" size="14" />
       <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
-      <JFXTextField fx:id="typeField" labelFloat="true" layoutX="37.0" layoutY="120.0" prefHeight="26.0" prefWidth="255.0" promptText="Type" unFocusColor="#1d71bf" />
-      <JFXTextField fx:id="carburantField" labelFloat="true" layoutX="37.0" layoutY="153.0" prefHeight="26.0" prefWidth="255.0" promptText="Carburant" unFocusColor="#1d71bf" />
-      <JFXTextField fx:id="compteurKmField" labelFloat="true" layoutX="37.0" layoutY="186.0" prefHeight="26.0" prefWidth="255.0" promptText="Compteur KM" unFocusColor="#1d71bf" />
-      <DatePicker fx:id="dateField" layoutX="37.0" layoutY="270.0" prefHeight="26.0" prefWidth="255.0" promptText="Date de mise en circulation" />
-      <JFXRadioButton fx:id="ouiRadio" layoutX="154.0" layoutY="310.0" text="Oui" />
-      <JFXComboBox fx:id="selectParking" layoutX="116.0" layoutY="341.0" prefHeight="26.0" prefWidth="175.0" unFocusColor="#1d71bf" />
-      <JFXRadioButton fx:id="nonRadio" layoutX="236.0" layoutY="310.0" text="Non" />
-      <Label layoutX="37.0" layoutY="308.0" text="Disponibilité :">
+      <JFXTextField fx:id="typeField" labelFloat="true" layoutX="37.0" layoutY="140.0" prefHeight="26.0" prefWidth="255.0" promptText="Type" unFocusColor="#1d71bf" />
+      <JFXTextField fx:id="carburantField" labelFloat="true" layoutX="37.0" layoutY="183.0" prefHeight="26.0" prefWidth="255.0" promptText="Carburant" unFocusColor="#1d71bf" />
+      <JFXTextField fx:id="compteurKmField" labelFloat="true" layoutX="37.0" layoutY="226.0" prefHeight="26.0" prefWidth="255.0" promptText="Compteur KM" unFocusColor="#1d71bf" />
+      <DatePicker fx:id="dateField" layoutX="37.0" layoutY="307.0" prefHeight="26.0" prefWidth="255.0" promptText="Date de mise en circulation" />
+      <JFXRadioButton fx:id="ouiRadio" layoutX="154.0" layoutY="347.0" text="Oui" />
+      <JFXComboBox fx:id="selectParking" layoutX="116.0" layoutY="372.0" prefHeight="26.0" prefWidth="175.0" unFocusColor="#1d71bf" />
+      <JFXRadioButton fx:id="nonRadio" layoutX="236.0" layoutY="347.0" text="Non" />
+      <Label layoutX="37.0" layoutY="345.0" text="Disponibilité :">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label layoutX="38.0" layoutY="345.0" text="Parking :">
+      <Label layoutX="38.0" layoutY="376.0" text="Parking :">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <JFXButton layoutX="232.0" layoutY="387.0" onAction="#clear" style="-fx-background-color: #dd2c2c;" text="Clear" textFill="WHITE" />
-      <JFXButton layoutX="288.0" layoutY="387.0" onAction="#newVehicule" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Create" textFill="WHITE" />
-      <JFXTextField fx:id="prixField" labelFloat="true" layoutX="36.0" layoutY="219.0" prefHeight="26.0" prefWidth="255.0" promptText="Prix" text="Prix" unFocusColor="#1d71bf" />
+      <JFXButton layoutX="232.0" layoutY="413.0" onAction="#clear" style="-fx-background-color: #dd2c2c;" text="Clear" textFill="WHITE" />
+      <JFXButton layoutX="288.0" layoutY="413.0" onAction="#newVehicule" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Create" textFill="WHITE" />
+      <JFXTextField fx:id="prixField" labelFloat="true" layoutX="36.0" layoutY="270.0" prefHeight="26.0" prefWidth="255.0" promptText="Prix" unFocusColor="#1d71bf" />
    </children>
 </AnchorPane>

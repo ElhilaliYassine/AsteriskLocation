@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="709.0" prefWidth="900.0" style="-fx-background-radius: 30; -fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminHomeController">
+<AnchorPane prefHeight="709.0" prefWidth="900.0" style="-fx-background-radius: 30; -fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminHomeController">
     <children>
-        <Button fx:id="btnClose" focusTraversable="false" layoutX="863.0" layoutY="11.0" mnemonicParsing="false" onAction="#close" onMouseClicked="#close" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
+        <Button fx:id="btnClose" focusTraversable="false" layoutX="920.0" layoutY="11.0" mnemonicParsing="false" onAction="#close" onMouseClicked="#close" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="7.0" />
             </font>
@@ -18,7 +23,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button focusTraversable="false" layoutX="845.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#minimize" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: #feb72b; -fx-background-radius: 50; -fx-border-radius: 20;" text="_" textFill="WHITE">
+        <Button focusTraversable="false" layoutX="902.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#minimize" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: #feb72b; -fx-background-radius: 50; -fx-border-radius: 20;" text="_" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="7.0" />
             </font>
@@ -35,12 +40,12 @@
             <children>
                 <Pane prefHeight="586.0" prefWidth="218.0">
                     <children>
-                        <Button layoutY="148.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Dashboard">
+                        <Button fx:id="btnDashboard" layoutY="128.0" mnemonicParsing="false" onAction="#dashboard" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Dashboard">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                        <JFXButton buttonType="RAISED" layoutX="62.0" layoutY="554.0" onAction="#logout" onMouseClicked="#logout" prefHeight="31.0" prefWidth="88.0" ripplerFill="#ff0978" style="-fx-background-color: #bf316f; -fx-background-radius: 18;" text="     Logout" textFill="WHITE">
+                        <JFXButton buttonType="RAISED" layoutX="62.0" layoutY="534.0" onAction="#logout" onMouseClicked="#logout" prefHeight="31.0" prefWidth="88.0" ripplerFill="#ff0978" style="-fx-background-color: #bf316f; -fx-background-radius: 18;" text="     Logout" textFill="WHITE">
                             <font>
                                 <Font size="12.0" />
                             </font>
@@ -48,63 +53,106 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </JFXButton>
-                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" layoutX="79.0" layoutY="567.0" />
-                        <Button fx:id="btnUtilisateur" layoutY="194.0" mnemonicParsing="false" onAction="#user" onMouseClicked="#user" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Utilisateur">
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" layoutX="79.0" layoutY="555.0">
+                     <effect>
+                        <DropShadow />
+                     </effect></FontAwesomeIconView>
+                        <Button fx:id="btnUtilisateur" layoutY="168.0" mnemonicParsing="false" onAction="#user" onMouseClicked="#user" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Utilisateur">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                        <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="51.0" layoutY="219.0" size="20" />
-                        <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="53.0" layoutY="174.0" size="20" />
-                        <Button fx:id="btnClient" layoutY="241.0" mnemonicParsing="false" onAction="#client" onMouseClicked="#client" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="Client">
+                        <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="51.0" layoutY="193.0" size="20">
+                     <effect>
+                        <DropShadow />
+                     </effect></FontAwesomeIconView>
+                        <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="53.0" layoutY="154.0" size="20">
+                     <effect>
+                        <DropShadow />
+                     </effect></FontAwesomeIconView>
+                        <Button fx:id="btnClient" layoutY="209.0" mnemonicParsing="false" onAction="#client" onMouseClicked="#client" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="Client">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                        <Button fx:id="btnVehicule" layoutY="288.0" mnemonicParsing="false" onAction="#vehicule" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Vehicule">
+                        <Button fx:id="btnVehicule" layoutY="250.0" mnemonicParsing="false" onAction="#vehicule" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Vehicule">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                        <FontAwesomeIconView fill="WHITE" glyphName="CAR" layoutX="51.0" layoutY="313.0" size="20" />
-                        <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="56.0" layoutY="265.0" size="20" />
-                        <ImageView fitHeight="64.0" fitWidth="52.0" layoutX="83.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                        <FontAwesomeIconView fill="WHITE" glyphName="CAR" layoutX="51.0" layoutY="275.0" size="20">
+                     <effect>
+                        <DropShadow />
+                     </effect></FontAwesomeIconView>
+                        <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="56.0" layoutY="233.0" size="20">
+                     <effect>
+                        <DropShadow />
+                     </effect></FontAwesomeIconView>
+                        <ImageView fitHeight="45.0" fitWidth="44.0" layoutX="87.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../Pictures/user.png" />
                             </image>
                         </ImageView>
-                        <Label fx:id="name" alignment="CENTER" layoutY="84.0" prefHeight="16.0" prefWidth="218.0" text="Name" textFill="WHITE" />
-                        <Label fx:id="email" alignment="CENTER" layoutY="107.0" prefHeight="16.0" prefWidth="218.0" text="gmail" textFill="WHITE" />
-                        <Button fx:id="btnParking" layoutY="338.0" mnemonicParsing="false" onAction="#parking" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Parking">
+                        <Label fx:id="name" alignment="CENTER" layoutY="67.0" prefHeight="16.0" prefWidth="218.0" text="Name" textFill="WHITE" />
+                        <Label fx:id="email" alignment="CENTER" layoutY="90.0" prefHeight="16.0" prefWidth="218.0" text="gmail" textFill="WHITE" />
+                        <Button fx:id="btnParking" layoutY="294.0" mnemonicParsing="false" onAction="#parking" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="    Parking">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                        <FontAwesomeIconView fill="WHITE" glyphName="MAP" layoutX="51.0" layoutY="363.0" size="20" />
-                        <Button fx:id="btnReservation" layoutY="388.0" mnemonicParsing="false" onAction="#reservation" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="     Reservation">
+                        <FontAwesomeIconView fill="WHITE" glyphName="MAP" layoutX="51.0" layoutY="319.0" size="20">
+                     <effect>
+                        <DropShadow />
+                     </effect></FontAwesomeIconView>
+                        <Button fx:id="btnReservation" layoutY="338.0" mnemonicParsing="false" onAction="#reservation" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="     Reservation">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                        <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="51.0" layoutY="413.0" size="20" />
-                        <Button fx:id="btnContrat" layoutY="438.0" mnemonicParsing="false" onAction="#contrat" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="     Contrat">
+                        <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="51.0" layoutY="363.0" size="20">
+                     <effect>
+                        <DropShadow />
+                     </effect></FontAwesomeIconView>
+                        <Button fx:id="btnContrat" layoutY="382.0" mnemonicParsing="false" onAction="#contrat" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="     Contrat">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                        <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="51.0" layoutY="463.0" size="20" />
-                  <Button fx:id="btnFacture" layoutX="-1.0" layoutY="478.0" mnemonicParsing="false" onAction="#facture" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="     Facture">
+                        <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="50.0" layoutY="410.0" size="20">
+                     <effect>
+                        <DropShadow />
+                     </effect></FontAwesomeIconView>
+                  <Button fx:id="btnFacture" layoutY="426.0" mnemonicParsing="false" onAction="#facture" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="     Facture">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="51.0" layoutY="503.0" size="20" />
-                  <Button fx:id="btnSanction" layoutX="-1.0" layoutY="514.0" mnemonicParsing="false" onAction="#sanction" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="     Sanction">
+                  <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="52.0" layoutY="451.0" size="20">
+                     <effect>
+                        <DropShadow />
+                     </effect></FontAwesomeIconView>
+                  <Button fx:id="btnSanction" layoutY="469.0" mnemonicParsing="false" onAction="#sanction" prefHeight="38.0" prefWidth="218.0" stylesheets="@../Style/style.css" text="     Sanction">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="51.0" layoutY="539.0" size="20" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="52.0" layoutY="494.0" size="20">
+                     <effect>
+                        <DropShadow />
+                     </effect></FontAwesomeIconView>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="56.0" layoutY="406.0" size="20">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" layoutX="63.0" layoutY="450.0" size="13">
+                     <effect>
+                        <DropShadow />
+                     </effect></FontAwesomeIconView>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" layoutX="61.0" layoutY="497.0" size="14">
+                     <effect>
+                        <DropShadow />
+                     </effect></FontAwesomeIconView>
                     </children>
                 </Pane>
             </children>
@@ -114,6 +162,6 @@
                 <Font name="System Bold" size="13.0" />
             </font>
         </Label>
-        <AnchorPane fx:id="rootPane" layoutX="217.0" layoutY="41.0" prefHeight="668.0" prefWidth="683.0" style="-fx-background-radius: 30 0 30 0;" />
+        <AnchorPane fx:id="rootPane" layoutX="217.0" layoutY="41.0" prefHeight="668.0" prefWidth="730.0" style="-fx-background-radius: 30 0 30 0;" />
     </children>
 </AnchorPane>

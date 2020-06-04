@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SanctionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SanctionController">
     <children>
         <Pane fx:id="msgPane" layoutX="150.0" layoutY="189.0" prefHeight="5.0" prefWidth="363.0">
             <children>
@@ -34,9 +40,9 @@
         </AnchorPane>
         <AnchorPane fx:id="blur" prefHeight="668.0" prefWidth="659.0">
             <children>
-                <HBox prefHeight="103.0" prefWidth="683.0" style="-fx-background-color: #ececec; -fx-background-radius: 10 0 0 10;">
+                <HBox prefHeight="103.0" prefWidth="730.0" style="-fx-background-color: #ececec; -fx-background-radius: 10 0 0 10;">
                     <children>
-                        <Pane prefHeight="103.0" prefWidth="661.0">
+                        <Pane prefHeight="103.0" prefWidth="698.0">
                             <children>
                                 <Label layoutX="79.0" layoutY="34.0" style="-fx-text-fill: #074684;" text="Gestion des sanctions">
                                     <font>
@@ -48,11 +54,11 @@
                         </Pane>
                     </children>
                 </HBox>
-                <TableView fx:id="table" layoutX="8.0" layoutY="157.0" prefHeight="379.0" prefWidth="671.0" style="-fx-background-color: white;" stylesheets="@../Style/table.css">
+                <TableView fx:id="table" layoutX="8.0" layoutY="157.0" prefHeight="379.0" prefWidth="717.0" style="-fx-background-color: white;" stylesheets="@../Style/table.css">
                     <columns>
-                        <TableColumn fx:id="col_numeroSanction" prefWidth="239.66667938232422" text="Numéro de sanction" />
-                        <TableColumn fx:id="col_nbrJoursRetard" prefWidth="235.0" text="Nombre de Jours de Retards" />
-                        <TableColumn fx:id="col_idContrat" prefWidth="196.3333740234375" text="Numéro de contrat" />
+                        <TableColumn fx:id="col_numeroSanction" prefWidth="239.0" text="Numéro de sanction" />
+                        <TableColumn fx:id="col_nbrJoursRetard" prefWidth="249.0" text="Nombre de Jours de Retards" />
+                        <TableColumn fx:id="col_idContrat" prefWidth="217.0" text="Numéro de contrat" />
                     </columns></TableView>
                 <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="61.0" layoutY="570.0" size="19" visible="false" />
                 <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" unFocusColor="#074684" />

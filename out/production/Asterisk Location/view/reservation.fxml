@@ -18,14 +18,14 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReservationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReservationController">
    <children>
       <Pane fx:id="msgPane" layoutX="150.0" layoutY="189.0" prefHeight="5.0" prefWidth="363.0">
          <children>
             <StackPane fx:id="myStackPane" layoutX="23.0" layoutY="1.0" prefHeight="4.0" prefWidth="318.0" />
          </children>
       </Pane>
-      <AnchorPane fx:id="rootPane" layoutX="150.0" layoutY="116.0" prefHeight="461.0" prefWidth="371.0" visible="false">
+      <AnchorPane fx:id="rootPane" layoutX="168.0" layoutY="116.0" prefHeight="461.0" prefWidth="371.0" visible="false">
          <effect>
             <DropShadow height="11.89" radius="5.445" width="11.89" />
          </effect>
@@ -49,7 +49,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="updatePane" layoutX="150.0" layoutY="117.0" prefHeight="461.0" prefWidth="371.0" visible="false">
+      <AnchorPane fx:id="updatePane" layoutX="168.0" layoutY="117.0" prefHeight="461.0" prefWidth="371.0" visible="false">
          <effect>
             <DropShadow height="11.89" radius="5.445" width="11.89" />
          </effect>
@@ -108,7 +108,7 @@
       </AnchorPane>
       <AnchorPane fx:id="blur" prefHeight="668.0" prefWidth="659.0">
          <children>
-            <HBox prefHeight="103.0" prefWidth="683.0" style="-fx-background-color: #ececec; -fx-background-radius: 10 0 0 10;">
+            <HBox prefHeight="103.0" prefWidth="730.0" style="-fx-background-color: #ececec; -fx-background-radius: 10 0 0 10;">
                <children>
                   <Pane prefHeight="103.0" prefWidth="661.0">
                      <children>
@@ -122,14 +122,14 @@
                   </Pane>
                </children>
             </HBox>
-            <TableView fx:id="table" layoutX="8.0" layoutY="199.0" prefHeight="337.0" prefWidth="671.0" style="-fx-background-color: white;" stylesheets="@../Style/table.css">
+            <TableView fx:id="table" layoutX="8.0" layoutY="199.0" prefHeight="337.0" prefWidth="717.0" style="-fx-background-color: white;" stylesheets="@../Style/table.css">
                <columns>
                   <TableColumn fx:id="col_codeReservation" prefWidth="141.0" text="Code Reservation" />
-                  <TableColumn fx:id="col_dateDepart" prefWidth="120.0" text="Date de Depart" />
-                  <TableColumn fx:id="col_dateRetour" prefWidth="118.0" text="Date de Retour" />
-                  <TableColumn fx:id="col_idClient" prefWidth="72.0" text="Id Client" />
-                  <TableColumn fx:id="col_idVehicule" minWidth="0.0" prefWidth="93.0" text="Id Vehicule" />
-                  <TableColumn fx:id="col_dateReservation" prefWidth="123.0" text="Date Reservation" />
+                  <TableColumn fx:id="col_dateDepart" prefWidth="126.0" text="Date de Depart" />
+                  <TableColumn fx:id="col_dateRetour" prefWidth="120.0" text="Date de Retour" />
+                  <TableColumn fx:id="col_idClient" text="Id Client" />
+                  <TableColumn fx:id="col_idVehicule" minWidth="0.0" prefWidth="95.0" text="Id Vehicule" />
+                  <TableColumn fx:id="col_dateReservation" prefWidth="145.0" text="Date Reservation" />
                </columns></TableView>
             <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="547.0" onAction="#createReservation" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
                <font>
@@ -169,7 +169,7 @@
                </cursor>
             </JFXButton>
             <FontAwesomeIconView fill="WHITE" glyphName="INFO" layoutX="387.0" layoutY="570.0" size="19" />
-            <JFXButton fx:id="btnReservationAnuule" alignment="CENTER" layoutX="173.0" layoutY="163.0" onAction="#reservationAnnule" prefHeight="23.0" prefWidth="153.0" ripplerFill="#e4d2d8" style="-fx-background-color: #e73535;" text="Réservations annulées" textFill="WHITE">
+            <JFXButton fx:id="btnReservationAnuule" alignment="CENTER" layoutX="198.0" layoutY="163.0" onAction="#reservationAnnule" prefHeight="23.0" prefWidth="153.0" ripplerFill="#e4d2d8" style="-fx-background-color: #e73535;" text="Réservations annulées" textFill="WHITE">
                <font>
                   <Font size="12.0" />
                </font>
@@ -177,7 +177,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton alignment="CENTER" layoutX="333.0" layoutY="163.0" onAction="#reservationNonValide" prefHeight="23.0" prefWidth="176.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Réservations non validées" textFill="WHITE">
+            <JFXButton alignment="CENTER" layoutX="358.0" layoutY="163.0" onAction="#reservationNonValide" prefHeight="23.0" prefWidth="176.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Réservations non validées" textFill="WHITE">
                <font>
                   <Font size="12.0" />
                </font>
@@ -185,7 +185,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton alignment="CENTER" layoutX="517.0" layoutY="163.0" onAction="#reservationValide" prefHeight="23.0" prefWidth="153.0" ripplerFill="#05ff90" style="-fx-background-color: green;" text="Réservations validées" textFill="WHITE">
+            <JFXButton alignment="CENTER" layoutX="542.0" layoutY="163.0" onAction="#reservationValide" prefHeight="23.0" prefWidth="153.0" ripplerFill="#05ff90" style="-fx-background-color: green;" text="Réservations validées" textFill="WHITE">
                <font>
                   <Font size="12.0" />
                </font>
@@ -193,7 +193,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton alignment="CENTER" layoutX="13.0" layoutY="163.0" onAction="#reservationlist" prefHeight="23.0" prefWidth="153.0" ripplerFill="#13a1ee" style="-fx-background-color: #074684;" text="Toutes les Réservation" textFill="WHITE">
+            <JFXButton alignment="CENTER" layoutX="38.0" layoutY="163.0" onAction="#reservationlist" prefHeight="23.0" prefWidth="153.0" ripplerFill="#13a1ee" style="-fx-background-color: #074684;" text="Toutes les Réservation" textFill="WHITE">
                <font>
                   <Font size="12.0" />
                </font>
@@ -201,20 +201,20 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <Rectangle fx:id="rectangleTous" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" layoutX="73.0" layoutY="187.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #074684;" visible="false" width="20.0" />
-            <Rectangle fx:id="rectangleAnnuler" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" layoutX="237.0" layoutY="187.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #e73535;" visible="false" width="20.0" />
-            <Rectangle fx:id="rectangleNonValide" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" layoutX="413.0" layoutY="187.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #f2a51a;" visible="false" width="20.0" />
-            <Rectangle fx:id="rectangleValidee" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" layoutX="583.0" layoutY="187.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: green;" visible="false" width="20.0" />
+            <Rectangle fx:id="rectangleTous" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" layoutX="96.0" layoutY="187.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #074684;" visible="false" width="20.0" />
+            <Rectangle fx:id="rectangleAnnuler" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" layoutX="264.0" layoutY="187.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #e73535;" visible="false" width="20.0" />
+            <Rectangle fx:id="rectangleNonValide" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" layoutX="437.0" layoutY="187.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #f2a51a;" visible="false" width="20.0" />
+            <Rectangle fx:id="rectangleValidee" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" layoutX="614.0" layoutY="187.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: green;" visible="false" width="20.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="detailPane" layoutX="6.0" layoutY="104.0" prefHeight="548.0" prefWidth="670.0" visible="false">
+      <AnchorPane fx:id="detailPane" layoutX="6.0" layoutY="104.0" prefHeight="548.0" prefWidth="717.0" visible="false">
          <effect>
             <DropShadow height="11.89" radius="5.445" width="11.89" />
          </effect>
          <children>
-            <Pane prefHeight="34.0" prefWidth="670.0">
+            <Pane prefHeight="34.0" prefWidth="707.0">
                <children>
-                  <Button fx:id="btnClose2" focusTraversable="false" layoutX="638.0" layoutY="13.0" mnemonicParsing="false" onAction="#returnDetail" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
+                  <Button fx:id="btnClose2" focusTraversable="false" layoutX="683.0" layoutY="13.0" mnemonicParsing="false" onAction="#returnDetail" prefHeight="11.0" prefWidth="9.0" style="-fx-background-color: red; -fx-background-radius: 50; -fx-border-radius: 20;" text="X" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="7.0" />
                      </font>
@@ -224,7 +224,7 @@
                   </Button>
                </children>
             </Pane>
-            <AnchorPane layoutX="7.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="658.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+            <AnchorPane layoutX="7.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="707.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                <children>
                   <Label layoutX="37.0" layoutY="13.0" text="Réservation Nᵒ" textFill="#1d71bf">
                      <font>
@@ -262,7 +262,7 @@
                      </font>
                   </Label>
                   <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="163.0" layoutY="167.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="280.0" />
-                  <Label layoutX="2.0" layoutY="177.0" prefHeight="19.0" prefWidth="658.0" text="---------------------------------------------------------------------------------------------------------">
+                  <Label layoutX="2.0" layoutY="177.0" prefHeight="19.0" prefWidth="707.0" text="-----------------------------------------------------------------------------------------------------------------">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -291,7 +291,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="2.0" layoutY="415.0" prefHeight="19.0" prefWidth="658.0" text="---------------------------------------------------------------------------------------------------------">
+                  <Label layoutX="2.0" layoutY="415.0" prefHeight="19.0" prefWidth="707.0" text="-----------------------------------------------------------------------------------------------------------------">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -391,22 +391,22 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="475.0" layoutY="13.0" text="Le :">
+                  <Label layoutX="441.0" layoutY="13.0" text="Le :">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="dateReservation" layoutX="512.0" layoutY="14.0" text="N">
+                  <Label fx:id="dateReservation" layoutX="478.0" layoutY="14.0" text="N">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="401.0" layoutY="38.0" text="Etat :">
+                  <Label layoutX="441.0" layoutY="38.0" text="Etat :">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="etatReservation" layoutX="447.0" layoutY="39.0" text="Réservation non validée">
+                  <Label fx:id="etatReservation" layoutX="487.0" layoutY="39.0" text="Réservation non validée">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

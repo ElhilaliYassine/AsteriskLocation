@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 28, 2020 at 12:43 AM
+-- Generation Time: Jun 04, 2020 at 03:17 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -133,7 +133,7 @@ INSERT INTO `reservation` (`codeReservation`, `dateReservation`, `dateDepart`, `
 --
 
 CREATE TABLE `sanction` (
-  `nbrJoursRetards` int(11) NOT NULL,
+  `nbrJoursRetard` int(11) NOT NULL,
   `idContrat` int(11) NOT NULL,
   `idSanction` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -178,18 +178,19 @@ CREATE TABLE `vehicule` (
   `compteurKm` double NOT NULL,
   `dateMiseEnCirculation` date NOT NULL,
   `idParking` int(11) NOT NULL,
-  `disponibilite` tinyint(1) NOT NULL
+  `disponibilite` tinyint(1) NOT NULL,
+  `prix` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `vehicule`
 --
 
-INSERT INTO `vehicule` (`NImmatriculation`, `marque`, `type`, `carburant`, `compteurKm`, `dateMiseEnCirculation`, `idParking`, `disponibilite`) VALUES
-(123, 'Alfa Romeo', 'Stelvio', 'Diesel', 23, '2020-05-16', 1, 0),
-(23237, 'Renault', 'Dacia', 'Essence', 123, '2020-04-18', 3, 1),
-(23240, 'Renault', 'Megane', 'Diesel', 34, '2020-05-02', 3, 0),
-(23241, 'Renault', 'Clio', 'Diesel', 231, '2020-05-02', 3, 0);
+INSERT INTO `vehicule` (`NImmatriculation`, `marque`, `type`, `carburant`, `compteurKm`, `dateMiseEnCirculation`, `idParking`, `disponibilite`, `prix`) VALUES
+(123, 'Alfa Romeo', 'Stelvio', 'Diesel', 23, '2020-05-16', 1, 0, 0),
+(23237, 'Renault', 'Dacia', 'Essence', 123, '2020-04-18', 3, 1, 0),
+(23240, 'Renault', 'Megane', 'Diesel', 34, '2020-05-02', 3, 0, 0),
+(23241, 'Renault', 'Clio', 'Diesel', 231, '2020-05-02', 3, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -212,7 +213,8 @@ ALTER TABLE `contrat`
 -- Indexes for table `facture`
 --
 ALTER TABLE `facture`
-  ADD PRIMARY KEY (`NFacture`);
+  ADD PRIMARY KEY (`NFacture`),
+  ADD KEY `idContrat` (`idContrat`);
 
 --
 -- Indexes for table `parking`
@@ -232,7 +234,8 @@ ALTER TABLE `reservation`
 -- Indexes for table `sanction`
 --
 ALTER TABLE `sanction`
-  ADD PRIMARY KEY (`idSanction`);
+  ADD PRIMARY KEY (`idSanction`),
+  ADD KEY `idContrat` (`idContrat`);
 
 --
 -- Indexes for table `utilisateur`
@@ -304,11 +307,23 @@ ALTER TABLE `contrat`
   ADD CONSTRAINT `contrat_ibfk_1` FOREIGN KEY (`idReservation`) REFERENCES `reservation` (`codeReservation`);
 
 --
+-- Constraints for table `facture`
+--
+ALTER TABLE `facture`
+  ADD CONSTRAINT `facture_ibfk_1` FOREIGN KEY (`idContrat`) REFERENCES `contrat` (`NContrat`);
+
+--
 -- Constraints for table `reservation`
 --
 ALTER TABLE `reservation`
   ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`idClient`) REFERENCES `client` (`codeClient`),
   ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`idVehicule`) REFERENCES `vehicule` (`NImmatriculation`);
+
+--
+-- Constraints for table `sanction`
+--
+ALTER TABLE `sanction`
+  ADD CONSTRAINT `sanction_ibfk_1` FOREIGN KEY (`idContrat`) REFERENCES `contrat` (`NContrat`);
 
 --
 -- Constraints for table `vehicule`
