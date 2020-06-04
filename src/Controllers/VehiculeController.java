@@ -28,6 +28,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ResourceBundle;
 
 public class VehiculeController implements Initializable {
@@ -262,7 +263,7 @@ public class VehiculeController implements Initializable {
                 véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false,Double.parseDouble(prixField.getText()));
             }
             if (véhiculeDAO.update(véhicule, table.getSelectionModel().getSelectedItem().getNImmatriculation())) {
-                if(oldValue || table.getSelectionModel().getSelectedItem().isDisponibilite())
+                if(oldValue && table.getSelectionModel().getSelectedItem().isDisponibilite())
                 {
                     try
                     {
@@ -270,8 +271,8 @@ public class VehiculeController implements Initializable {
                         ContratDAO contratDAO = new ContratDAO(ContratDAO.connect);
                         Contrat contrat = contratDAO.findByVehicule(table.getSelectionModel().getSelectedItem().getNImmatriculation());
                         LocalDate today = LocalDate.now();
-                        Duration duration = Duration.between(contrat.getDateEchéance(),today);
-                        Sanction sanction = new Sanction((int) Math.abs(duration.toDays()),contrat.getNContrat(),0);
+                        Period duration = Period.between(today,contrat.getDateEchéance());
+                        Sanction sanction = new Sanction((int) Math.abs(duration.getDays()),contrat.getNContrat(),0);
                         sanctionDAO.create(sanction);
                     }
                     catch(SQLException e)
@@ -279,7 +280,7 @@ public class VehiculeController implements Initializable {
                         System.out.println("Connection Failed");
                     }
                 }
-                dialogContent.setBody(new Text("Le véhicule à été modifié!"));
+                dialogContent.setBody(new Text("La véhicule à été modifié!"));
                 dialog.show();
                 return;
             }
@@ -293,7 +294,24 @@ public class VehiculeController implements Initializable {
                 véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false,Double.parseDouble(prixField.getText()));
             }
             if (véhiculeDAO.update(véhicule, table.getSelectionModel().getSelectedItem().getNImmatriculation())) {
-                dialogContent.setBody(new Text("Le véhicule à été modifié!"));
+                if(oldValue && table.getSelectionModel().getSelectedItem().isDisponibilite())
+                {
+                    try
+                    {
+                        SanctionDAO sanctionDAO = new SanctionDAO(SanctionDAO.connect);
+                        ContratDAO contratDAO = new ContratDAO(ContratDAO.connect);
+                        Contrat contrat = contratDAO.findByVehicule(table.getSelectionModel().getSelectedItem().getNImmatriculation());
+                        LocalDate today = LocalDate.now();
+                        Period duration = Period.between(today,contrat.getDateEchéance());
+                        Sanction sanction = new Sanction((int) Math.abs(duration.getDays()),contrat.getNContrat(),0);
+                        sanctionDAO.create(sanction);
+                    }
+                    catch(SQLException e)
+                    {
+                        System.out.println("Connection Failed");
+                    }
+                }
+                dialogContent.setBody(new Text("La véhicule à été modifié!"));
                 dialog.show();
                 return;
             }

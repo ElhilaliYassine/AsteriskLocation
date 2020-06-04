@@ -18,7 +18,7 @@
         <FontAwesomeIconView fill="#1d71bf" glyphName="FILE" layoutX="14.0" layoutY="28.0" size="14" />
         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
         <JFXButton fx:id="clear" layoutX="232.0" layoutY="387.0" onAction="#clear" style="-fx-background-color: #dd2c2c;" text="Clear" textFill="WHITE" />
-        <JFXButton layoutX="288.0" layoutY="387.0" onAction="#newContrat" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Create" textFill="WHITE" />
+        <JFXButton layoutX="288.0" layoutY="387.0" onAction="#newFacture" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Create" textFill="WHITE" />
         <JFXComboBox fx:id="selectContrat" layoutX="120.0" layoutY="147.0" prefHeight="26.0" prefWidth="215.0" unFocusColor="#1d71bf" />
         <Label layoutX="49.0" layoutY="150.0" text="Contrat :">
             <font>

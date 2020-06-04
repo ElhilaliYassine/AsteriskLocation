@@ -6,10 +6,7 @@ import javafx.collections.ObservableList;
 import models.Facture;
 import models.Réservation;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +39,7 @@ public class FactureDAO extends DAO<Facture>{
     public boolean delete(Facture obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("DELETE * FROM facture WHERE NFacture=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("DELETE FROM facture WHERE NFacture=?");
             preparedStmt.setInt(1,obj.getNFacture());
             preparedStmt.execute();
             return true;
@@ -77,28 +74,33 @@ public class FactureDAO extends DAO<Facture>{
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM facture WHERE NFacture=?");
             preparedStmt.setInt(1,id);
             ResultSet resultSet = preparedStmt.executeQuery();
-            LocalDate dateFacture = (LocalDate) resultSet.getObject("dateFacture");
-            return new Facture(id,dateFacture,resultSet.getDouble("MontantAPayer"),resultSet.getInt("idContrat"));
+            while(resultSet.next())
+            {
+                Date _dateFacture = resultSet.getDate("dateFacture");
+                LocalDate dateFacture = _dateFacture.toLocalDate();
+                return new Facture(id,dateFacture,resultSet.getDouble("MontantAPayer"),resultSet.getInt("idContrat"));
+            }
         }
         catch(SQLException e)
         {
-            return new Facture(id,null,0.0,0);
+            return new Facture(id,LocalDate.now(),0.0,0);
         }
+        return new Facture(id,LocalDate.now(),0.0,0);
     }
 
     @Override
     public ObservableList<Facture> list() {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM facture DESC");
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM facture");
             ResultSet resultSet = preparedStmt.executeQuery();
             ObservableList<Facture> listFactures = FXCollections.observableArrayList();
             while(resultSet.next())
             {
-                LocalDate dateFacture = (LocalDate) resultSet.getObject("dateFacture");
+                Date _dateFacture = resultSet.getDate("dateFacture");
+                LocalDate dateFacture = _dateFacture.toLocalDate();
                 listFactures.add(new Facture(resultSet.getInt("NFacture"),dateFacture,resultSet.getDouble("MontantAPayer"),resultSet.getInt("idContrat")));
             }
-            Collections.sort(listFactures, Comparator.comparing(Facture::getDateFacture).reversed());
             return listFactures;
         }
         catch(SQLException e)
@@ -111,7 +113,7 @@ public class FactureDAO extends DAO<Facture>{
     {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM contrat DESC");
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM contrat");
             ResultSet resultSet = preparedStmt.executeQuery();
             ObservableList<String> list = FXCollections.observableArrayList();
             while(resultSet.next())

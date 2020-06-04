@@ -125,11 +125,7 @@ public class ContratDAO extends DAO<Contrat>{
     public Contrat findByVehicule(int idVehicule) {
         try
         {
-            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * " +
-                    "FROM contrat,reservation,vehicule" +
-                    "WHERE contrat.idReservation = reservation.codeReservation" +
-                    "AND reservation.idVehicule = vehicule.NImmatriculation" +
-                    "AND vehicule.NImmatriculation = ?");
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM contrat,reservation,vehicule WHERE contrat.idReservation = reservation.codeReservation AND reservation.idVehicule = vehicule.NImmatriculation AND vehicule.NImmatriculation = ?");
             preparedStatement.setInt(1,idVehicule);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
@@ -144,8 +140,8 @@ public class ContratDAO extends DAO<Contrat>{
         }
         catch(SQLException e)
         {
-            return new Contrat(0,null,null,0);
+            return new Contrat(0,LocalDate.now(),LocalDate.now(),0);
         }
-        return new Contrat(0,null,null,0);
+        return new Contrat(0,LocalDate.now(),LocalDate.now(),0);
     }
 }

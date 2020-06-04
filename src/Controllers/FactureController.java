@@ -273,6 +273,11 @@ public class FactureController implements Initializable {
     }
 
     public void updateContrat() {
+        try
+        {
+            idFacture.setText(String.valueOf(table.getSelectionModel().getSelectedItem().getNFacture()));
+        }
+        catch(NullPointerException e) {}
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         JFXButton close = new JFXButton("Close");
@@ -328,7 +333,6 @@ public class FactureController implements Initializable {
             dataContrat();
         });
         Facture facture = null;
-        idFacture.setText(String.valueOf(table.getSelectionModel().getSelectedItem().getNFacture()));
         facture = new Facture(0, dateFactureField.getValue(), Double.parseDouble(montantAPayerField.getText()), table.getSelectionModel().getSelectedItem().getIdContrat());
         if (factureDAO.update(facture, table.getSelectionModel().getSelectedItem().getNFacture())) {
             dialogContent.setBody(new Text("La facture à été modifié!"));

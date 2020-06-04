@@ -191,7 +191,6 @@ public class ReservationController implements Initializable {
     }
     private void dataReservation()
     {
-        disponibiliteVehicule();
         col_codeReservation.setCellValueFactory(new PropertyValueFactory<>("codeRéservation"));
         col_dateDepart.setCellValueFactory(new PropertyValueFactory<>("dateDépart"));
         col_dateRetour.setCellValueFactory(new PropertyValueFactory<>("dateRetour"));
@@ -375,9 +374,6 @@ public class ReservationController implements Initializable {
             selectClient.setValue(client.getNomComplet());
             selectEtat.setValue(reservation.getEtatReservation());
             vehiculeMatricule = vehicule.getNImmatriculation();
-            disponibiliteVehicule();
-
-
         }
 
     }
@@ -387,26 +383,9 @@ public class ReservationController implements Initializable {
         updatePane.toBack();
         list = reservationDAO.list();
         dataReservation();
-        disponibiliteVehicule();
-    }
-    public void disponibiliteVehicule()
-    {
-        for(int i=0;i<listMatricule.size();i++)
-        {
-            Véhicule vehicule = véhiculeDAO.find(listMatricule.get(i));
-            if(reservationDAO.disponibiliteVehicule(listMatricule.get(i)))
-            {
-                vehicule.setDisponibilite(false);
-
-            }else{
-                vehicule.setDisponibilite(true);
-            }
-            véhiculeDAO.update(vehicule,vehicule.getNImmatriculation());
-        }
     }
     public void modifyReservation()
     {
-        disponibiliteVehicule();
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         JFXButton close = new JFXButton("Close");
@@ -457,7 +436,6 @@ public class ReservationController implements Initializable {
                 return;
             }
         }
-        disponibiliteVehicule();
     }
     public void deleteReservation() {
         String title = "Asterisk Location - Message :";
@@ -485,7 +463,6 @@ public class ReservationController implements Initializable {
             Réservation reservation = reservationDAO.find(table.getSelectionModel().getSelectedItem().getCodeRéservation());
             reservationDAO.delete(reservation);
             list = reservationDAO.list();
-            disponibiliteVehicule();
             dialogContent.setBody(new Text("La Réservation a été supprimé!"));
             dialog.show();
             blur.setEffect(new GaussianBlur(10));

@@ -225,7 +225,7 @@ public class RéservationDAO extends DAO<Réservation>{
             ObservableList<String> listValable = FXCollections.observableArrayList();
             while(resultSet.next())
             {
-                if(dateUtil.olderThan2days(resultSet.getObject("dateReservation")) && resultSet.getString("etatReservation").equals("validé"))
+                if(dateUtil.olderThan2days(resultSet.getObject("dateReservation")) && resultSet.getString("etatReservation").equals("non validé"))
                 {
                     listValable.add(String.valueOf(resultSet.getInt("codeReservation")));
                 }

@@ -20,6 +20,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ResourceBundle;
 
 public class CreateFactureController implements Initializable {
@@ -63,7 +64,7 @@ public class CreateFactureController implements Initializable {
     }
 
     @FXML
-    public void newContrat() {
+    public void newFacture() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         dialogContent.setHeading(new Text(title));
@@ -88,7 +89,7 @@ public class CreateFactureController implements Initializable {
             return;
         } else {
             Contrat contrat = contratDAO.find(Integer.parseInt(selectContrat.getSelectionModel().getSelectedItem()));
-            Facture facture = new Facture(0, dateFactureField.getValue(), montantAPayer(contrat), Integer.parseInt(selectContrat.getValue()));
+            Facture facture = new Facture(0, dateFactureField.getValue(), montantAPayer(Integer.parseInt(selectContrat.getValue())), Integer.parseInt(selectContrat.getValue()));
             if (factureDAO.create(facture)) {
                 dialogContent.setBody(new Text("La facture a été enregistré"));
             } else {
@@ -103,24 +104,26 @@ public class CreateFactureController implements Initializable {
         Contrat contrat = contratDAO.find(idContrat);
         LocalDate dateContrat = contrat.getDateContrat();
         LocalDate dateEcheance = contrat.getDateEchéance();
-        Duration duration = Duration.between(dateEcheance,dateContrat);
-        return Math.abs(duration.toDays());
+        Period duration = Period.between(dateEcheance,dateContrat);
+        return Math.abs(duration.getDays());
     }
 
-    private double montantAPayer(Contrat contrat) {
+    private double montantAPayer(int idContrat) {
+        Contrat contrat = contratDAO.find(idContrat);
         RéservationDAO réservationDAO=null;
         VéhiculeDAO véhiculeDAO=null;
         try
         {
             réservationDAO = new RéservationDAO(RéservationDAO.connect);
             véhiculeDAO = new VéhiculeDAO(VéhiculeDAO.connect);
+            Réservation reservation = réservationDAO.find(contrat.getIdReservation());
+            Véhicule véhicule = véhiculeDAO.find(reservation.getIdVehicule());
+            return véhicule.getPrix()*getNbrJours(contrat.getNContrat());
         }
         catch(SQLException e)
         {
             System.out.println("Connection Failed!");
+            return 0.0;
         }
-        Réservation reservation = réservationDAO.find(contrat.getIdReservation());
-        Véhicule véhicule = véhiculeDAO.find(reservation.getIdVehicule());
-        return véhicule.getPrix()*getNbrJours(contrat.getNContrat());
     }
 }

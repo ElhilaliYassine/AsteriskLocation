@@ -68,8 +68,8 @@ public class VéhiculeDAO extends DAO<Véhicule>{
             preparedStmt.setObject(5,date);
             preparedStmt.setInt(6,obj.getIdParking());
             preparedStmt.setBoolean(7,obj.isDisponibilite());
-            preparedStmt.setInt(8, id);
-            preparedStmt.setDouble(9,obj.getPrix());
+            preparedStmt.setDouble(8,obj.getPrix());
+            preparedStmt.setInt(9, id);
             preparedStmt.execute();
             return true;
         }
