@@ -2,10 +2,10 @@
 -- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 04, 2020 at 03:17 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Hôte : localhost
+-- Généré le : lun. 08 juin 2020 à 23:47
+-- Version du serveur :  10.4.11-MariaDB
+-- Version de PHP : 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `asterisklocation`
+-- Base de données : `asterisklocation`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `client`
+-- Structure de la table `client`
 --
 
 CREATE TABLE `client` (
@@ -37,7 +37,7 @@ CREATE TABLE `client` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `client`
+-- Déchargement des données de la table `client`
 --
 
 INSERT INTO `client` (`codeClient`, `nomComplet`, `adresse`, `numGsm`, `uriImage`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `client` (`codeClient`, `nomComplet`, `adresse`, `numGsm`, `uriImage
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contrat`
+-- Structure de la table `contrat`
 --
 
 CREATE TABLE `contrat` (
@@ -58,16 +58,17 @@ CREATE TABLE `contrat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `contrat`
+-- Déchargement des données de la table `contrat`
 --
 
 INSERT INTO `contrat` (`NContrat`, `dateContrat`, `dateEchéance`, `idReservation`) VALUES
-(2, '2020-05-08', '2020-05-22', 2);
+(8, '2020-06-05', '2020-06-05', 14),
+(10, '2020-06-02', '2020-06-02', 17);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `facture`
+-- Structure de la table `facture`
 --
 
 CREATE TABLE `facture` (
@@ -77,10 +78,18 @@ CREATE TABLE `facture` (
   `idContrat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `facture`
+--
+
+INSERT INTO `facture` (`NFacture`, `dateFacture`, `MontantAPayer`, `idContrat`) VALUES
+(12, '2020-06-20', 2500, 8),
+(14, '2020-06-05', 500, 10);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `parking`
+-- Structure de la table `parking`
 --
 
 CREATE TABLE `parking` (
@@ -92,19 +101,19 @@ CREATE TABLE `parking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `parking`
+-- Déchargement des données de la table `parking`
 --
 
 INSERT INTO `parking` (`NParking`, `capacite`, `rue`, `arrondissement`, `nbrPlacesOccupees`) VALUES
 (1, 34, 'Rue Ibn Batouta', 'Secteur Z', 1),
 (2, 23, 'Rue de la Jeunesse', 'Secteur D', 0),
-(3, 4, 'Rue Yacoub El Mansour', 'Secteur B', 3),
-(4, 30, 'Rue Hassane 2', 'Secteur A', 0);
+(3, 4, 'Rue Yacoub El Mansour', 'Secteur B', 2),
+(6, 20, 'Rue Mohammed V', 'Secteur 12', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservation`
+-- Structure de la table `reservation`
 --
 
 CREATE TABLE `reservation` (
@@ -118,30 +127,39 @@ CREATE TABLE `reservation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reservation`
+-- Déchargement des données de la table `reservation`
 --
 
 INSERT INTO `reservation` (`codeReservation`, `dateReservation`, `dateDepart`, `dateRetour`, `idClient`, `idVehicule`, `etatReservation`) VALUES
-(1, '2020-05-08', '2020-05-06', '2020-05-16', 3, 23240, 'annuler'),
-(2, '2020-05-01', '2020-05-16', '2020-05-16', 2, 23241, 'validé'),
-(3, '2020-05-08', '2020-05-02', '2020-05-04', 3, 123, 'non validé');
+(14, '2020-06-02', '2020-06-09', '2020-06-14', 2, 23240, 'validé'),
+(15, '2020-06-01', '2020-06-04', '2020-06-12', 2, 123, 'annuler'),
+(17, '2020-06-07', '2020-06-10', '2020-06-11', 3, 23240, 'validé');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sanction`
+-- Structure de la table `sanction`
 --
 
 CREATE TABLE `sanction` (
   `nbrJoursRetard` int(11) NOT NULL,
   `idContrat` int(11) NOT NULL,
-  `idSanction` int(11) NOT NULL
+  `idSanction` int(11) NOT NULL,
+  `montantAPayer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `sanction`
+--
+
+INSERT INTO `sanction` (`nbrJoursRetard`, `idContrat`, `idSanction`, `montantAPayer`) VALUES
+(2, 8, 12, 4000),
+(5, 10, 16, 10000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utilisateur`
+-- Structure de la table `utilisateur`
 --
 
 CREATE TABLE `utilisateur` (
@@ -155,7 +173,7 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `utilisateur`
+-- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`codeUtilisateur`, `nomComplet`, `adresse`, `numGsm`, `uriImage`, `password`, `email`) VALUES
@@ -167,7 +185,7 @@ INSERT INTO `utilisateur` (`codeUtilisateur`, `nomComplet`, `adresse`, `numGsm`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vehicule`
+-- Structure de la table `vehicule`
 --
 
 CREATE TABLE `vehicule` (
@@ -183,47 +201,47 @@ CREATE TABLE `vehicule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `vehicule`
+-- Déchargement des données de la table `vehicule`
 --
 
 INSERT INTO `vehicule` (`NImmatriculation`, `marque`, `type`, `carburant`, `compteurKm`, `dateMiseEnCirculation`, `idParking`, `disponibilite`, `prix`) VALUES
-(123, 'Alfa Romeo', 'Stelvio', 'Diesel', 23, '2020-05-16', 1, 0, 0),
-(23237, 'Renault', 'Dacia', 'Essence', 123, '2020-04-18', 3, 1, 0),
-(23240, 'Renault', 'Megane', 'Diesel', 34, '2020-05-02', 3, 0, 0),
-(23241, 'Renault', 'Clio', 'Diesel', 231, '2020-05-02', 3, 0, 0);
+(123, 'Alfa Romeo', 'Stelvio', 'Diesel', 23, '2020-05-16', 1, 0, 1000),
+(23237, 'Renault', 'Dacia', 'Essence', 123, '2020-04-18', 3, 1, 2000),
+(23240, 'Renault', 'Megane', 'Diesel', 34, '2020-05-02', 6, 1, 500),
+(23241, 'Renault', 'Clio', 'Diesel', 231, '2020-05-02', 3, 1, 700);
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `client`
+-- Index pour la table `client`
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`codeClient`);
 
 --
--- Indexes for table `contrat`
+-- Index pour la table `contrat`
 --
 ALTER TABLE `contrat`
   ADD PRIMARY KEY (`NContrat`),
   ADD KEY `idReservation` (`idReservation`);
 
 --
--- Indexes for table `facture`
+-- Index pour la table `facture`
 --
 ALTER TABLE `facture`
   ADD PRIMARY KEY (`NFacture`),
   ADD KEY `idContrat` (`idContrat`);
 
 --
--- Indexes for table `parking`
+-- Index pour la table `parking`
 --
 ALTER TABLE `parking`
   ADD PRIMARY KEY (`NParking`);
 
 --
--- Indexes for table `reservation`
+-- Index pour la table `reservation`
 --
 ALTER TABLE `reservation`
   ADD PRIMARY KEY (`codeReservation`),
@@ -231,102 +249,102 @@ ALTER TABLE `reservation`
   ADD KEY `idVehicule` (`idVehicule`);
 
 --
--- Indexes for table `sanction`
+-- Index pour la table `sanction`
 --
 ALTER TABLE `sanction`
   ADD PRIMARY KEY (`idSanction`),
   ADD KEY `idContrat` (`idContrat`);
 
 --
--- Indexes for table `utilisateur`
+-- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`codeUtilisateur`);
 
 --
--- Indexes for table `vehicule`
+-- Index pour la table `vehicule`
 --
 ALTER TABLE `vehicule`
   ADD PRIMARY KEY (`NImmatriculation`),
   ADD KEY `idParking` (`idParking`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `client`
+-- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
   MODIFY `codeClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `contrat`
+-- AUTO_INCREMENT pour la table `contrat`
 --
 ALTER TABLE `contrat`
-  MODIFY `NContrat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `NContrat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `facture`
+-- AUTO_INCREMENT pour la table `facture`
 --
 ALTER TABLE `facture`
-  MODIFY `NFacture` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `NFacture` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `parking`
+-- AUTO_INCREMENT pour la table `parking`
 --
 ALTER TABLE `parking`
-  MODIFY `NParking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `NParking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `reservation`
+-- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `codeReservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `codeReservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `sanction`
+-- AUTO_INCREMENT pour la table `sanction`
 --
 ALTER TABLE `sanction`
-  MODIFY `idSanction` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idSanction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `utilisateur`
+-- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   MODIFY `codeUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `contrat`
+-- Contraintes pour la table `contrat`
 --
 ALTER TABLE `contrat`
   ADD CONSTRAINT `contrat_ibfk_1` FOREIGN KEY (`idReservation`) REFERENCES `reservation` (`codeReservation`);
 
 --
--- Constraints for table `facture`
+-- Contraintes pour la table `facture`
 --
 ALTER TABLE `facture`
   ADD CONSTRAINT `facture_ibfk_1` FOREIGN KEY (`idContrat`) REFERENCES `contrat` (`NContrat`);
 
 --
--- Constraints for table `reservation`
+-- Contraintes pour la table `reservation`
 --
 ALTER TABLE `reservation`
   ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`idClient`) REFERENCES `client` (`codeClient`),
   ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`idVehicule`) REFERENCES `vehicule` (`NImmatriculation`);
 
 --
--- Constraints for table `sanction`
+-- Contraintes pour la table `sanction`
 --
 ALTER TABLE `sanction`
   ADD CONSTRAINT `sanction_ibfk_1` FOREIGN KEY (`idContrat`) REFERENCES `contrat` (`NContrat`);
 
 --
--- Constraints for table `vehicule`
+-- Contraintes pour la table `vehicule`
 --
 ALTER TABLE `vehicule`
   ADD CONSTRAINT `vehicule_ibfk_1` FOREIGN KEY (`idParking`) REFERENCES `parking` (`NParking`);
