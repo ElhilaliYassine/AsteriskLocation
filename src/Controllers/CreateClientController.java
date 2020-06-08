@@ -73,7 +73,7 @@ public class CreateClientController implements Initializable {
                 return;
             }
             clientDAO.create(client);
-            dialogContent.setBody(new Text("Le client à été enregistré"));
+            dialogContent.setBody(new Text("Le client a été enregistré"));
         }
         dialog.show();
         return;

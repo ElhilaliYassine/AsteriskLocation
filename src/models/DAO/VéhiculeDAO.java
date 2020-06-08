@@ -141,7 +141,7 @@ public class VéhiculeDAO extends DAO<Véhicule>{
     public ObservableList<Integer> selectMatricule(){
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("SELECT NImmatriculation FROM vehicule");
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT NImmatriculation FROM vehicule ORDER BY NImmatriculation");
             ResultSet resultSet = preparedStmt.executeQuery();
             ObservableList<Integer> listVehicule = FXCollections.observableArrayList();
             while(resultSet.next())
@@ -153,6 +153,41 @@ public class VéhiculeDAO extends DAO<Véhicule>{
         catch(SQLException e)
         {
             return null;
+        }
+    }
+    public int nombreVehicule()
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT COUNT(*) FROM vehicule");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next())
+            {
+                return resultSet.getInt("COUNT(*)");
+            }
+            return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+    }
+    public int nbrVehiculedispo(boolean dispo)
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT COUNT(*) FROM vehicule WHERE disponibilite= ?");
+            preparedStmt.setBoolean(1,dispo);
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next())
+            {
+                return resultSet.getInt("COUNT(*)");
+            }
+            return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
         }
     }
 }

@@ -125,7 +125,7 @@ public class ContratDAO extends DAO<Contrat>{
     public Contrat findByVehicule(int idVehicule) {
         try
         {
-            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM contrat,reservation,vehicule WHERE contrat.idReservation = reservation.codeReservation AND reservation.idVehicule = vehicule.NImmatriculation AND vehicule.NImmatriculation = ?");
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM contrat,reservation,vehicule WHERE contrat.idReservation = reservation.codeReservation AND reservation.idVehicule = vehicule.NImmatriculation AND vehicule.NImmatriculation = ? ORDER BY contrat.NContrat DESC");
             preparedStatement.setInt(1,idVehicule);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())

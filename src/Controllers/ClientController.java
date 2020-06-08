@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -59,6 +60,8 @@ public class ClientController implements Initializable {
     private JFXTextField numGsmField;
     @FXML
     private JFXTextField uriImageField;
+    @FXML
+    private Label idClient;
     ClientDAO clientDAO;
 
     {
@@ -173,6 +176,7 @@ public class ClientController implements Initializable {
             return;
         } else {
             Client client = clientDAO.find(table.getSelectionModel().getSelectedItem().getNomComplet());
+            idClient.setText(String.valueOf(client.getCodeClient()));
             blur.setEffect(new GaussianBlur(10));
             updatePane.setVisible(true);
             updatePane.toFront();
@@ -205,7 +209,7 @@ public class ClientController implements Initializable {
         });
         Client client = new Client(0, nomCompletField.getText(), adresseField.getText(), Integer.parseInt(numGsmField.getText()), "");
         if (clientDAO.update(client, table.getSelectionModel().getSelectedItem().getCodeClient())) {
-            dialogContent.setBody(new Text("Le client à été modifié!"));
+            dialogContent.setBody(new Text("Le client a été modifié!"));
             dialog.show();
             return;
         }

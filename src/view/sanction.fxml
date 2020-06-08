@@ -56,9 +56,10 @@
                 </HBox>
                 <TableView fx:id="table" layoutX="8.0" layoutY="157.0" prefHeight="379.0" prefWidth="717.0" style="-fx-background-color: white;" stylesheets="@../Style/table.css">
                     <columns>
-                        <TableColumn fx:id="col_numeroSanction" prefWidth="239.0" text="Numéro de sanction" />
-                        <TableColumn fx:id="col_nbrJoursRetard" prefWidth="249.0" text="Nombre de Jours de Retards" />
-                        <TableColumn fx:id="col_idContrat" prefWidth="217.0" text="Numéro de contrat" />
+                        <TableColumn fx:id="col_numeroSanction" prefWidth="170.0" text="Numéro de sanction" />
+                        <TableColumn fx:id="col_nbrJoursRetard" prefWidth="222.0" text="Nombre de Jours de Retards" />
+                        <TableColumn fx:id="col_idContrat" minWidth="0.0" prefWidth="161.0" text="Numéro de contrat" />
+                  <TableColumn fx:id="col_montantAPayer" prefWidth="157.0" text="Montant à payer" />
                     </columns></TableView>
                 <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="61.0" layoutY="570.0" size="19" visible="false" />
                 <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" unFocusColor="#074684" />

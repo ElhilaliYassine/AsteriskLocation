@@ -47,13 +47,13 @@ public class FactureController implements Initializable {
     @FXML
     private TableView<Facture> table;
     @FXML
-    private TableColumn<Contrat, Integer> col_numeroFacture;
+    private TableColumn<Facture, Integer> col_numeroFacture;
     @FXML
-    private TableColumn<Contrat, LocalDate> col_dateFacture;
+    private TableColumn<Facture, LocalDate> col_dateFacture;
     @FXML
-    private TableColumn<Contrat, Double> col_montantAPayer;
+    private TableColumn<Facture, Double> col_montantAPayer;
     @FXML
-    private TableColumn<Contrat, Integer> col_idContrat;
+    private TableColumn<Facture, Integer> col_idContrat;
     @FXML
     private JFXTextField filterField;
     @FXML
@@ -144,7 +144,6 @@ public class FactureController implements Initializable {
     }
 
     VéhiculeDAO véhiculeDAO;
-
     {
         try {
             véhiculeDAO = new VéhiculeDAO(VéhiculeDAO.connect);
@@ -167,10 +166,10 @@ public class FactureController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dataContrat();
+        dataFacture();
     }
 
-    private void dataContrat() {
+    private void dataFacture() {
         col_numeroFacture.setCellValueFactory(new PropertyValueFactory<>("NFacture"));
         col_dateFacture.setCellValueFactory(new PropertyValueFactory<>("dateFacture"));
         col_montantAPayer.setCellValueFactory(new PropertyValueFactory<>("MontantAPayer"));
@@ -183,7 +182,7 @@ public class FactureController implements Initializable {
         detailPane.setVisible(false);
         detailPane.toBack();
         list = factureDAO.list();
-        dataContrat();
+        dataFacture();
     }
 
     public void detailContrat() {
@@ -201,7 +200,7 @@ public class FactureController implements Initializable {
             dialog.close();
             blur.setEffect(null);
             list = factureDAO.list();
-            dataContrat();
+            dataFacture();
         });
         if (table.getSelectionModel().isEmpty()) {
             dialogContent.setBody(new Text("Veuillez selectionner la facture à afficher!"));
@@ -253,7 +252,7 @@ public class FactureController implements Initializable {
         rootPane.setVisible(false);
         rootPane.toBack();
         list = factureDAO.list();
-        dataContrat();
+        dataFacture();
     }
 
     public void search() {
@@ -273,11 +272,7 @@ public class FactureController implements Initializable {
     }
 
     public void updateContrat() {
-        try
-        {
-            idFacture.setText(String.valueOf(table.getSelectionModel().getSelectedItem().getNFacture()));
-        }
-        catch(NullPointerException e) {}
+
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         JFXButton close = new JFXButton("Close");
@@ -292,7 +287,7 @@ public class FactureController implements Initializable {
             dialog.close();
             blur.setEffect(null);
             list = factureDAO.list();
-            dataContrat();
+            dataFacture();
         });
         if (table.getSelectionModel().isEmpty()) {
             dialogContent.setBody(new Text("Veuillez selectionner la facture à modifier!"));
@@ -300,6 +295,7 @@ public class FactureController implements Initializable {
             blur.setEffect(new GaussianBlur(10));
             return;
         } else {
+            idFacture.setText(String.valueOf(table.getSelectionModel().getSelectedItem().getNFacture()));
             Facture facture = factureDAO.find(table.getSelectionModel().getSelectedItem().getNFacture());
             blur.setEffect(new GaussianBlur(10));
             updatePane.setVisible(true);
@@ -314,7 +310,7 @@ public class FactureController implements Initializable {
         updatePane.setVisible(false);
         updatePane.toBack();
         list = factureDAO.list();
-        dataContrat();
+        dataFacture();
     }
 
     public void modifyContrat() {
@@ -330,12 +326,11 @@ public class FactureController implements Initializable {
         myStackUpdate.toFront();
         close.setOnAction(e -> {
             dialog.close();
-            dataContrat();
         });
         Facture facture = null;
         facture = new Facture(0, dateFactureField.getValue(), Double.parseDouble(montantAPayerField.getText()), table.getSelectionModel().getSelectedItem().getIdContrat());
         if (factureDAO.update(facture, table.getSelectionModel().getSelectedItem().getNFacture())) {
-            dialogContent.setBody(new Text("La facture à été modifié!"));
+            dialogContent.setBody(new Text("La facture a été modifié!"));
             dialog.show();
             return;
         }
@@ -356,7 +351,7 @@ public class FactureController implements Initializable {
             dialog.close();
             blur.setEffect(null);
             list = factureDAO.list();
-            dataContrat();
+            dataFacture();
         });
         if (table.getSelectionModel().isEmpty()) {
             dialogContent.setBody(new Text("Veuillez selectionner la facture à supprimer!"));

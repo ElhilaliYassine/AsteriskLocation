@@ -3,6 +3,7 @@ package models.DAO;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import models.Contrat;
 import models.Facture;
 import models.Réservation;
 
@@ -109,16 +110,16 @@ public class FactureDAO extends DAO<Facture>{
         }
     }
 
-    public ObservableList<String> listStrings()
+    public ObservableList<Integer> listStrings()
     {
         try
         {
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM contrat");
             ResultSet resultSet = preparedStmt.executeQuery();
-            ObservableList<String> list = FXCollections.observableArrayList();
+            ObservableList<Integer> list = FXCollections.observableArrayList();
             while(resultSet.next())
             {
-                list.add(String.valueOf(resultSet.getInt("NContrat")));
+                list.add(resultSet.getInt("NContrat"));
             }
             return list;
         }
@@ -142,6 +143,81 @@ public class FactureDAO extends DAO<Facture>{
         }catch(SQLException e)
         {
             return false;
+        }
+    }
+    public Facture findByContrat(int idContrat) {
+        try
+        {
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM facture WHERE idContrat =?");
+            preparedStatement.setInt(1,idContrat);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                Date _dateFacture = resultSet.getDate("dateFacture");
+                LocalDate dateFacture = _dateFacture.toLocalDate();
+                Facture facture = new Facture(resultSet.getInt("NFacture"),dateFacture,resultSet.getDouble("MontantAPayer"),idContrat);
+                return facture;
+            }
+        }
+        catch(SQLException e)
+        {
+            return new Facture(0,LocalDate.now(),0.0,0);
+        }
+        return new Facture(0,LocalDate.now(),0.0,0);
+    }
+    public int totalFacture()
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT SUM(MontantAPayer) FROM facture");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next())
+            {
+                return resultSet.getInt("SUM(MontantAPayer)");
+            }
+            return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+    }
+    public int nombreFacture()
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT COUNT(*) FROM facture");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next())
+            {
+                return resultSet.getInt("COUNT(*)");
+            }
+            return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+    }
+    public ObservableList<Facture> listLastFacture() {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM facture ORDER BY NFacture DESC");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<Facture> listFactures = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                Date _dateFacture = resultSet.getDate("dateFacture");
+                LocalDate dateFacture = _dateFacture.toLocalDate();
+                listFactures.add(new Facture(resultSet.getInt("NFacture"),dateFacture,resultSet.getDouble("MontantAPayer"),resultSet.getInt("idContrat")));
+            }
+            ObservableList<Facture> lastFacture = FXCollections.observableArrayList();
+            lastFacture.add(listFactures.get(0));
+            return lastFacture;
+        }
+        catch(SQLException e)
+        {
+            return null;
         }
     }
 }

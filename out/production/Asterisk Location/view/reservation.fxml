@@ -68,13 +68,13 @@
             </Pane>
             <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                <children>
-                  <Label layoutX="37.0" layoutY="13.0" text="Modifier Reservation" textFill="#1d71bf">
+                  <Label layoutX="37.0" layoutY="13.0" text="Modifier Reservation Nᵒ" textFill="#1d71bf">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
                   <FontAwesomeIconView fill="#1d71bf" glyphName="FILE" layoutX="14.0" layoutY="28.0" size="14" />
-                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="140.0" />
                   <StackPane fx:id="myStackUpdate" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
                   <JFXButton layoutX="273.0" layoutY="375.0" onAction="#modifyReservation" prefHeight="26.0" prefWidth="81.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
                      <font>
@@ -102,6 +102,11 @@
                      </font>
                   </Label>
                   <JFXComboBox fx:id="selectEtat" layoutX="101.0" layoutY="316.0" prefHeight="26.0" prefWidth="204.0" unFocusColor="#1d71bf" />
+                  <Label fx:id="idReservation" layoutX="260.0" layoutY="13.0" text="N" textFill="#1d71bf">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

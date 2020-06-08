@@ -66,14 +66,14 @@
             </Pane>
             <AnchorPane layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                <children>
-                  <Label layoutX="37.0" layoutY="13.0" text="Modifier Parking" textFill="#1d71bf">
+                  <Label layoutX="37.0" layoutY="13.0" text="Modifier Parking Nᵒ" textFill="#1d71bf">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
                   <JFXTextField fx:id="capaciteField" labelFloat="true" layoutX="37.0" layoutY="97.0" prefHeight="26.0" prefWidth="221.0" promptText="Capacité du parking" unFocusColor="#1d71bf" />
                   <FontAwesomeIconView fill="#1d71bf" glyphName="MAP" layoutX="14.0" layoutY="28.0" size="14" />
-                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="140.0" />
                   <JFXTextField fx:id="rueField" labelFloat="true" layoutX="37.0" layoutY="165.0" prefHeight="26.0" prefWidth="221.0" promptText="Rue" unFocusColor="#1d71bf" />
                   <JFXTextField fx:id="arrondissementField" labelFloat="true" layoutX="37.0" layoutY="242.0" prefHeight="26.0" prefWidth="221.0" promptText="Arondissement" unFocusColor="#1d71bf" />
                   <StackPane fx:id="myStackUpdate" layoutX="63.0" layoutY="132.0" prefHeight="5.0" prefWidth="241.0" />
@@ -82,6 +82,11 @@
                         <Font size="15.0" />
                      </font>
                   </JFXButton>
+                  <Label fx:id="idParking" layoutX="220.0" layoutY="13.0" text="N" textFill="#1d71bf">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

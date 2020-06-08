@@ -19,7 +19,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ContratController">
     <children>
-        <Pane fx:id="msgPane" layoutX="168.0" layoutY="187.0" prefHeight="5.0" prefWidth="363.0">
+        <Pane fx:id="msgPane" layoutX="168.0" layoutY="179.0" prefHeight="5.0" prefWidth="363.0">
             <children>
                 <StackPane fx:id="myStackPane" layoutX="23.0" layoutY="1.0" prefHeight="4.0" prefWidth="318.0" />
             </children>
@@ -67,13 +67,13 @@
                 </Pane>
                 <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                     <children>
-                        <Label layoutX="37.0" layoutY="13.0" text="Modifier Contrat :" textFill="#1d71bf">
+                        <Label layoutX="37.0" layoutY="13.0" text="Modifier Contrat Nᵒ" textFill="#1d71bf">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
                         <FontAwesomeIconView fill="#1d71bf" glyphName="FILE" layoutX="14.0" layoutY="28.0" size="14" />
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="140.0" />
                         <StackPane fx:id="myStackUpdate" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
                         <JFXButton layoutX="273.0" layoutY="375.0" onAction="#modifyContrat" prefHeight="26.0" prefWidth="81.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
                             <font>
@@ -82,10 +82,11 @@
                         </JFXButton>
                         <DatePicker fx:id="dateEcheanceField" layoutX="42.0" layoutY="244.0" prefHeight="26.0" prefWidth="271.0" promptText="Date d'échéance" />
                         <DatePicker fx:id="dateContratField" layoutX="43.0" layoutY="180.0" prefHeight="26.0" prefWidth="271.0" promptText="Date de contrat" />
-                  <Label fx:id="idContrat" layoutX="204.0" layoutY="14.0" text="N">
+                  <Label fx:id="idContrat" layoutX="217.0" layoutY="13.0" text="N" textFill="#1d71bf">
                      <font>
-                        <Font size="16.0" />
-                     </font></Label>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
             </children>

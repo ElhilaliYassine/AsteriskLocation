@@ -127,7 +127,6 @@ public class ParkingDAO extends DAO<Parking>{
             return null;
         }
     }
-    //bessmellah
     public ObservableList<String> select(){
         try
         {
@@ -181,6 +180,74 @@ public class ParkingDAO extends DAO<Parking>{
         catch(SQLException e)
         {
             return 0;
+        }
+    }
+    public int capaciteTotal()
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT SUM(capacite) FROM parking");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next())
+            {
+                return resultSet.getInt("SUM(capacite)");
+            }
+            return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+    }
+    public int nbrDePlaceOccupe()
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT SUM(nbrPlacesOccupees) FROM parking");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next())
+            {
+                return resultSet.getInt("SUM(nbrPlacesOccupees)");
+            }
+            return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+    }
+    public int nombreParking()
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT COUNT(*) FROM parking");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next())
+            {
+                return resultSet.getInt("COUNT(*)");
+            }
+            return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+    }
+    public ObservableList<Integer> selectIdParking(){
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT NParking FROM parking");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<Integer> listParkings = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                listParkings.add(resultSet.getInt("NParking"));
+            }
+            return listParkings;
+        }
+        catch(SQLException e)
+        {
+            return null;
         }
     }
 

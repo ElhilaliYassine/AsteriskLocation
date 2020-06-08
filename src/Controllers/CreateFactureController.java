@@ -29,7 +29,7 @@ public class CreateFactureController implements Initializable {
     @FXML
     private DatePicker dateFactureField;
     @FXML
-    private JFXComboBox<String> selectContrat;
+    private JFXComboBox<Integer> selectContrat;
     ContratDAO contratDAO;
 
     {
@@ -49,8 +49,26 @@ public class CreateFactureController implements Initializable {
             throwables.printStackTrace();
         }
     }
+    RéservationDAO reservationDAO;
+    {
+        try {
+            reservationDAO = new RéservationDAO(RéservationDAO.connect);
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+        }
+    }
+    VéhiculeDAO véhiculeDAO;
 
-    ObservableList<String> listContrats = factureDAO.listStrings();
+    {
+        try {
+            véhiculeDAO = new VéhiculeDAO(VéhiculeDAO.connect);
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+        }
+    }
+
+
+    ObservableList<Integer> listContrats = factureDAO.listStrings();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -83,13 +101,13 @@ public class CreateFactureController implements Initializable {
             dialogContent.setBody(new Text("facture invalide!"));
             dialog.show();
             return;
-        } else if (factureDAO.containsContratId(Integer.parseInt(selectContrat.getValue()))) {
-            dialogContent.setBody(new Text("Réservation déja transformé à une facture!"));
+        } else if (factureDAO.containsContratId(selectContrat.getValue())) {
+            dialogContent.setBody(new Text("Réservation déja transformé \nà une facture!"));
             dialog.show();
             return;
         } else {
-            Contrat contrat = contratDAO.find(Integer.parseInt(selectContrat.getSelectionModel().getSelectedItem()));
-            Facture facture = new Facture(0, dateFactureField.getValue(), montantAPayer(Integer.parseInt(selectContrat.getValue())), Integer.parseInt(selectContrat.getValue()));
+            Contrat contrat = contratDAO.find(selectContrat.getSelectionModel().getSelectedItem());
+            Facture facture = new Facture(0, dateFactureField.getValue(), montantAPayer(contrat.getNContrat()), contrat.getNContrat());
             if (factureDAO.create(facture)) {
                 dialogContent.setBody(new Text("La facture a été enregistré"));
             } else {
@@ -101,29 +119,19 @@ public class CreateFactureController implements Initializable {
     }
 
     private double getNbrJours(int idContrat) {
+        //calculer le nombre de jours le client a reservé le vehicule
         Contrat contrat = contratDAO.find(idContrat);
-        LocalDate dateContrat = contrat.getDateContrat();
-        LocalDate dateEcheance = contrat.getDateEchéance();
-        Period duration = Period.between(dateEcheance,dateContrat);
-        return Math.abs(duration.getDays());
+        Réservation reservation = reservationDAO.find(contrat.getIdReservation());
+        LocalDate dateDepart = reservation.getDateDépart();
+        LocalDate dateRetour = reservation.getDateRetour();
+        int diff = dateDepart.getDayOfYear()-dateRetour.getDayOfYear() ;
+        return Math.abs(diff);
     }
 
     private double montantAPayer(int idContrat) {
         Contrat contrat = contratDAO.find(idContrat);
-        RéservationDAO réservationDAO=null;
-        VéhiculeDAO véhiculeDAO=null;
-        try
-        {
-            réservationDAO = new RéservationDAO(RéservationDAO.connect);
-            véhiculeDAO = new VéhiculeDAO(VéhiculeDAO.connect);
-            Réservation reservation = réservationDAO.find(contrat.getIdReservation());
-            Véhicule véhicule = véhiculeDAO.find(reservation.getIdVehicule());
-            return véhicule.getPrix()*getNbrJours(contrat.getNContrat());
-        }
-        catch(SQLException e)
-        {
-            System.out.println("Connection Failed!");
-            return 0.0;
-        }
+        Réservation reservation = reservationDAO.find(contrat.getIdReservation());
+        Véhicule véhicule = véhiculeDAO.find(reservation.getIdVehicule());
+        return véhicule.getPrix()*getNbrJours(contrat.getNContrat());
     }
 }

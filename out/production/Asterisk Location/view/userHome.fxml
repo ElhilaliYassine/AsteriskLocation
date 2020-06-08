@@ -100,7 +100,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="52.0" layoutY="399.0" size="20">
+                  <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="52.0" layoutY="404.0" size="20">
                      <effect>
                         <DropShadow />
                      </effect></FontAwesomeIconView>
@@ -122,7 +122,7 @@
                      <effect>
                         <DropShadow />
                      </effect></FontAwesomeIconView>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="58.0" layoutY="394.0" size="20">
+                  <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="58.0" layoutY="399.0" size="20">
                      <effect>
                         <DropShadow />
                      </effect>

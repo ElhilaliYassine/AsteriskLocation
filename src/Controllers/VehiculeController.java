@@ -14,21 +14,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import models.Contrat;
-import models.DAO.ContratDAO;
-import models.DAO.ParkingDAO;
-import models.DAO.SanctionDAO;
-import models.DAO.VéhiculeDAO;
-import models.Parking;
-import models.Sanction;
-import models.Véhicule;
+import models.*;
+import models.DAO.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ResourceBundle;
 
 public class VehiculeController implements Initializable {
@@ -80,9 +72,6 @@ public class VehiculeController implements Initializable {
     private TableColumn<Véhicule, Boolean> col_disponibilite;
 
     @FXML
-    private JFXTextField matriculeField;
-
-    @FXML
     private JFXTextField marqueField;
 
     @FXML
@@ -105,6 +94,9 @@ public class VehiculeController implements Initializable {
 
     @FXML
     private JFXRadioButton nonRadio;
+
+    @FXML
+    private Label idVehicule;
     @FXML
     private JFXComboBox<String> selectParking;
     static int nbrParking;
@@ -120,7 +112,6 @@ public class VehiculeController implements Initializable {
         }
     }
     ParkingDAO parkingDAO;
-
     {
         try {
             parkingDAO = new ParkingDAO(ParkingDAO.connect);
@@ -128,6 +119,31 @@ public class VehiculeController implements Initializable {
             System.out.println("Connection Failed");
         }
     }
+    ContratDAO contratDAO;
+    {
+        try {
+            contratDAO = new ContratDAO(ContratDAO.connect);
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+        }
+    }
+    SanctionDAO sanctionDAO;
+    {
+        try {
+            sanctionDAO = new SanctionDAO(SanctionDAO.connect);
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+        }
+    }
+    FactureDAO factureDAO;
+    {
+        try {
+            factureDAO = new FactureDAO(FactureDAO.connect);
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+        }
+    }
+
     ObservableList<String> select = parkingDAO.select();
 
     ObservableList<Véhicule> list = véhiculeDAO.list();
@@ -184,10 +200,6 @@ public class VehiculeController implements Initializable {
         dataUser();
     }
     public void updateVehicule() {
-        if(nonRadio.isSelected())
-        {
-            oldValue = true;
-        }
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         JFXButton close = new JFXButton("Close");
@@ -211,10 +223,10 @@ public class VehiculeController implements Initializable {
             return;
         } else {
             Véhicule véhicule = véhiculeDAO.find(table.getSelectionModel().getSelectedItem().getNImmatriculation());
+            idVehicule.setText(String.valueOf(véhicule.getNImmatriculation()));
             blur.setEffect(new GaussianBlur(10));
             updatePane.setVisible(true);
             updatePane.toFront();
-            matriculeField.setText(String.valueOf(véhicule.getNImmatriculation()));
             marqueField.setText(véhicule.getMarque());
             typeField.setText(véhicule.getType());
             prixField.setText(String.valueOf(véhicule.getPrix()));
@@ -223,6 +235,10 @@ public class VehiculeController implements Initializable {
             else
                 group.selectToggle(nonRadio);
             dateField.setValue(véhicule.getDateMiseEnCirculation());
+            if(nonRadio.isSelected())
+            {
+                oldValue = true;
+            }
             //String for better Ux
             Parking parking = parkingDAO.find(véhicule.getIdParking());
             selectParking.setValue(parking.getRue());
@@ -258,30 +274,31 @@ public class VehiculeController implements Initializable {
         {
             if(group.getSelectedToggle()==ouiRadio)
             {
+                oldValue = true;
                 véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true,Double.parseDouble(prixField.getText()));
             } else{
+                oldValue= false;
                 véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false,Double.parseDouble(prixField.getText()));
             }
             if (véhiculeDAO.update(véhicule, table.getSelectionModel().getSelectedItem().getNImmatriculation())) {
-                if(oldValue && table.getSelectionModel().getSelectedItem().isDisponibilite())
+                if(oldValue ) //&& table.getSelectionModel().getSelectedItem().isDisponibilite())
                 {
-                    try
-                    {
-                        SanctionDAO sanctionDAO = new SanctionDAO(SanctionDAO.connect);
-                        ContratDAO contratDAO = new ContratDAO(ContratDAO.connect);
                         Contrat contrat = contratDAO.findByVehicule(table.getSelectionModel().getSelectedItem().getNImmatriculation());
                         LocalDate today = LocalDate.now();
-                        Period duration = Period.between(today,contrat.getDateEchéance());
-                        Sanction sanction = new Sanction((int) Math.abs(duration.getDays()),contrat.getNContrat(),0);
-                        sanctionDAO.create(sanction);
-                    }
-                    catch(SQLException e)
-                    {
-                        System.out.println("Connection Failed");
-                    }
+                        int diff = today.getDayOfYear()- contrat.getDateEchéance().getDayOfYear();
+                        if(diff>0)
+                        {
+                            if(!sanctionDAO.containsContratId(contrat.getNContrat()))
+                            {
+                                int montantAPayer = (int) (Math.abs(diff)*Sanction.getAmende());
+                                Sanction sanction = new Sanction(Math.abs(diff),contrat.getNContrat(),0, montantAPayer);
+                                sanctionDAO.create(sanction);
+                            }
+                        }
                 }
-                dialogContent.setBody(new Text("La véhicule à été modifié!"));
+                dialogContent.setBody(new Text("La véhicule a été modifié!"));
                 dialog.show();
+                oldValue = false;
                 return;
             }
         }
@@ -289,30 +306,32 @@ public class VehiculeController implements Initializable {
         if(parking.getCapacité()-nombreVehicule>0){
             if(group.getSelectedToggle()==ouiRadio)
             {
+                oldValue = true;
                 véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true,Double.parseDouble(prixField.getText()));
             } else{
+                oldValue = false;
                 véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false,Double.parseDouble(prixField.getText()));
             }
             if (véhiculeDAO.update(véhicule, table.getSelectionModel().getSelectedItem().getNImmatriculation())) {
-                if(oldValue && table.getSelectionModel().getSelectedItem().isDisponibilite())
+                if(oldValue )
                 {
-                    try
+                    Contrat contrat = contratDAO.findByVehicule(table.getSelectionModel().getSelectedItem().getNImmatriculation());
+                    LocalDate today = LocalDate.now();
+                    int diff = today.getDayOfYear()- contrat.getDateEchéance().getDayOfYear();
+                    if(diff>0)
                     {
-                        SanctionDAO sanctionDAO = new SanctionDAO(SanctionDAO.connect);
-                        ContratDAO contratDAO = new ContratDAO(ContratDAO.connect);
-                        Contrat contrat = contratDAO.findByVehicule(table.getSelectionModel().getSelectedItem().getNImmatriculation());
-                        LocalDate today = LocalDate.now();
-                        Period duration = Period.between(today,contrat.getDateEchéance());
-                        Sanction sanction = new Sanction((int) Math.abs(duration.getDays()),contrat.getNContrat(),0);
-                        sanctionDAO.create(sanction);
-                    }
-                    catch(SQLException e)
-                    {
-                        System.out.println("Connection Failed");
+                        if(!sanctionDAO.containsContratId(contrat.getNContrat()))
+                        {
+                            int montantAPayer = (int) (Math.abs(diff)*Sanction.getAmende());
+                            Sanction sanction = new Sanction(Math.abs(diff),contrat.getNContrat(),0, montantAPayer);
+                            sanctionDAO.create(sanction);
+
+                        }
                     }
                 }
-                dialogContent.setBody(new Text("La véhicule à été modifié!"));
+                dialogContent.setBody(new Text("La véhicule a été modifié!"));
                 dialog.show();
+                oldValue = false;
                 return;
             }
         }else if(parking.getCapacité()-nombreVehicule<=0)

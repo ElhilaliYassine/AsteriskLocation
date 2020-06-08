@@ -1,5 +1,6 @@
 package Controllers;
 
+import Util.dateUtil;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
@@ -88,6 +89,9 @@ public class CreateContratController implements Initializable {
             if(contratDAO.create(contrat))
             {
                 dialogContent.setBody(new Text("Le contrat a été enregistré"));
+                Réservation reservationDeleted = reservationDAO.find(contrat.getIdReservation());
+                reservationDeleted.setEtatReservation("validé");
+                reservationDAO.update(reservationDeleted,reservationDeleted.getCodeRéservation());
             }else{
                 dialogContent.setBody(new Text("Le contrat n'a pas été enregistré"));
             }

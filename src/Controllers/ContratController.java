@@ -1,5 +1,6 @@
 package Controllers;
 
+import Util.dateUtil;
 import com.jfoenix.controls.*;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -129,10 +130,34 @@ public class ContratController implements Initializable {
             System.out.println("Connection Failed");
         }
     }
+    FactureDAO factureDAO;
+    {
+        try {
+            factureDAO = new FactureDAO(FactureDAO.connect);
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+        }
+    }
     ObservableList<Contrat> list = contratDAO.list();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dataContrat();
+        etatReservation();
+    }
+    public void etatReservation()
+    {
+        //cette fonction permet de rendre les reservations qui ont dépassé la durée de 2 jours du contrat
+        //les rendre "annuler"
+        ObservableList<Réservation> list=reservationDAO.listReservation("non validé");
+        for(int i=0;i<list.size();i++)
+        {
+            if(!dateUtil.olderThan2days(list.get(i).getDateDépart()))
+            {
+                Réservation reservation=list.get(i);
+                reservation.setEtatReservation("annuler");
+                reservationDAO.update(reservation,reservation.getCodeRéservation());
+            }
+        }
     }
     private void dataContrat()
     {
@@ -255,6 +280,7 @@ public class ContratController implements Initializable {
             return;
         } else {
             Contrat contrat = contratDAO.find(table.getSelectionModel().getSelectedItem().getNContrat());
+            idContrat.setText(String.valueOf(contrat.getNContrat()));
             blur.setEffect(new GaussianBlur(10));
             updatePane.setVisible(true);
             updatePane.toFront();
@@ -296,7 +322,7 @@ public class ContratController implements Initializable {
             contrat = new Contrat(0,dateContratField.getValue(),dateEcheanceField.getValue(),table.getSelectionModel().getSelectedItem().getIdReservation());
             if (contratDAO.update(contrat, table.getSelectionModel().getSelectedItem().getNContrat()))
             {
-                dialogContent.setBody(new Text("Le contrat à été modifié!"));
+                dialogContent.setBody(new Text("Le contrat a été modifié!"));
                 dialog.show();
                 return;
             }
@@ -327,8 +353,17 @@ public class ContratController implements Initializable {
         }
         else {
             Contrat contrat = contratDAO.find(table.getSelectionModel().getSelectedItem().getNContrat());
-            contratDAO.delete(contrat);
-            dialogContent.setBody(new Text("Le contrat a été supprimé!"));
+            if(factureDAO.containsContratId(contrat.getNContrat()))
+            {
+                dialogContent.setBody(new Text("Veuillez supprimer la facture du contrat sélectionné!"));
+            }else{
+                contratDAO.delete(contrat);
+                dialogContent.setBody(new Text("Le contrat a été supprimé!"));
+                Réservation reservationDeleted = reservationDAO.find(contrat.getIdReservation());
+                reservationDeleted.setEtatReservation("non validé");
+                reservationDAO.update(reservationDeleted,reservationDeleted.getCodeRéservation());
+            }
+
             dialog.show();
             blur.setEffect(new GaussianBlur(10));
             return;

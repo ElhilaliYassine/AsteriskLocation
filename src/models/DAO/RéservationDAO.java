@@ -62,17 +62,20 @@ public class RéservationDAO extends DAO<Réservation>{
     public boolean update(Réservation obj, int id) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE reservation SET dateDepart=?,dateRetour=?,idClient=?,idVehicule=?,etatReservation=? WHERE codeReservation=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE reservation SET dateReservation=?,dateDepart=?,dateRetour=?,idClient=?,idVehicule=?,etatReservation=? WHERE codeReservation=?");
+            LocalDate dateRer = obj.getDateReservation();
+            Date dateReservation = Date.valueOf(dateRer);
             LocalDate dateD = obj.getDateDépart();
             Date dateDepart = Date.valueOf(dateD);
             LocalDate dateR = obj.getDateRetour();
             Date dateRetour = Date.valueOf(dateR);
-            preparedStmt.setObject(1,dateDepart);
-            preparedStmt.setObject(2,dateRetour);
-            preparedStmt.setObject(3,obj.getIdClient());
-            preparedStmt.setObject(4,obj.getIdVehicule());
-            preparedStmt.setObject(5,obj.getEtatReservation());
-            preparedStmt.setInt(6,id);
+            preparedStmt.setObject(1,dateReservation);
+            preparedStmt.setObject(2,dateDepart);
+            preparedStmt.setObject(3,dateRetour);
+            preparedStmt.setObject(4,obj.getIdClient());
+            preparedStmt.setObject(5,obj.getIdVehicule());
+            preparedStmt.setObject(6,obj.getEtatReservation());
+            preparedStmt.setInt(7,id);
             preparedStmt.execute();
             return true;
         }
@@ -183,21 +186,21 @@ public class RéservationDAO extends DAO<Réservation>{
             return null;
         }
     }
-    public boolean disponibiliteVehicule(int matricule) {
+    public int nbrVehiculeReserve(int matricule) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM reservation WHERE idVehicule=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT count(*) FROM reservation WHERE idVehicule=?");
             preparedStmt.setObject(1, matricule);
             ResultSet resultSet = preparedStmt.executeQuery();
             while(resultSet.next()) {
-                return true;
+                return resultSet.getInt("COUNT(*)");
             }
         }
         catch(SQLException e)
         {
-            return false;
+            return 0;
         }
-        return false;
+        return 0;
     }
     public ObservableList<String> select(){
         try
@@ -225,7 +228,9 @@ public class RéservationDAO extends DAO<Réservation>{
             ObservableList<String> listValable = FXCollections.observableArrayList();
             while(resultSet.next())
             {
-                if(dateUtil.olderThan2days(resultSet.getObject("dateReservation")) && resultSet.getString("etatReservation").equals("non validé"))
+                Date dateD = resultSet.getDate("dateDepart");
+                LocalDate dateDepart = dateD.toLocalDate();
+                if(dateUtil.olderThan2days(dateDepart) && resultSet.getString("etatReservation").equals("non validé"))
                 {
                     listValable.add(String.valueOf(resultSet.getInt("codeReservation")));
                 }
@@ -233,6 +238,66 @@ public class RéservationDAO extends DAO<Réservation>{
             return listValable;
         }
         catch (SQLException e)
+        {
+            return null;
+        }
+    }
+    public int nombreReservation()
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT COUNT(*) FROM reservation");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next())
+            {
+                return resultSet.getInt("COUNT(*)");
+            }
+            return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+    }
+    public int nombreReservationParEtat(String etat)
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT COUNT(*) FROM reservation WHERE etatReservation=?");
+            preparedStmt.setString(1,etat);
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next())
+            {
+                return resultSet.getInt("COUNT(*)");
+            }
+            return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+    }
+    public ObservableList<Réservation> listLastReservation() {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM reservation ORDER BY codeReservation DESC");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            ObservableList<Réservation> listRéservations = FXCollections.observableArrayList();
+            while(resultSet.next())
+            {
+                Date dateD = resultSet.getDate("dateDepart");
+                LocalDate dateDepart = dateD.toLocalDate();
+                Date dateR = resultSet.getDate("dateRetour");
+                LocalDate dateRetour = dateR.toLocalDate();
+                Date date = resultSet.getDate("dateReservation");
+                LocalDate dateReservation = date.toLocalDate();
+                listRéservations.add(new Réservation(resultSet.getInt("codeReservation"), dateReservation, dateDepart,dateRetour,resultSet.getInt("idClient"), resultSet.getInt("idVehicule"), resultSet.getString("etatReservation")));
+            }
+            ObservableList<Réservation> lastReservation = FXCollections.observableArrayList();
+            lastReservation.add(listRéservations.get(0));
+            return lastReservation;
+        }
+        catch(SQLException e)
         {
             return null;
         }

@@ -17,10 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import models.Client;
-import models.DAO.ClientDAO;
-import models.DAO.ParkingDAO;
-import models.DAO.RéservationDAO;
-import models.DAO.VéhiculeDAO;
+import models.DAO.*;
 import models.Parking;
 import models.Réservation;
 import models.Véhicule;
@@ -133,7 +130,17 @@ public class ReservationController implements Initializable {
     @FXML
     private JFXComboBox<String> selectEtat;
 
+    @FXML
+    private Label idReservation;
 
+    ContratDAO contratDAO;
+    {
+        try {
+            contratDAO = new ContratDAO(ContratDAO.connect);
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+        }
+    }
     RéservationDAO reservationDAO;
     {
         try {
@@ -352,7 +359,7 @@ public class ReservationController implements Initializable {
         close.setOnAction(e -> {
             dialog.close();
             blur.setEffect(null);
-            //list = véhiculeDAO.list();
+            list = reservationDAO.list();
             dataReservation();
         });
         if (table.getSelectionModel().isEmpty()) {
@@ -362,6 +369,7 @@ public class ReservationController implements Initializable {
             return;
         } else {
             Réservation reservation = reservationDAO.find(table.getSelectionModel().getSelectedItem().getCodeRéservation());
+            idReservation.setText(String.valueOf(reservation.getCodeRéservation()));
             blur.setEffect(new GaussianBlur(10));
             updatePane.setVisible(true);
             updatePane.toFront();
@@ -398,7 +406,6 @@ public class ReservationController implements Initializable {
         myStackUpdate.toFront();
         close.setOnAction(e -> {
             dialog.close();
-            dataReservation();
         });
         Réservation reservation = null;
         Client client = clientDAO.find(selectClient.getValue());
@@ -412,7 +419,12 @@ public class ReservationController implements Initializable {
             }
             reservation = new Réservation(0,dateReservationField.getValue(),dateDepartField.getValue(),dateRetourField.getValue(),client.getCodeClient(),vehicule.getNImmatriculation(),selectEtat.getValue());
             if (reservationDAO.update(reservation, table.getSelectionModel().getSelectedItem().getCodeRéservation())) {
-                dialogContent.setBody(new Text("La Réservation à été modifié!"));
+                vehiculeMatricule = reservation.getIdVehicule();
+                dialogContent.setBody(new Text("La Réservation a été modifié!"));
+                dialog.show();
+                return;
+            }else{
+                dialogContent.setBody(new Text("La Réservation n'a pas été modifié!"));
                 dialog.show();
                 return;
             }
@@ -422,7 +434,8 @@ public class ReservationController implements Initializable {
             dialogContent.setBody(new Text("Le véhicule n'est pas disponible!"));
             dialog.show();
             return;
-        }else if(dateDepartField.getValue().compareTo(dateRetourField.getValue()) > 0) {
+        }
+        if(dateDepartField.getValue().compareTo(dateRetourField.getValue()) > 0) {
             dialogContent.setBody(new Text("Veuillez vérifier les dates"));
             dialog.show();
             return;
@@ -430,8 +443,16 @@ public class ReservationController implements Initializable {
             reservation = new Réservation(0,dateReservationField.getValue(),dateDepartField.getValue(),dateRetourField.getValue(),client.getCodeClient(),vehicule.getNImmatriculation(),selectEtat.getValue());
             if (reservationDAO.update(reservation, table.getSelectionModel().getSelectedItem().getCodeRéservation()))
             {
-                list = reservationDAO.list();
-                dialogContent.setBody(new Text("La Réservation à été modifié!"));
+                //rendre l'ancien vehicule sa disponibilité à true
+                Véhicule vehiculeUpdated = véhiculeDAO.find(vehiculeMatricule);
+                vehiculeUpdated.setDisponibilite(true);
+                véhiculeDAO.update(vehiculeUpdated,vehiculeUpdated.getNImmatriculation());
+                //rendre le nouveau vehicule utilisé sa disponiblité en true
+                vehiculeMatricule = reservation.getIdVehicule();
+                vehiculeUpdated = véhiculeDAO.find(vehiculeMatricule);
+                vehiculeUpdated.setDisponibilite(false);
+                véhiculeDAO.update(vehiculeUpdated,vehiculeUpdated.getNImmatriculation());
+                dialogContent.setBody(new Text("La Réservation a été modifié!"));
                 dialog.show();
                 return;
             }
@@ -451,6 +472,7 @@ public class ReservationController implements Initializable {
         close.setOnAction(e -> {
             dialog.close();
             blur.setEffect(null);
+            list = reservationDAO.list();
             dataReservation();
         });
         if (table.getSelectionModel().isEmpty()) {
@@ -461,9 +483,16 @@ public class ReservationController implements Initializable {
         }
         else {
             Réservation reservation = reservationDAO.find(table.getSelectionModel().getSelectedItem().getCodeRéservation());
-            reservationDAO.delete(reservation);
-            list = reservationDAO.list();
-            dialogContent.setBody(new Text("La Réservation a été supprimé!"));
+            if(contratDAO.containsReservationId(reservation.getCodeRéservation()))
+            {
+                dialogContent.setBody(new Text("Veuillez supprimer le contrat de la réservation sélectionnée!"));
+            }else{
+                reservationDAO.delete(reservation);
+                Véhicule vehiculeDeleted = véhiculeDAO.find(reservation.getIdVehicule());
+                vehiculeDeleted.setDisponibilite(true);
+                véhiculeDAO.update(vehiculeDeleted,vehiculeDeleted.getNImmatriculation());
+                dialogContent.setBody(new Text("La Réservation a été supprimé!"));
+            }
             dialog.show();
             blur.setEffect(new GaussianBlur(10));
             return;

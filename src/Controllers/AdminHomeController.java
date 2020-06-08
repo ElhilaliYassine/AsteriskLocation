@@ -141,6 +141,8 @@ public class AdminHomeController implements Initializable, Window {
         btnSanction.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnFacture.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnDashboard.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnContrat.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+
 
     }
 
@@ -156,6 +158,8 @@ public class AdminHomeController implements Initializable, Window {
         btnSanction.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnFacture.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnDashboard.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnContrat.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+
 
     }
 
@@ -171,6 +175,8 @@ public class AdminHomeController implements Initializable, Window {
         btnSanction.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnFacture.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnDashboard.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnContrat.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+
 
     }
 
@@ -186,6 +192,8 @@ public class AdminHomeController implements Initializable, Window {
         btnSanction.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnFacture.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
         btnDashboard.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+        btnContrat.setStyle("{-fx-background-color : #278ef4;}:hover{fx-background-color : #0c7be9;}");
+
 
     }
 

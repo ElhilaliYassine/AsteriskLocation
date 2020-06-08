@@ -45,6 +45,8 @@ public class SanctionController implements Initializable {
     @FXML
     private TableColumn<Contrat, Double> col_idContrat;
     @FXML
+    private TableColumn<Contrat, Integer> col_montantAPayer;
+    @FXML
     private JFXTextField filterField;
 
     SanctionDAO sanctionDAO;
@@ -65,8 +67,9 @@ public class SanctionController implements Initializable {
 
     private void dataContrat() {
         col_numeroSanction.setCellValueFactory(new PropertyValueFactory<>("idSanction"));
-        col_nbrJoursRetard.setCellValueFactory(new PropertyValueFactory<>("nbeJoursRetard"));
+        col_nbrJoursRetard.setCellValueFactory(new PropertyValueFactory<>("nbrJoursRetard"));
         col_idContrat.setCellValueFactory(new PropertyValueFactory<>("idContrat"));
+        col_montantAPayer.setCellValueFactory(new PropertyValueFactory<>("montantAPayer"));
         table.setItems(list);
     }
 

@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -84,6 +85,10 @@ public class UtilisateurController implements Initializable {
 
     @FXML
     private JFXTextField telephoneField;
+
+    @FXML
+    private Label idUtilisateur;
+
     UtilisateurDAO utilisateurDAO;
 
     {
@@ -210,6 +215,7 @@ public class UtilisateurController implements Initializable {
             return;
         } else {
             Utilisateur userUpdate = utilisateurDAO.find(table.getSelectionModel().getSelectedItem().getNomComplet());
+            idUtilisateur.setText(String.valueOf(userUpdate.getCodeUtilisateur()));
             blur.setEffect(new GaussianBlur(10));
             updatePane.setVisible(true);
             updatePane.toFront();

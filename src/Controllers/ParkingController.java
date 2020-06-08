@@ -100,6 +100,10 @@ public class ParkingController implements Initializable {
 
     @FXML
     private JFXTextField arrondissementField;
+
+    @FXML
+    private Label idParking;
+
     ParkingDAO parkingDAO;
 
     {
@@ -240,6 +244,7 @@ public class ParkingController implements Initializable {
             return;
         } else {
             Parking parking = parkingDAO.find(table.getSelectionModel().getSelectedItem().getNParking());
+            idParking.setText(String.valueOf(parking.getNParking()));
             blur.setEffect(new GaussianBlur(10));
             updatePane.setVisible(true);
             updatePane.toFront();
@@ -272,7 +277,7 @@ public class ParkingController implements Initializable {
         Parking parking = new Parking(0,Integer.parseInt(capaciteField.getText()),rueField.getText(),arrondissementField.getText(),0);
 
         if (parkingDAO.update(parking, table.getSelectionModel().getSelectedItem().getNParking())) {
-            dialogContent.setBody(new Text("Le parking à été modifié!"));
+            dialogContent.setBody(new Text("Le parking a été modifié!"));
             dialog.show();
             return;
         }

@@ -46,18 +46,17 @@
             <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                <children>
                   <StackPane fx:id="myStackUpdate" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
-                  <Label layoutX="37.0" layoutY="13.0" text="Modifier Véhicule" textFill="#1d71bf">
+                  <Label layoutX="37.0" layoutY="13.0" text="Modifier Véhicule Nᵒ" textFill="#1d71bf">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="matriculeField" labelFloat="true" layoutX="37.0" layoutY="53.0" prefHeight="26.0" prefWidth="255.0" promptText="Matricule" unFocusColor="#1d71bf" />
-                  <JFXTextField fx:id="marqueField" labelFloat="true" layoutX="37.0" layoutY="96.0" prefHeight="26.0" prefWidth="255.0" promptText="Marque" unFocusColor="#1d71bf" />
+                  <JFXTextField fx:id="marqueField" labelFloat="true" layoutX="37.0" layoutY="55.0" prefHeight="26.0" prefWidth="255.0" promptText="Marque" unFocusColor="#1d71bf" />
                   <FontAwesomeIconView fill="#1d71bf" glyphName="CAR" layoutX="14.0" layoutY="28.0" size="14" />
                   <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
-                  <JFXTextField fx:id="typeField" labelFloat="true" layoutX="37.0" layoutY="137.0" prefHeight="26.0" prefWidth="255.0" promptText="Type" unFocusColor="#1d71bf" />
-                  <JFXTextField fx:id="carburantField" labelFloat="true" layoutX="37.0" layoutY="178.0" prefHeight="26.0" prefWidth="255.0" promptText="Carburant" unFocusColor="#1d71bf" />
-                  <JFXTextField fx:id="compteurKmField" labelFloat="true" layoutX="37.0" layoutY="264.0" prefHeight="26.0" prefWidth="255.0" promptText="Compteur KM" unFocusColor="#1d71bf" />
+                  <JFXTextField fx:id="typeField" labelFloat="true" layoutX="37.0" layoutY="106.0" prefHeight="26.0" prefWidth="255.0" promptText="Type" unFocusColor="#1d71bf" />
+                  <JFXTextField fx:id="carburantField" labelFloat="true" layoutX="37.0" layoutY="157.0" prefHeight="26.0" prefWidth="255.0" promptText="Carburant" unFocusColor="#1d71bf" />
+                  <JFXTextField fx:id="compteurKmField" labelFloat="true" layoutX="37.0" layoutY="263.0" prefHeight="26.0" prefWidth="255.0" promptText="Compteur KM" unFocusColor="#1d71bf" />
                   <DatePicker fx:id="dateField" layoutX="37.0" layoutY="302.0" prefHeight="26.0" prefWidth="255.0" promptText="Date de mise en circulation" />
                   <JFXRadioButton fx:id="ouiRadio" layoutX="154.0" layoutY="342.0" text="Oui" />
                   <JFXComboBox fx:id="selectParking" layoutX="116.0" layoutY="373.0" prefHeight="26.0" prefWidth="175.0" unFocusColor="#1d71bf" />
@@ -73,7 +72,12 @@
                      </font>
                   </Label>
                   <JFXButton layoutX="288.0" layoutY="417.0" onAction="#modifyVehicule" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Modifier" textFill="WHITE" />
-                  <JFXTextField fx:id="prixField" labelFloat="true" layoutX="37.0" layoutY="221.0" prefHeight="26.0" prefWidth="255.0" promptText="Prix" unFocusColor="#1d71bf" />
+                  <JFXTextField fx:id="prixField" labelFloat="true" layoutX="37.0" layoutY="210.0" prefHeight="26.0" prefWidth="255.0" promptText="Prix" unFocusColor="#1d71bf" />
+                  <Label fx:id="idVehicule" layoutX="230.0" layoutY="13.0" text="N" textFill="#1d71bf">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

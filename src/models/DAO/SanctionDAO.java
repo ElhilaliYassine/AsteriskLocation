@@ -18,9 +18,10 @@ public class SanctionDAO extends DAO<Sanction>{
     public boolean create(Sanction obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO sanction(nbrJoursRetard,idContrat) VALUES(?,?)");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO sanction(nbrJoursRetard,idContrat,montantAPayer) VALUES(?,?,?)");
             preparedStmt.setInt(1,obj.getNbrJoursRetard());
             preparedStmt.setInt(2,obj.getIdContrat());
+            preparedStmt.setInt(3,obj.getMontantAPayer());
             preparedStmt.execute();
             return true;
         }
@@ -69,11 +70,11 @@ public class SanctionDAO extends DAO<Sanction>{
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM sanction WHERE idSanction=?");
             preparedStmt.setInt(1,id);
             ResultSet resultSet = preparedStmt.executeQuery();
-            return new Sanction(resultSet.getInt("nbrJoursRetard"),resultSet.getInt("idContrat"),id);
+            return new Sanction(resultSet.getInt("nbrJoursRetard"),resultSet.getInt("idContrat"),id, resultSet.getInt("montantAPayer"));
         }
         catch(SQLException e)
         {
-            return new Sanction(0,0,id);
+            return new Sanction(0,0,id, 0);
         }
     }
 
@@ -86,13 +87,64 @@ public class SanctionDAO extends DAO<Sanction>{
             ObservableList<Sanction> listSanctions = FXCollections.observableArrayList();
             while(resultSet.next())
             {
-                listSanctions.add(new Sanction(resultSet.getInt("nbrJoursRetard"),resultSet.getInt("idContrat"),resultSet.getInt("idSanction")));
+                listSanctions.add(new Sanction(resultSet.getInt("nbrJoursRetard"),resultSet.getInt("idContrat"),resultSet.getInt("idSanction"), resultSet.getInt("montantAPayer")));
             }
             return listSanctions;
         }
         catch(SQLException e)
         {
             return null;
+        }
+    }
+    public boolean containsContratId(int idContrat)
+    {
+        try
+        {
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM sanction");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next())
+            {
+                if (resultSet.getInt("idContrat") == idContrat) return true;
+            }
+            return false;
+        }catch(SQLException e)
+        {
+            return false;
+        }
+    }
+
+    public int totalSanction()
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT SUM(montantAPayer) FROM sanction");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next())
+            {
+                return resultSet.getInt("SUM(montantAPayer)");
+            }
+            return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+    }
+    public int nombreSanction()
+    {
+        try
+        {
+            PreparedStatement preparedStmt = connect.prepareStatement("SELECT COUNT(*) FROM sanction");
+            ResultSet resultSet = preparedStmt.executeQuery();
+            while(resultSet.next())
+            {
+                return resultSet.getInt("COUNT(*)");
+            }
+            return 0;
+        }
+        catch(SQLException e)
+        {
+            return 0;
         }
     }
 }

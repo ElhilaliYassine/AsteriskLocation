@@ -19,7 +19,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FactureController">
     <children>
-        <Pane fx:id="msgPane" layoutX="150.0" layoutY="189.0" prefHeight="5.0" prefWidth="363.0">
+        <Pane fx:id="msgPane" layoutX="150.0" layoutY="179.0" prefHeight="5.0" prefWidth="363.0">
             <children>
                 <StackPane fx:id="myStackPane" layoutX="23.0" layoutY="1.0" prefHeight="4.0" prefWidth="318.0" />
             </children>
@@ -67,13 +67,13 @@
                 </Pane>
                 <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                     <children>
-                        <Label layoutX="37.0" layoutY="13.0" text="Modifier Facture :" textFill="#1d71bf">
+                        <Label layoutX="37.0" layoutY="13.0" text="Modifier Facture Nᵒ" textFill="#1d71bf">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
                         <FontAwesomeIconView fill="#1d71bf" glyphName="FILE" layoutX="14.0" layoutY="28.0" size="14" />
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
                         <StackPane fx:id="myStackUpdate" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
                         <JFXButton layoutX="273.0" layoutY="375.0" onAction="#modifyContrat" prefHeight="26.0" prefWidth="81.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
                             <font>
@@ -81,16 +81,17 @@
                             </font>
                         </JFXButton>
                         <DatePicker fx:id="dateFactureField" layoutX="43.0" layoutY="163.0" prefHeight="26.0" prefWidth="271.0" promptText="Date de facture" />
-                  <Label fx:id="idFacture" layoutX="204.0" layoutY="14.0" text="N">
-                     <font>
-                        <Font size="16.0" />
-                     </font></Label>
                   <Label layoutX="43.0" layoutY="219.0" text="Montant à payer">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
                   <JFXTextField fx:id="montantAPayerField" layoutX="41.0" layoutY="242.0" prefHeight="25.0" prefWidth="280.0" />
+                  <Label fx:id="idFacture" layoutX="217.0" layoutY="13.0" text="N" textFill="#1d71bf">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
             </children>
@@ -158,7 +159,7 @@
                 <FontAwesomeIconView fill="WHITE" glyphName="INFO" layoutX="387.0" layoutY="570.0" size="19" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="detailPane" layoutX="6.0" layoutY="104.0" prefHeight="548.0" prefWidth="718.0" visible="false">
+        <AnchorPane fx:id="detailPane" layoutX="7.0" layoutY="100.0" prefHeight="562.0" prefWidth="718.0" visible="false">
             <effect>
                 <DropShadow height="11.89" radius="5.445" width="11.89" />
             </effect>
@@ -175,7 +176,7 @@
                         </Button>
                     </children>
                 </Pane>
-                <AnchorPane layoutX="7.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="706.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+                <AnchorPane layoutX="7.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="706.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                     <children>
                         <Label layoutX="37.0" layoutY="13.0" text="Facture Nᵒ" textFill="#1d71bf">
                             <font>
@@ -242,7 +243,7 @@
                                 <Font name="System Bold" size="15.0" />
                             </font>
                         </Label>
-                        <Label layoutX="2.0" layoutY="415.0" prefHeight="19.0" prefWidth="706.0" text="-----------------------------------------------------------------------------------------------------------------">
+                        <Label layoutX="2.0" layoutY="432.0" prefHeight="19.0" prefWidth="706.0" text="-----------------------------------------------------------------------------------------------------------------">
                             <font>
                                 <Font name="System Bold" size="15.0" />
                             </font>
@@ -320,24 +321,24 @@
                                 <Font name="System Bold" size="15.0" />
                             </font>
                         </Label>
-                        <Label layoutX="8.0" layoutY="441.0" text="Date de Départ :">
+                        <Label layoutX="8.0" layoutY="454.0" text="Date de Départ :">
                             <font>
                                 <Font size="16.0" />
                             </font>
                         </Label>
-                        <Label layoutX="337.0" layoutY="441.0" text="Date de Retour :">
+                        <Label layoutX="337.0" layoutY="454.0" text="Date de Retour :">
                             <font>
                                 <Font size="16.0" />
                             </font>
                         </Label>
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="150.0" layoutY="461.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
-                        <Label fx:id="dateDepart" layoutX="151.0" layoutY="441.0" text="N">
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="150.0" layoutY="474.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
+                        <Label fx:id="dateDepart" layoutX="151.0" layoutY="454.0" text="N">
                             <font>
                                 <Font name="System Bold" size="15.0" />
                             </font>
                         </Label>
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="491.0" layoutY="462.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
-                        <Label fx:id="dateRetour" layoutX="492.0" layoutY="442.0" text="N">
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="491.0" layoutY="475.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
+                        <Label fx:id="dateRetour" layoutX="492.0" layoutY="455.0" text="N">
                             <font>
                                 <Font name="System Bold" size="15.0" />
                             </font>
@@ -352,34 +353,34 @@
                                 <Font name="System Bold" size="15.0" />
                             </font>
                         </Label>
-                  <Label layoutX="12.0" layoutY="472.0" text="Date contrat:">
+                  <Label layoutX="12.0" layoutY="485.0" text="Date contrat:">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="dateContrat" layoutX="148.0" layoutY="474.0" text="N">
+                  <Label fx:id="dateContrat" layoutX="148.0" layoutY="487.0" text="N">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="149.0" layoutY="493.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
-                  <Label layoutX="338.0" layoutY="473.0" text="Date d'échéance :">
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="149.0" layoutY="506.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
+                  <Label layoutX="338.0" layoutY="486.0" text="Date d'échéance :">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="dateEcheance" layoutX="493.0" layoutY="474.0" text="N">
+                  <Label fx:id="dateEcheance" layoutX="493.0" layoutY="487.0" text="N">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="491.0" layoutY="493.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
-                  <Label layoutX="20.0" layoutY="406.0" text="Prix :">
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="491.0" layoutY="506.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
+                  <Label layoutX="20.0" layoutY="413.0" text="Prix :">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="prixVehicule" layoutX="123.0" layoutY="408.0" text="N">
+                  <Label fx:id="prixVehicule" layoutX="123.0" layoutY="415.0" text="N">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -394,6 +395,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#250217" height="0.5" layoutX="121.0" layoutY="433.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
                     </children>
                 </AnchorPane>
             </children>

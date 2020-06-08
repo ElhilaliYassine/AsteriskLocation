@@ -62,7 +62,7 @@
             </Pane>
             <AnchorPane layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 12;">
                <children>
-                  <Label layoutX="37.0" layoutY="13.0" text="Modifier Utilisateur" textFill="#1d71bf">
+                  <Label layoutX="37.0" layoutY="13.0" text="Modifier Utilisateur Nᵒ" textFill="#1d71bf">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -70,7 +70,7 @@
                   <JFXTextField fx:id="usernameField" labelFloat="true" layoutX="37.0" layoutY="74.0" prefHeight="26.0" prefWidth="221.0" promptText="Username" unFocusColor="#1d71bf" />
                   <JFXPasswordField fx:id="passwordField" labelFloat="true" layoutX="37.0" layoutY="134.0" prefHeight="26.0" prefWidth="221.0" promptText="password" unFocusColor="#1d71bf" />
                   <FontAwesomeIconView fill="#1d71bf" glyphName="USERS" layoutX="14.0" layoutY="28.0" size="14" />
-                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="140.0" />
                   <JFXTextField fx:id="emailField" labelFloat="true" layoutX="37.0" layoutY="192.0" prefHeight="26.0" prefWidth="221.0" promptText="email" unFocusColor="#1d71bf" />
                   <JFXTextField fx:id="adresseField" labelFloat="true" layoutX="37.0" layoutY="252.0" prefHeight="26.0" prefWidth="221.0" promptText="adresse" unFocusColor="#1d71bf" />
                   <JFXTextField fx:id="telephoneField" labelFloat="true" layoutX="37.0" layoutY="312.0" prefHeight="26.0" prefWidth="221.0" promptText="Telephone" unFocusColor="#1d71bf" />
@@ -80,6 +80,11 @@
                         <Font size="15.0" />
                      </font>
                   </JFXButton>
+                  <Label fx:id="idUtilisateur" layoutX="242.0" layoutY="13.0" text="N" textFill="#1d71bf">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
