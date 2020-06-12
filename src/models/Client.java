@@ -5,16 +5,14 @@ public class Client {
     private String nomComplet;
     private String adresse;
     private int numGsm;
-    private String uriImage;
 
     //Constructors
 
-    public Client(int codeClient, String nomComplet, String adresse, int numGsm, String uriImage) {
+    public Client(int codeClient, String nomComplet, String adresse, int numGsm) {
         this.codeClient = codeClient;
         this.nomComplet = nomComplet;
         this.adresse = adresse;
         this.numGsm = numGsm;
-        this.uriImage = uriImage;
     }
 
     //Getters
@@ -34,10 +32,6 @@ public class Client {
         return numGsm;
     }
 
-    public String getUriImage() {
-        return uriImage;
-    }
-
     //Setters
     public void setCodeClient(int codeClient) {
         this.codeClient = codeClient;
@@ -55,7 +49,4 @@ public class Client {
         this.numGsm = numGsm;
     }
 
-    public void setUriImage(String uriImage) {
-        this.uriImage = uriImage;
-    }
 }

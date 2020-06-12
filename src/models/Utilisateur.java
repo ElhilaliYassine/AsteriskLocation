@@ -5,16 +5,14 @@ public class Utilisateur {
     private String nomComplet;
     private String adresse;
     private int numGsm;
-    private String uriImage;
     private String password;
     private String email;
     //Constructors
-    public Utilisateur(int codeUtilisateur, String nomComplet, String adresse, int numGsm, String uriImage,String password,String email) {
+    public Utilisateur(int codeUtilisateur, String nomComplet, String adresse, int numGsm,String password,String email) {
         this.codeUtilisateur = codeUtilisateur;
         this.nomComplet = nomComplet;
         this.adresse = adresse;
         this.numGsm = numGsm;
-        this.uriImage = uriImage;
         this.password=password;
         this.email=email;
     }
@@ -69,11 +67,4 @@ public class Utilisateur {
         this.numGsm = numGsm;
     }
 
-    public String getUriImage() {
-        return uriImage;
-    }
-
-    public void setUriImage(String uriImage) {
-        this.uriImage = uriImage;
-    }
 }

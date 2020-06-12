@@ -27,13 +27,12 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
     public boolean create(Utilisateur obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO utilisateur(nomComplet,adresse,numGsm,uriImage,password,email) VALUES(?,?,?,?,?,?)");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO utilisateur(nomComplet,adresse,numGsm,password,email) VALUES(?,?,?,?,?)");
             preparedStmt.setString(1,obj.getNomComplet());
             preparedStmt.setString(2,obj.getAdresse());
             preparedStmt.setInt(3,obj.getNumGsm());
-            preparedStmt.setString(4,obj.getUriImage());
-            preparedStmt.setString(5,obj.getPassword());
-            preparedStmt.setString(6,obj.getEmail());
+            preparedStmt.setString(4,obj.getPassword());
+            preparedStmt.setString(5,obj.getEmail());
             preparedStmt.execute();
             return true;
         }
@@ -62,13 +61,12 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
     public boolean update(Utilisateur obj, int id) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE utilisateur SET nomComplet=?,adresse=?,numGsm=?,uriImage=?,password=? WHERE codeUtilisateur=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE utilisateur SET nomComplet=?,adresse=?,numGsm=?,password=? WHERE codeUtilisateur=?");
             preparedStmt.setString(1,obj.getNomComplet());
             preparedStmt.setString(2,obj.getAdresse());
             preparedStmt.setInt(3,obj.getNumGsm());
-            preparedStmt.setString(4,obj.getUriImage());
-            preparedStmt.setString(5,obj.getPassword());
-            preparedStmt.setInt(6,id);
+            preparedStmt.setString(4,obj.getPassword());
+            preparedStmt.setInt(5,id);
             preparedStmt.execute();
             return true;
         }
@@ -80,12 +78,11 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
     public boolean update(Client obj, String fullName) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE utilisateur SET nomComplet=?,adresse=?,numGsm=?,uriImage=? WHERE nomComplet=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE utilisateur SET nomComplet=?,adresse=?,numGsm=? WHERE nomComplet=?");
             preparedStmt.setString(1,obj.getNomComplet());
             preparedStmt.setString(2,obj.getAdresse());
             preparedStmt.setInt(3,obj.getNumGsm());
-            preparedStmt.setString(4,obj.getUriImage());
-            preparedStmt.setString(5,fullName);
+            preparedStmt.setString(4,fullName);
             preparedStmt.execute();
             return true;
         }
@@ -102,11 +99,11 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
             PreparedStatement preparedStmt = connect.prepareStatement("SELECT * FROM utilisateur WHERE codeUtilisateur=?");
             preparedStmt.setInt(1,id);
             ResultSet resultSet = preparedStmt.executeQuery();
-            return new Utilisateur(id,resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("uriImage"),resultSet.getString("password"),resultSet.getString("email"));
+            return new Utilisateur(id,resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("password"),resultSet.getString("email"));
         }
         catch(SQLException e)
         {
-            return new Utilisateur(id,"","",0,"","","");
+            return new Utilisateur(id,"","",0,"","");
         }
     }
     public Utilisateur find(String fullName) {
@@ -116,14 +113,14 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
             preparedStmt.setString(1,fullName);
             ResultSet resultSet = preparedStmt.executeQuery();
             while(resultSet.next()) {
-                return new Utilisateur(resultSet.getInt("codeUtilisateur"), fullName, resultSet.getString("adresse"), resultSet.getInt("numGsm"), resultSet.getString("uriImage"), resultSet.getString("password"), resultSet.getString("email"));
+                return new Utilisateur(resultSet.getInt("codeUtilisateur"), fullName, resultSet.getString("adresse"), resultSet.getInt("numGsm"), resultSet.getString("password"), resultSet.getString("email"));
             }
         }
         catch(SQLException e)
         {
-            return new Utilisateur(0,fullName,"",0,"","","");
+            return new Utilisateur(0,fullName,"",0,"","");
         }
-        return new Utilisateur(0,fullName,"",0,"","","");
+        return new Utilisateur(0,fullName,"",0,"","");
     }
     //In javafx we use ObservableList to show Data
     public ObservableList<Utilisateur> list()
@@ -135,7 +132,7 @@ public class UtilisateurDAO extends DAO<Utilisateur>{
             ObservableList<Utilisateur> listUtilisateurs = FXCollections.observableArrayList();
             while(resultSet.next())
             {
-                listUtilisateurs.add(new Utilisateur(resultSet.getInt("codeUtilisateur"),resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("uriImage"),resultSet.getString("password"),resultSet.getString("email")));
+                listUtilisateurs.add(new Utilisateur(resultSet.getInt("codeUtilisateur"),resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("password"),resultSet.getString("email")));
             }
             return listUtilisateurs;
         }

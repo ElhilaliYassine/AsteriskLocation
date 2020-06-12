@@ -92,7 +92,7 @@ public class CreateUserController implements Initializable {
             dialogContent.setBody(new Text("Utilisateur déjà enregistré"));
         }
         else {
-            Utilisateur user = new Utilisateur(0, usernameField.getText(), adresseField.getText(), Integer.parseInt(telephoneField.getText()), "", passwordField.getText(), emailField.getText());
+            Utilisateur user = new Utilisateur(0, usernameField.getText(), adresseField.getText(), Integer.parseInt(telephoneField.getText()), passwordField.getText(), emailField.getText());
             utilisateurDAO.create(user);
             dialogContent.setBody(new Text("Utilisateur est enregistré"));
         }

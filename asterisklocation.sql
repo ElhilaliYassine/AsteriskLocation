@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : lun. 08 juin 2020 à 23:47
+-- Généré le : ven. 12 juin 2020 à 17:46
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.4.3
 
@@ -32,17 +32,16 @@ CREATE TABLE `client` (
   `codeClient` int(11) NOT NULL,
   `nomComplet` varchar(255) NOT NULL,
   `adresse` varchar(255) NOT NULL,
-  `numGsm` int(11) NOT NULL,
-  `uriImage` varchar(255) NOT NULL
+  `numGsm` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`codeClient`, `nomComplet`, `adresse`, `numGsm`, `uriImage`) VALUES
-(2, 'yassine', 'yassine adresse', 3111, ''),
-(3, 'oussama', 'oussama adresse', 345345, '');
+INSERT INTO `client` (`codeClient`, `nomComplet`, `adresse`, `numGsm`) VALUES
+(2, 'yassine', 'yassine adresse', 3111),
+(3, 'oussama', 'oussama adresse', 345345);
 
 -- --------------------------------------------------------
 
@@ -167,7 +166,6 @@ CREATE TABLE `utilisateur` (
   `nomComplet` varchar(255) NOT NULL,
   `adresse` varchar(255) NOT NULL,
   `numGsm` int(11) NOT NULL,
-  `uriImage` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -176,11 +174,11 @@ CREATE TABLE `utilisateur` (
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`codeUtilisateur`, `nomComplet`, `adresse`, `numGsm`, `uriImage`, `password`, `email`) VALUES
-(1, 'admin', 'admin adress', 5344535, 'admin pic', 'admin', 'admin@asterisk.com'),
-(2, 'adams', 'Adams adresse', 64323243, 'Adams image', 'adams', 'adams@asterisk.com'),
-(3, 'oussama', 'adresse', 534534, '', 'oussama', 'oussama@asterisk.com'),
-(17, 'yassine', 'tikiouine', 975382, '', 'yassine', 'yassine@asterisk.com');
+INSERT INTO `utilisateur` (`codeUtilisateur`, `nomComplet`, `adresse`, `numGsm`, `password`, `email`) VALUES
+(1, 'admin', 'admin adress', 5344535, 'admin', 'admin@asterisk.com'),
+(2, 'adams', 'Adams adresse', 64323243, 'adams', 'adams@asterisk.com'),
+(3, 'oussama', 'adresse', 534534, 'oussama', 'oussama@asterisk.com'),
+(17, 'yassine', 'tikiouine', 975382, 'yassine', 'yassine@asterisk.com');
 
 -- --------------------------------------------------------
 
@@ -276,7 +274,7 @@ ALTER TABLE `vehicule`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `codeClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `codeClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `contrat`
@@ -312,7 +310,7 @@ ALTER TABLE `sanction`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `codeUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `codeUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Contraintes pour les tables déchargées

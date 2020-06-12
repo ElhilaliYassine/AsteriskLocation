@@ -20,11 +20,10 @@ public class ClientDAO extends DAO<Client>{
     public boolean create(Client obj) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO client(nomComplet,adresse,numGsm,uriImage) VALUES(?,?,?,?)");
+            PreparedStatement preparedStmt = connect.prepareStatement("INSERT INTO client(nomComplet,adresse,numGsm) VALUES(?,?,?)");
             preparedStmt.setString(1,obj.getNomComplet());
             preparedStmt.setString(2,obj.getAdresse());
             preparedStmt.setInt(3,obj.getNumGsm());
-            preparedStmt.setString(4,obj.getUriImage());
             preparedStmt.execute();
             return true;
         }
@@ -52,12 +51,11 @@ public class ClientDAO extends DAO<Client>{
     public boolean update(Client obj,int id) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE client SET nomComplet=?,adresse=?,numGsm=?,uriImage=? WHERE codeClient=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE client SET nomComplet=?,adresse=?,numGsm=? WHERE codeClient=?");
             preparedStmt.setString(1,obj.getNomComplet());
             preparedStmt.setString(2,obj.getAdresse());
             preparedStmt.setInt(3,obj.getNumGsm());
-            preparedStmt.setString(4,obj.getUriImage());
-            preparedStmt.setInt(5,id);
+            preparedStmt.setInt(4,id);
             preparedStmt.execute();
             return true;
         }
@@ -69,12 +67,11 @@ public class ClientDAO extends DAO<Client>{
     public boolean update(Client obj,String fullName) {
         try
         {
-            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE client SET nomComplet=?,adresse=?,numGsm=?,uriImage=? WHERE nomComplet=?");
+            PreparedStatement preparedStmt = connect.prepareStatement("UPDATE client SET nomComplet=?,adresse=?,numGsm=? WHERE nomComplet=?");
             preparedStmt.setString(1,obj.getNomComplet());
             preparedStmt.setString(2,obj.getAdresse());
             preparedStmt.setInt(3,obj.getNumGsm());
-            preparedStmt.setString(4,obj.getUriImage());
-            preparedStmt.setString(5,fullName);
+            preparedStmt.setString(4,fullName);
             preparedStmt.execute();
             return true;
         }
@@ -92,11 +89,11 @@ public class ClientDAO extends DAO<Client>{
             preparedStmt.setInt(1,id);
             ResultSet resultSet = preparedStmt.executeQuery();
             resultSet.next();
-            return new Client(id,resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("uriImage"));
+            return new Client(id,resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm"));
         }
         catch(SQLException e)
         {
-            return new Client(id,"","",0,"");
+            return new Client(id,"","",0);
         }
     }
     public ObservableList<Client> list()
@@ -108,7 +105,7 @@ public class ClientDAO extends DAO<Client>{
             ObservableList<Client> listClients = FXCollections.observableArrayList();;
             while(resultSet.next())
             {
-                listClients.add(new Client(resultSet.getInt("codeClient"),resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm"),resultSet.getString("uriImage")));
+                listClients.add(new Client(resultSet.getInt("codeClient"),resultSet.getString("nomComplet"),resultSet.getString("adresse"),resultSet.getInt("numGsm")));
             }
             Collections.sort(listClients, Comparator.comparing(Client::getNomComplet));
             return listClients;
@@ -125,14 +122,14 @@ public class ClientDAO extends DAO<Client>{
             preparedStmt.setString(1,fullName);
             ResultSet resultSet = preparedStmt.executeQuery();
             while(resultSet.next()) {
-                return new Client(resultSet.getInt("codeClient"), fullName, resultSet.getString("adresse"), resultSet.getInt("numGsm"), resultSet.getString("uriImage"));
+                return new Client(resultSet.getInt("codeClient"), fullName, resultSet.getString("adresse"), resultSet.getInt("numGsm"));
             }
         }
         catch(SQLException e)
         {
-            return new Client(0,fullName,"",0,"");
+            return new Client(0,fullName,"",0);
         }
-        return new Client(0,fullName,"",0,"");
+        return new Client(0,fullName,"",0);
     }
     public ObservableList<String> select(){
         try

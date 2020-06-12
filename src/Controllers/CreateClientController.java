@@ -3,13 +3,10 @@ package Controllers;
 import com.jfoenix.controls.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import models.Client;
 import models.DAO.ClientDAO;
-import models.DAO.UtilisateurDAO;
-import models.Utilisateur;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -66,7 +63,7 @@ public class CreateClientController implements Initializable {
         } else {
             Client client=null;
             try {
-                client = new Client(0, nomCompletField.getText(), adresseField.getText(), Integer.parseInt(numGsmField.getText()), "");
+                client = new Client(0, nomCompletField.getText(), adresseField.getText(), Integer.parseInt(numGsmField.getText()));
             } catch (NumberFormatException e) {
                 dialogContent.setBody(new Text("Veuillez ajouter le code du pays!"));
                 dialog.show();

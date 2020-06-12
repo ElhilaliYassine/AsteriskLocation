@@ -256,7 +256,7 @@ public class UtilisateurController implements Initializable {
 
         close.setOnAction(e-> dialog.close());
 
-        Utilisateur modifuser = new Utilisateur(0, usernameField.getText(), adresseField.getText(), Integer.parseInt(telephoneField.getText()), "", passwordField.getText(), emailField.getText());
+        Utilisateur modifuser = new Utilisateur(0, usernameField.getText(), adresseField.getText(), Integer.parseInt(telephoneField.getText()), passwordField.getText(), emailField.getText());
         if (utilisateurDAO.update(modifuser, table.getSelectionModel().getSelectedItem().getCodeUtilisateur())) {
             dialogContent.setBody(new Text("l'utilisateur a été modifié !"));
             dialog.show();

@@ -10,7 +10,6 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,7 +20,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import models.Client;
 import models.DAO.ClientDAO;
-import models.Utilisateur;
 
 import java.io.IOException;
 import java.net.URL;
@@ -145,8 +143,13 @@ public class ClientController implements Initializable {
         }
         else {
             Client user = clientDAO.find(table.getSelectionModel().getSelectedItem().getNomComplet());
-            clientDAO.delete(user);
-            dialogContent.setBody(new Text("Le client a été supprimé!"));
+            if(clientDAO.delete(user))
+            {
+                dialogContent.setBody(new Text("Le client a été supprimé!"));
+            }else{
+                dialogContent.setBody(new Text("Veuillez vérifier les réservations du client"));
+            }
+
             dialog.show();
             blur.setEffect(new GaussianBlur(10));
             return;
@@ -207,7 +210,7 @@ public class ClientController implements Initializable {
         close.setOnAction(e -> {
             dialog.close();
         });
-        Client client = new Client(0, nomCompletField.getText(), adresseField.getText(), Integer.parseInt(numGsmField.getText()), "");
+        Client client = new Client(0, nomCompletField.getText(), adresseField.getText(), Integer.parseInt(numGsmField.getText()));
         if (clientDAO.update(client, table.getSelectionModel().getSelectedItem().getCodeClient())) {
             dialogContent.setBody(new Text("Le client a été modifié!"));
             dialog.show();
