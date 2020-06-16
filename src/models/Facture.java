@@ -7,6 +7,7 @@ public class Facture {
     private LocalDate dateFacture;
     private double MontantAPayer;
     private int idContrat;
+
     //Constructors
     public Facture(int NFacture, LocalDate dateFacture, double montantAPayer,int idContrat) {
         this.NFacture = NFacture;

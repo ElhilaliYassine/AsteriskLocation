@@ -6,20 +6,15 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import models.Client;
-import models.DAO.ClientDAO;
 import models.DAO.ParkingDAO;
 import models.DAO.VéhiculeDAO;
 import models.Parking;
 import models.Véhicule;
 
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import static models.DAO.DAO.connect;
@@ -87,6 +82,7 @@ public class CreateVehiculeController implements Initializable {
         nonRadio.setToggleGroup(group);
         selectParking.setItems(list);
     }
+    //Ajouter un nouveau véhicule
     @FXML
     public void newVehicule() {
         String title = "Asterisk Location - Message :";
@@ -117,9 +113,23 @@ public class CreateVehiculeController implements Initializable {
             Parking parking = parkingDAO.find(selectParking.getValue());
             if(parking.getCapacité()-parkingDAO.nombreVehicule(parking.getNParking())>0) {
                     if (group.getSelectedToggle() == ouiRadio)
-                        véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true, Double.parseDouble(prixField.getText()));
+                        try{
+                            véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true, Double.parseDouble(prixField.getText()));
+                        }catch (NumberFormatException e)
+                        {
+                            dialogContent.setBody(new Text("Veuillez vérifier le champs saisis!"));
+                            dialog.show();
+                            return;
+                        }
                     else if (group.getSelectedToggle() == nonRadio)
-                        véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false, Double.parseDouble(prixField.getText()));
+                        try {
+                            véhicule = new Véhicule(Integer.parseInt(matriculeField.getText()), marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false, Double.parseDouble(prixField.getText()));
+                        }catch(NumberFormatException e)
+                        {
+                            dialogContent.setBody(new Text("Veuillez vérifier le champs saisis!"));
+                            dialog.show();
+                            return;
+                        }
             }else if(parking.getCapacité()-parkingDAO.nombreVehicule(parking.getNParking())<=0){
                 dialogContent.setBody(new Text("Le parking est saturé"));
                 dialog.show();
@@ -134,6 +144,7 @@ public class CreateVehiculeController implements Initializable {
             dialog.show();
             return;
     }
+    //Vider les inputs
     @FXML
     public void clear() {
         matriculeField.setText("");

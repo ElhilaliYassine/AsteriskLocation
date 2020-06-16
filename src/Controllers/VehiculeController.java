@@ -156,6 +156,7 @@ public class VehiculeController implements Initializable {
             nonRadio.setToggleGroup(group);
             selectParking.setItems(select);
     }
+    //Afficher les donnée du véhicule dans un tableau
     private void dataUser() {
         col_matricule.setCellValueFactory(new PropertyValueFactory<>("NImmatriculation"));
         col_marque.setCellValueFactory(new PropertyValueFactory<>("marque"));
@@ -168,6 +169,7 @@ public class VehiculeController implements Initializable {
         col_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
         table.setItems(list);
     }
+    //methode de recherche
     public void search() {
         FilteredList<Véhicule> filteredData = new FilteredList<>(list, p -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -185,6 +187,7 @@ public class VehiculeController implements Initializable {
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
     }
+    //Ouvrir creation d'un véhicule
     public void createVehicule() throws IOException {
         blur.setEffect(new GaussianBlur(10));
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/createVehicule.fxml"));
@@ -192,6 +195,7 @@ public class VehiculeController implements Initializable {
         rootPane.setVisible(true);
         rootPane.toFront();
     }
+    //button pour fermer pane CreateVehicule
     public void btnReturn() {
         blur.setEffect(null);
         rootPane.setVisible(false);
@@ -199,6 +203,7 @@ public class VehiculeController implements Initializable {
         list = véhiculeDAO.list();
         dataUser();
     }
+    //Afficher updatePane avec les informations du véhicule à modifier
     public void updateVehicule() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -239,7 +244,6 @@ public class VehiculeController implements Initializable {
             {
                 oldValue = true;
             }
-            //String for better Ux
             Parking parking = parkingDAO.find(véhicule.getIdParking());
             selectParking.setValue(parking.getRue());
             carburantField.setText(véhicule.getCarburant());
@@ -247,6 +251,7 @@ public class VehiculeController implements Initializable {
             nbrParking = véhicule.getIdParking();
         }
     }
+    //button pour fermer updatePane
     public void returnUpdate() {
         blur.setEffect(null);
         updatePane.setVisible(false);
@@ -254,6 +259,7 @@ public class VehiculeController implements Initializable {
         list = véhiculeDAO.list();
         dataUser();
     }
+    //Modifier Vehicule + vérification en cas d'une sanction
     public void modifyVehicule() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -275,13 +281,27 @@ public class VehiculeController implements Initializable {
             if(group.getSelectedToggle()==ouiRadio)
             {
                 oldValue = true;
-                véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true,Double.parseDouble(prixField.getText()));
+                try{
+                    véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true,Double.parseDouble(prixField.getText()));
+                }catch(NumberFormatException e)
+                {
+                    dialogContent.setBody(new Text("Veuillez vérifier les champs saisis!"));
+                    dialog.show();
+                    return;
+                }
             } else{
-                oldValue= false;
-                véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false,Double.parseDouble(prixField.getText()));
+                oldValue = false;
+                try{
+                    véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false,Double.parseDouble(prixField.getText()));
+                }catch(NumberFormatException e)
+                {
+                    dialogContent.setBody(new Text("Veuillez vérifier les champs saisis!"));
+                    dialog.show();
+                    return;
+                }
             }
             if (véhiculeDAO.update(véhicule, table.getSelectionModel().getSelectedItem().getNImmatriculation())) {
-                if(oldValue ) //&& table.getSelectionModel().getSelectedItem().isDisponibilite())
+                if(oldValue )
                 {
                         Contrat contrat = contratDAO.findByVehicule(table.getSelectionModel().getSelectedItem().getNImmatriculation());
                         LocalDate today = LocalDate.now();
@@ -293,6 +313,9 @@ public class VehiculeController implements Initializable {
                                 int montantAPayer = (int) (Math.abs(diff)*Sanction.getAmende());
                                 Sanction sanction = new Sanction(Math.abs(diff),contrat.getNContrat(),0, montantAPayer);
                                 sanctionDAO.create(sanction);
+                                dialogContent.setBody(new Text("Une sanction a été crée!"));
+                                dialog.show();
+                                return;
                             }
                         }
                 }
@@ -307,13 +330,27 @@ public class VehiculeController implements Initializable {
             if(group.getSelectedToggle()==ouiRadio)
             {
                 oldValue = true;
-                véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true,Double.parseDouble(prixField.getText()));
+                try{
+                    véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), true,Double.parseDouble(prixField.getText()));
+                }catch(NumberFormatException e)
+                {
+                    dialogContent.setBody(new Text("Veuillez vérifier les champs saisis!"));
+                    dialog.show();
+                    return;
+                }
             } else{
                 oldValue = false;
-                véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false,Double.parseDouble(prixField.getText()));
+                try{
+                    véhicule = new Véhicule(0, marqueField.getText(), typeField.getText(), carburantField.getText(), Double.parseDouble(compteurKmField.getText()), dateField.getValue(), parking.getNParking(), false,Double.parseDouble(prixField.getText()));
+                }catch(NumberFormatException e)
+                {
+                    dialogContent.setBody(new Text("Veuillez vérifier les champs saisis!"));
+                    dialog.show();
+                    return;
+                }
             }
             if (véhiculeDAO.update(véhicule, table.getSelectionModel().getSelectedItem().getNImmatriculation())) {
-                if(oldValue )
+                if(oldValue)
                 {
                     Contrat contrat = contratDAO.findByVehicule(table.getSelectionModel().getSelectedItem().getNImmatriculation());
                     LocalDate today = LocalDate.now();
@@ -325,7 +362,9 @@ public class VehiculeController implements Initializable {
                             int montantAPayer = (int) (Math.abs(diff)*Sanction.getAmende());
                             Sanction sanction = new Sanction(Math.abs(diff),contrat.getNContrat(),0, montantAPayer);
                             sanctionDAO.create(sanction);
-
+                            dialogContent.setBody(new Text("Une sanction a été crée!"));
+                            dialog.show();
+                            return;
                         }
                     }
                 }
@@ -341,6 +380,7 @@ public class VehiculeController implements Initializable {
             return;
         }
     }
+    //Supprimer Véhicule
     public void deleteVehicule() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();

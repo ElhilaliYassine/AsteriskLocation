@@ -24,7 +24,6 @@ public class CreateClientController implements Initializable {
     @FXML
     private StackPane myStackPane;
     ClientDAO clientDAO;
-
     {
         try {
             clientDAO = new ClientDAO(connect);
@@ -37,6 +36,7 @@ public class CreateClientController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
+    //Creation d'un nouveau Client
     @FXML
     public void newClient() {
         String title = "Asterisk Location - Message :";
@@ -65,7 +65,7 @@ public class CreateClientController implements Initializable {
             try {
                 client = new Client(0, nomCompletField.getText(), adresseField.getText(), Integer.parseInt(numGsmField.getText()));
             } catch (NumberFormatException e) {
-                dialogContent.setBody(new Text("Veuillez ajouter le code du pays!"));
+                dialogContent.setBody(new Text("Veuillez vérifier les champs saisis"));
                 dialog.show();
                 return;
             }
@@ -76,6 +76,7 @@ public class CreateClientController implements Initializable {
         return;
     }
 
+    //methode pour vider les inputs
     @FXML
     public void clear() {
         nomCompletField.setText("");

@@ -75,7 +75,7 @@
                         <FontAwesomeIconView fill="#1d71bf" glyphName="FILE" layoutX="14.0" layoutY="28.0" size="14" />
                         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="2.0" layoutX="38.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
                         <StackPane fx:id="myStackUpdate" layoutX="63.0" layoutY="122.0" prefHeight="5.0" prefWidth="241.0" />
-                        <JFXButton layoutX="273.0" layoutY="375.0" onAction="#modifyContrat" prefHeight="26.0" prefWidth="81.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
+                        <JFXButton layoutX="273.0" layoutY="375.0" onAction="#modifyFacture" prefHeight="26.0" prefWidth="81.0" ripplerFill="BLACK" style="-fx-background-color: #00a415;" text="Update" textFill="WHITE">
                             <font>
                                 <Font size="15.0" />
                             </font>
@@ -119,7 +119,7 @@
                         <TableColumn fx:id="col_montantAPayer" prefWidth="183.0" text="Montant à payer" />
                         <TableColumn fx:id="col_idContrat" prefWidth="191.0" text="Id contrat" />
                     </columns></TableView>
-                <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="547.0" onAction="#createContrat" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
+                <JFXButton alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="547.0" onAction="#createFacture" prefHeight="32.0" prefWidth="72.0" ripplerFill="#07c644" style="-fx-background-color: green;" text="Add" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -130,7 +130,7 @@
                 <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="61.0" layoutY="570.0" size="19" />
                 <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" unFocusColor="#074684" />
                 <FontAwesomeIconView fill="#074684" glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
-                <JFXButton alignment="BOTTOM_LEFT" layoutX="201.0" layoutY="547.0" onAction="#deleteContrat" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
+                <JFXButton alignment="BOTTOM_LEFT" layoutX="201.0" layoutY="547.0" onAction="#deleteFacture" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -139,7 +139,7 @@
                     </cursor>
                 </JFXButton>
                 <FontAwesomeIconView fill="WHITE" glyphName="TRASH" layoutX="274.0" layoutY="570.0" size="17" />
-                <JFXButton alignment="BOTTOM_LEFT" layoutX="95.0" layoutY="547.0" onAction="#updateContrat" prefHeight="32.0" prefWidth="97.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Update" textFill="WHITE">
+                <JFXButton alignment="BOTTOM_LEFT" layoutX="95.0" layoutY="547.0" onAction="#updateFacture" prefHeight="32.0" prefWidth="97.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Update" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -148,7 +148,7 @@
                     </cursor>
                 </JFXButton>
                 <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" layoutX="169.0" layoutY="570.0" size="17" />
-                <JFXButton alignment="BOTTOM_LEFT" layoutX="308.0" layoutY="547.0" onAction="#detailContrat" prefHeight="32.0" prefWidth="97.0" style="-fx-background-color: #bfbdbd;" text="Detail" textFill="WHITE">
+                <JFXButton alignment="BOTTOM_LEFT" layoutX="308.0" layoutY="547.0" onAction="#detailFacture" prefHeight="32.0" prefWidth="97.0" style="-fx-background-color: #bfbdbd;" text="Detail" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>

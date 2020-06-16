@@ -1,10 +1,8 @@
 package models.DAO;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Contrat;
-import models.Réservation;
 
 import java.sql.*;
 import java.time.LocalDate;

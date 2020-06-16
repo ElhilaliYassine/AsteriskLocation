@@ -177,6 +177,7 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dashboard();
     }
+    //Afficher total revenue + total de sanction + nombre de reservation
     public void dashboard()
     {
         nbrReservation.setText(String.valueOf(reservationDAO.nombreReservation()));
@@ -188,6 +189,7 @@ public class DashboardController implements Initializable {
         setParkingStatics();
         btnStatics();
     }
+    //Diagramme circulaire véhicule par nombre de fois réservé
     public void setVehciuleStatics()
     {
         ObservableList<Integer> listVehicule = véhiculeDAO.selectMatricule();
@@ -200,6 +202,7 @@ public class DashboardController implements Initializable {
 
         }
     }
+    //Diagramme circulaire reservation par son état
     public void setReservationStatics()
     {
         double annule = 100*((double)reservationDAO.nombreReservationParEtat("annuler")/reservationDAO.nombreReservation());
@@ -212,6 +215,7 @@ public class DashboardController implements Initializable {
         );
 
     }
+    //Diagramme circulaire parking par nombre de place occupées
     public void setParkingStatics()
     {
         ObservableList<Integer> listParking = parkingDAO.selectIdParking();
@@ -222,6 +226,7 @@ public class DashboardController implements Initializable {
             parkingStatics.add(new PieChart.Data(parking.getRue()+"-"+parking.getArrondissement(),stat));
         }
     }
+    //Afficher les statistique véhicule par réservation
     public void btnVehiculeStatics()
     {
         rectangleVehicule.setVisible(true);
@@ -238,6 +243,7 @@ public class DashboardController implements Initializable {
         nbrVehiculeDispo.setText(String.valueOf(véhiculeDAO.nbrVehiculedispo(true)));
         nbrVehiculeNonDispo.setText(String.valueOf(véhiculeDAO.nbrVehiculedispo(false)));
     }
+    //Afficher les statistiques réservation par état
     public void btnReservationStatics()
     {
         rectangleReservation.setVisible(true);
@@ -254,6 +260,7 @@ public class DashboardController implements Initializable {
         nbrReservationValide.setText(String.valueOf(reservationDAO.nombreReservationParEtat("validé")));
         nbrReservationNonValide.setText(String.valueOf(reservationDAO.nombreReservationParEtat("non validé")));
     }
+    //Afficher les statistique de parking
     public void btnPartkingStatics()
     {
         rectangleParking.setVisible(true);
@@ -271,6 +278,7 @@ public class DashboardController implements Initializable {
         pieChartParking.setData(parkingStatics);
 
     }
+    //Afficher la dernière réservation
     private void dataReservation()
     {
         ObservableList<Réservation> lastReservation = reservationDAO.listLastReservation();
@@ -281,6 +289,7 @@ public class DashboardController implements Initializable {
         col_idVehicule.setCellValueFactory(new PropertyValueFactory<>("idVehicule"));
         tableReservation.setItems(lastReservation);
     }
+    //Afficher la dernière facture
     private void dataFacture() {
         ObservableList<Facture> lastFacture = factureDAO.listLastFacture();
         col_numeroFacture.setCellValueFactory(new PropertyValueFactory<>("NFacture"));
@@ -289,6 +298,7 @@ public class DashboardController implements Initializable {
         col_idContrat.setCellValueFactory(new PropertyValueFactory<>("idContrat"));
         tableFacture.setItems(lastFacture);
     }
+    //Afficher les autres statistiques
     public void btnStatics()
     {
         rectangleVehicule.setVisible(false);

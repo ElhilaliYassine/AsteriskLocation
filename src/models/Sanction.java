@@ -6,6 +6,7 @@ public class Sanction {
     private int idContrat;
     private int idSanction;
     private int montantAPayer;
+
     //Constructors
     public Sanction(int nbrJoursRetard, int idContrat, int idSanction, int montantAPayer) {
         this.nbrJoursRetard = nbrJoursRetard;
@@ -13,6 +14,7 @@ public class Sanction {
         this.idSanction=idSanction;
         this.montantAPayer = montantAPayer;
     }
+
     //Getters and Setters
 
     public int getIdSanction() {

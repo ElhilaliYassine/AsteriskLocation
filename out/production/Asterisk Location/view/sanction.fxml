@@ -64,7 +64,7 @@
                 <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="61.0" layoutY="570.0" size="19" visible="false" />
                 <JFXTextField fx:id="filterField" layoutX="35.0" layoutY="119.0" onAction="#search" onMouseClicked="#search" prefHeight="26.0" prefWidth="176.0" promptText="rechercher" unFocusColor="#074684" />
                 <FontAwesomeIconView fill="#074684" glyphName="SEARCH" layoutX="15.0" layoutY="139.0" size="15" />
-                <JFXButton alignment="BOTTOM_LEFT" layoutX="15.0" layoutY="547.0" onAction="#deleteContrat" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
+                <JFXButton alignment="BOTTOM_LEFT" layoutX="15.0" layoutY="547.0" onAction="#deleteSanction" prefHeight="32.0" prefWidth="97.0" ripplerFill="#f8d6d6" style="-fx-background-color: #e73535;" text="Delete" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>

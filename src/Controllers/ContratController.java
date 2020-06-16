@@ -144,10 +144,10 @@ public class ContratController implements Initializable {
         dataContrat();
         etatReservation();
     }
+    //cette fonction permet de rendre les reservations qui ont dépassé la durée de 2 jours du contrat
+    //les rendre "annuler"
     public void etatReservation()
     {
-        //cette fonction permet de rendre les reservations qui ont dépassé la durée de 2 jours du contrat
-        //les rendre "annuler"
         ObservableList<Réservation> list=reservationDAO.listReservation("non validé");
         for(int i=0;i<list.size();i++)
         {
@@ -159,6 +159,7 @@ public class ContratController implements Initializable {
             }
         }
     }
+    //Afficher la base donnée Contrat
     private void dataContrat()
     {
         col_numeroContrat.setCellValueFactory(new PropertyValueFactory<>("NContrat"));
@@ -167,6 +168,7 @@ public class ContratController implements Initializable {
         col_idReservation.setCellValueFactory(new PropertyValueFactory<>("idReservation"));
         table.setItems(list);
     }
+    //Fermer la pane détail
     public void returnDetail() {
         blur.setEffect(null);
         detailPane.setVisible(false);
@@ -174,6 +176,7 @@ public class ContratController implements Initializable {
         list = contratDAO.list();
         dataContrat();
     }
+    //Afficher le détail du contrat sélectionné
     public void detailContrat(){
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -224,6 +227,7 @@ public class ContratController implements Initializable {
             dateEcheance.setText(String.valueOf(contrat.getDateEchéance()));
         }
     }
+    //Afficher la vue creer un contrat
     public void createContrat() throws IOException {
         blur.setEffect(new GaussianBlur(10));
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/createContrat.fxml"));
@@ -231,6 +235,7 @@ public class ContratController implements Initializable {
         rootPane.setVisible(true);
         rootPane.toFront();
     }
+    //Fermer la vue creer contrat
     public void btnReturn() {
         blur.setEffect(null);
         rootPane.setVisible(false);
@@ -238,6 +243,7 @@ public class ContratController implements Initializable {
         list = contratDAO.list();
         dataContrat();
     }
+    //Chercher un contrat
     public void search() {
         FilteredList<Contrat> filteredData = new FilteredList<>(list, p -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -253,10 +259,9 @@ public class ContratController implements Initializable {
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
     }
+    //Afficher updatePane
     public void updateContrat()
     {
-        //rendre le vehicule false en disponibilité pour ne pas eviter le cas de
-        //erreur ( le vehicule n'est pas disponible)
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         JFXButton close = new JFXButton("Close");
@@ -288,6 +293,7 @@ public class ContratController implements Initializable {
             dateEcheanceField.setValue(contrat.getDateEchéance());
         }
     }
+    //fermer updatePane
     public void returnUpdate() {
         blur.setEffect(null);
         updatePane.setVisible(false);
@@ -295,6 +301,7 @@ public class ContratController implements Initializable {
         list = contratDAO.list();
         dataContrat();
     }
+    //Modifier Contrat
     public void modifyContrat()
     {
         String title = "Asterisk Location - Message :";
@@ -328,6 +335,7 @@ public class ContratController implements Initializable {
             }
         }
     }
+    //Supprimer COntrat
     public void deleteContrat() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();

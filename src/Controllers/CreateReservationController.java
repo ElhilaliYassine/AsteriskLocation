@@ -77,6 +77,7 @@ public class CreateReservationController implements Initializable {
         selectVehicule.setItems(listVehicule);
         selectEtat.setItems(listEtat);
     }
+    //Creer une comboBox contenant la états possible d'une réservation
     public ObservableList<String> select() {
         ObservableList<String> listEtat = FXCollections.observableArrayList();
         listEtat.add("validé");
@@ -84,6 +85,7 @@ public class CreateReservationController implements Initializable {
         listEtat.add("annuler");
         return listEtat;
     }
+    //Vider les inputs
     @FXML
     public void clear() {
         selectClient.setItems(listClient);
@@ -93,6 +95,7 @@ public class CreateReservationController implements Initializable {
         dateReservationField.setValue(null);
         dateRetourField.setValue(null);
     }
+    //Creation d'une nouvelle réservation
     @FXML
     public void newReservation() {
         String title = "Asterisk Location - Message :";

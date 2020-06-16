@@ -1,13 +1,8 @@
 package Controllers;
 
 import com.jfoenix.controls.*;
-import com.mysql.jdbc.Connection;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import models.DAO.UtilisateurDAO;
@@ -21,8 +16,6 @@ import static models.DAO.DAO.connect;
 
 public class CreateUserController implements Initializable {
 
-    @FXML
-    private AnchorPane rootPane;
     @FXML
     private JFXTextField usernameField;
 
@@ -56,27 +49,18 @@ public class CreateUserController implements Initializable {
 
     }
 
+    //Creation d'un nouveau utilisateur
     @FXML
     public void nouveauUtilisateur() {
-
         String title = "Asterisk Location - Message :";
-
-
         JFXDialogLayout dialogContent = new JFXDialogLayout();
-
         dialogContent.setHeading(new Text(title));
-
         JFXButton close = new JFXButton("Close");
-
         close.setButtonType(JFXButton.ButtonType.RAISED);
-
         close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
         dialogContent.setActions(close);
-
         JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
         dialog.setStyle("-fx-background-radius : 18");
-
-
         close.setOnAction(e -> {
             dialog.close();
             clear();
@@ -92,14 +76,20 @@ public class CreateUserController implements Initializable {
             dialogContent.setBody(new Text("Utilisateur déjà enregistré"));
         }
         else {
-            Utilisateur user = new Utilisateur(0, usernameField.getText(), adresseField.getText(), Integer.parseInt(telephoneField.getText()), passwordField.getText(), emailField.getText());
-            utilisateurDAO.create(user);
-            dialogContent.setBody(new Text("Utilisateur est enregistré"));
+            try{
+                Utilisateur user = new Utilisateur(0, usernameField.getText(), adresseField.getText(), Integer.parseInt(telephoneField.getText()), passwordField.getText(), emailField.getText());
+                utilisateurDAO.create(user);
+                dialogContent.setBody(new Text("Utilisateur est enregistré"));
+            }catch (NumberFormatException e)
+            {
+                dialogContent.setBody(new Text("Veuillez vérifier les champs saisis"));
+            }
         }
         dialog.show();
         return;
     }
 
+    //methode pour vider les inputs
     @FXML
     public void clear() {
         usernameField.setText("");

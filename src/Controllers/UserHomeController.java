@@ -90,15 +90,18 @@ public class UserHomeController implements Initializable, Window {
         }
 
     }
+    //Fermer l'application
     @FXML
     public void close(){
         Platform.exit();
     }
+    //Minimiser la fenetre
     @FXML
     public void minimize(MouseEvent event){
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
+    //Se déconnecter
     @FXML
     private void logout()
     {
@@ -119,6 +122,7 @@ public class UserHomeController implements Initializable, Window {
     }
 
 
+    //Horloge Heure + Date
     private void initClock() {
 
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
@@ -128,6 +132,7 @@ public class UserHomeController implements Initializable, Window {
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
     }
+    //Afficher le nom d'utilisateur connecté
     private void afficheInfos()
     {
         Utilisateur user = utilisateurDAO.find(LoginController.username.getText());
@@ -135,6 +140,7 @@ public class UserHomeController implements Initializable, Window {
         email.setText(user.getEmail());
     }
 
+    //Style boutton de menu + accés
     @FXML
     private void client() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/client.fxml"));

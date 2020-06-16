@@ -1,6 +1,5 @@
 package models;
 
-import java.util.*;
 
 public class Parking {
     private int NParking;
@@ -8,6 +7,7 @@ public class Parking {
     private String rue;
     private String arrondissement;
     private int nbrPlacesOccupées;
+
     //Constructors
     public Parking(int NParking, int capacité, String rue, String arrondissement,int nbrPlacesOccupées) {
         this.NParking = NParking;
@@ -16,6 +16,7 @@ public class Parking {
         this.arrondissement = arrondissement;
         this.nbrPlacesOccupées = nbrPlacesOccupées;
     }
+
     //Getters and setters
 
     public int getNbrPlacesOccupées() {

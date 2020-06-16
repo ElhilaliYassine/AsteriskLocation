@@ -174,7 +174,7 @@
                </cursor>
             </JFXButton>
             <FontAwesomeIconView fill="WHITE" glyphName="INFO" layoutX="387.0" layoutY="570.0" size="19" />
-            <JFXButton fx:id="btnReservationAnuule" alignment="CENTER" layoutX="198.0" layoutY="163.0" onAction="#reservationAnnule" prefHeight="23.0" prefWidth="153.0" ripplerFill="#e4d2d8" style="-fx-background-color: #e73535;" text="Réservations annulées" textFill="WHITE">
+            <JFXButton fx:id="btnReservationAnuule" alignment="CENTER" buttonType="RAISED" layoutX="198.0" layoutY="163.0" onAction="#reservationAnnule" prefHeight="23.0" prefWidth="153.0" ripplerFill="#e4d2d8" style="-fx-background-color: #e73535;" text="Réservations annulées" textFill="WHITE">
                <font>
                   <Font size="12.0" />
                </font>
@@ -182,7 +182,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton alignment="CENTER" layoutX="358.0" layoutY="163.0" onAction="#reservationNonValide" prefHeight="23.0" prefWidth="176.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Réservations non validées" textFill="WHITE">
+            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="358.0" layoutY="163.0" onAction="#reservationNonValide" prefHeight="23.0" prefWidth="176.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Réservations non validées" textFill="WHITE">
                <font>
                   <Font size="12.0" />
                </font>
@@ -190,7 +190,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton alignment="CENTER" layoutX="542.0" layoutY="163.0" onAction="#reservationValide" prefHeight="23.0" prefWidth="153.0" ripplerFill="#05ff90" style="-fx-background-color: green;" text="Réservations validées" textFill="WHITE">
+            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="542.0" layoutY="163.0" onAction="#reservationValide" prefHeight="23.0" prefWidth="153.0" ripplerFill="#05ff90" style="-fx-background-color: green;" text="Réservations validées" textFill="WHITE">
                <font>
                   <Font size="12.0" />
                </font>
@@ -198,7 +198,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton alignment="CENTER" layoutX="38.0" layoutY="163.0" onAction="#reservationlist" prefHeight="23.0" prefWidth="153.0" ripplerFill="#13a1ee" style="-fx-background-color: #074684;" text="Toutes les Réservation" textFill="WHITE">
+            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="38.0" layoutY="163.0" onAction="#reservationlist" prefHeight="23.0" prefWidth="153.0" ripplerFill="#13a1ee" style="-fx-background-color: #074684;" text="Toutes les Réservation" textFill="WHITE">
                <font>
                   <Font size="12.0" />
                </font>

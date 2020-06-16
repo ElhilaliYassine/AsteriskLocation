@@ -27,7 +27,6 @@ public abstract class DAO<T> {
         try {
             connect = DriverManager.getConnection("jdbc:mysql://" + HOST + ":" + PORT + "/" + DB_NAME, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            //e.printStackTrace();
             System.out.println("connection failed !");
         }
     }

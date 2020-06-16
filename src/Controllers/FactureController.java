@@ -104,7 +104,6 @@ public class FactureController implements Initializable {
     private JFXTextField montantAPayerField;
 
     FactureDAO factureDAO;
-
     {
         try {
             factureDAO = new FactureDAO(FactureDAO.connect);
@@ -112,9 +111,7 @@ public class FactureController implements Initializable {
             System.out.println("Connection Failed");
         }
     }
-
     ContratDAO contratDAO;
-
     {
         try {
             contratDAO = new ContratDAO(ContratDAO.connect);
@@ -122,9 +119,7 @@ public class FactureController implements Initializable {
             System.out.println("Connection Failed");
         }
     }
-
     RéservationDAO reservationDAO;
-
     {
         try {
             reservationDAO = new RéservationDAO(RéservationDAO.connect);
@@ -134,7 +129,6 @@ public class FactureController implements Initializable {
     }
 
     ClientDAO clientDAO;
-
     {
         try {
             clientDAO = new ClientDAO(ClientDAO.connect);
@@ -153,7 +147,6 @@ public class FactureController implements Initializable {
     }
 
     ParkingDAO parkingDAO;
-
     {
         try {
             parkingDAO = new ParkingDAO(ParkingDAO.connect);
@@ -169,6 +162,7 @@ public class FactureController implements Initializable {
         dataFacture();
     }
 
+    //Afficher la base donnée Facture
     private void dataFacture() {
         col_numeroFacture.setCellValueFactory(new PropertyValueFactory<>("NFacture"));
         col_dateFacture.setCellValueFactory(new PropertyValueFactory<>("dateFacture"));
@@ -177,6 +171,7 @@ public class FactureController implements Initializable {
         table.setItems(list);
     }
 
+    //Fermer le pane détail
     public void returnDetail() {
         blur.setEffect(null);
         detailPane.setVisible(false);
@@ -185,7 +180,8 @@ public class FactureController implements Initializable {
         dataFacture();
     }
 
-    public void detailContrat() {
+    //Afficher les détails de la facture sélectionnée
+    public void detailFacture() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         JFXButton close = new JFXButton("Close");
@@ -239,7 +235,8 @@ public class FactureController implements Initializable {
         }
     }
 
-    public void createContrat() throws IOException {
+    //Afficher la vue de création Facture
+    public void createFacture() throws IOException {
         blur.setEffect(new GaussianBlur(10));
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/createFacture.fxml"));
         loadPane.getChildren().setAll(pane);
@@ -247,6 +244,7 @@ public class FactureController implements Initializable {
         rootPane.toFront();
     }
 
+    //Fermer createFacture pane
     public void btnReturn() {
         blur.setEffect(null);
         rootPane.setVisible(false);
@@ -255,6 +253,7 @@ public class FactureController implements Initializable {
         dataFacture();
     }
 
+    //Chercher une facture
     public void search() {
         FilteredList<Facture> filteredData = new FilteredList<>(list, p -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -271,7 +270,8 @@ public class FactureController implements Initializable {
         table.setItems(sortedData);
     }
 
-    public void updateContrat() {
+    //Afficher update pane avec les informations de la facture à modifier
+    public void updateFacture() {
 
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -305,6 +305,7 @@ public class FactureController implements Initializable {
         }
     }
 
+    //Fermer update Pane
     public void returnUpdate() {
         blur.setEffect(null);
         updatePane.setVisible(false);
@@ -313,7 +314,8 @@ public class FactureController implements Initializable {
         dataFacture();
     }
 
-    public void modifyContrat() {
+    //Modifier contrat
+    public void modifyFacture() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         JFXButton close = new JFXButton("Close");
@@ -328,15 +330,23 @@ public class FactureController implements Initializable {
             dialog.close();
         });
         Facture facture = null;
-        facture = new Facture(0, dateFactureField.getValue(), Double.parseDouble(montantAPayerField.getText()), table.getSelectionModel().getSelectedItem().getIdContrat());
-        if (factureDAO.update(facture, table.getSelectionModel().getSelectedItem().getNFacture())) {
-            dialogContent.setBody(new Text("La facture a été modifié!"));
-            dialog.show();
-            return;
+        try{
+            facture = new Facture(0, dateFactureField.getValue(), Double.parseDouble(montantAPayerField.getText()), table.getSelectionModel().getSelectedItem().getIdContrat());
+            if (factureDAO.update(facture, table.getSelectionModel().getSelectedItem().getNFacture())) {
+                dialogContent.setBody(new Text("La facture a été modifié!"));
+            }else{
+                dialogContent.setBody(new Text("La facture n'a pas été modifié!"));
+            }
+        }catch (NumberFormatException e)
+        {
+            dialogContent.setBody(new Text("Veuillez vérifier les champs saisis!"));
         }
+        dialog.show();
+        return;
     }
 
-    public void deleteContrat() {
+    //Supprimer contrat
+    public void deleteFacture() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         JFXButton close = new JFXButton("Close");

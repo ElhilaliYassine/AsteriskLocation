@@ -64,7 +64,6 @@ public class AdminHomeController implements Initializable, Window {
     private Button btnDashboard;
 
     UtilisateurDAO utilisateurDAO;
-
     {
         try {
             utilisateurDAO = new UtilisateurDAO(connect);
@@ -85,16 +84,19 @@ public class AdminHomeController implements Initializable, Window {
 
     }
 
+    //Fermer l'application
     public void close() {
         Platform.exit();
     }
 
+    //Minimiser la fenetre
     public void minimize(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
 
     }
 
+    //Se déconnecter de la session
     @FXML
     private void logout() {
         Stage stage = (Stage) btnClose.getScene().getWindow();
@@ -114,6 +116,7 @@ public class AdminHomeController implements Initializable, Window {
     }
 
 
+    //Horloge Heure + date
     private void initClock() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH : mm : ss");
@@ -123,11 +126,14 @@ public class AdminHomeController implements Initializable, Window {
         clock.play();
     }
 
+    //Afficher les infos de l'utilisateur connecté
     private void afficheInfos() {
         Utilisateur user = utilisateurDAO.find(LoginController.username.getText());
         name.setText(user.getNomComplet());
         email.setText(user.getEmail());
     }
+
+    //Style boutton menu
 
     @FXML
     private void user() throws IOException {

@@ -4,7 +4,6 @@ import Controllers.interfaces.Window;
 import com.jfoenix.controls.*;
 import javafx.animation.*;
 import javafx.application.Platform;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -24,7 +22,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import models.DAO.UtilisateurDAO;
 import models.Utilisateur;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -64,15 +61,12 @@ public class LoginController implements Initializable, Window {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fade();
-        /*loginButton.setOnKeyPressed(e->{
-            if(e.getCode() == KeyCode.ENTER) handleButtonLogin();
-        });*/
     }
 
+    //Splash screen Methode
     public void fade()
     {
         fadePane.setStyle("-fx-background-radius: 14;-fx-background-color: linear-gradient(from 25% 25% to 100% 5%, #074684,#bf316f);");
-        //4f81c7
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(bar.progressProperty(), 0)),
                 new KeyFrame(Duration.seconds(7), e-> {
@@ -90,28 +84,19 @@ public class LoginController implements Initializable, Window {
         timeline.play();
 
     }
+    //Authentification
     @FXML
     private void handleButtonLogin() {
-
-
         String title = "Asterisk Location - Message :";
-
-
         JFXDialogLayout dialogContent = new JFXDialogLayout();
-
         dialogContent.setHeading(new Text(title));
-
         JFXButton close = new JFXButton("Close");
-
         close.setButtonType(JFXButton.ButtonType.RAISED);
-
         close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
         dialogContent.setActions(close);
-
         JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
         dialog.setStyle("-fx-background-radius : 18");
         myStackPane.toFront();
-
         close.setOnAction(e -> dialog.close());
         if (!usernameField.getText().matches("[a-zA-Z0-9_]{4,}") || usernameField.getText() == "") {
             dialogContent.setBody(new Text("Invalid Username !"));
@@ -171,17 +156,20 @@ public class LoginController implements Initializable, Window {
         }
     }
 
-    private int checkLogin(String name) {
-        if (name.equals(passwordField.getText())) {
+    //Vérifier est-ce que le mdp est valide
+    private int checkLogin(String password) {
+        if (password.equals(passwordField.getText())) {
             return 0;
         }
         return 1;
     }
 
+    //Methode qui sert à fermer la fenetre
     public void close() {
         Platform.exit();
     }
 
+    //Méthode qui sert à minimiser la fenetre
     public void minimize(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);

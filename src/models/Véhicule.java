@@ -12,6 +12,7 @@ public class Véhicule {
     private int idParking;
     private boolean disponibilite;
     private double prix;
+
     //Constructors
     public Véhicule(int NImmatriculation, String marque, String type, String carburant, double compteurKm, LocalDate dateMiseEnCirculation, int idParking, boolean disponibilite, double prix) {
         this.NImmatriculation = NImmatriculation;

@@ -189,6 +189,7 @@ public class ReservationController implements Initializable {
         selectVehicule.setItems(listVehicule);
         selectEtat.setItems(listEtat);
     }
+    //Creer une comboBox contenant les differents états d'une réservation
     public ObservableList<String> select() {
         ObservableList<String> listEtat = FXCollections.observableArrayList();
         listEtat.add("validé");
@@ -196,6 +197,7 @@ public class ReservationController implements Initializable {
         listEtat.add("annuler");
         return listEtat;
     }
+    //Afficher la base donnée Réservation
     private void dataReservation()
     {
         col_codeReservation.setCellValueFactory(new PropertyValueFactory<>("codeRéservation"));
@@ -206,6 +208,7 @@ public class ReservationController implements Initializable {
         col_dateReservation.setCellValueFactory(new PropertyValueFactory<>("dateReservation"));
         table.setItems(list);
     }
+    //Fermer la pane détail réservation
     public void returnDetail() {
         blur.setEffect(null);
         detailPane.setVisible(false);
@@ -214,6 +217,7 @@ public class ReservationController implements Initializable {
         dataReservation();
 
     }
+    //Afficher les détails de la réservation sélectionnée
     public void detailReservation(){
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -276,6 +280,7 @@ public class ReservationController implements Initializable {
             }
         }
     }
+    //Ouvrir la vue de la création d'une nouvelle réservation
     public void createReservation() throws IOException {
         blur.setEffect(new GaussianBlur(10));
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/createReservation.fxml"));
@@ -283,6 +288,7 @@ public class ReservationController implements Initializable {
         rootPane.setVisible(true);
         rootPane.toFront();
     }
+    //Fermer la vue Creation d'une réservation
     public void btnReturn() {
         blur.setEffect(null);
         rootPane.setVisible(false);
@@ -290,6 +296,7 @@ public class ReservationController implements Initializable {
         list = reservationDAO.list();
         dataReservation();
     }
+    //Chercher une réservation par son code
     public void search() {
         FilteredList<Réservation> filteredData = new FilteredList<>(list, p -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -305,6 +312,7 @@ public class ReservationController implements Initializable {
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
     }
+    //Table des réservation annuler
     public void reservationAnnule()
     {
         rectangleAnnuler.setVisible(true);
@@ -315,6 +323,7 @@ public class ReservationController implements Initializable {
         dataReservation();
 
     }
+    //Table des réservations validées
     public void reservationValide()
     {
         rectangleValidee.setVisible(true);
@@ -324,6 +333,7 @@ public class ReservationController implements Initializable {
         list = reservationDAO.listReservation("validé");
         dataReservation();
     }
+    //TAble des réservations non validées
     public void reservationNonValide()
     {
         rectangleNonValide.setVisible(true);
@@ -333,6 +343,7 @@ public class ReservationController implements Initializable {
         list = reservationDAO.listReservation("non validé");
         dataReservation();
     }
+    //Table de toutes les réservations
     public void reservationlist()
     {
         rectangleTous.setVisible(true);
@@ -342,10 +353,9 @@ public class ReservationController implements Initializable {
         list = reservationDAO.list();
         dataReservation();
     }
+    //Afficher la pane update afin de modifier la réservation sélectionner
     public void updateReservation()
     {
-        //rendre le vehicule false en disponibilité pour ne pas eviter le cas de
-        //erreur ( le vehicule n'est pas disponible)
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         JFXButton close = new JFXButton("Close");
@@ -385,6 +395,7 @@ public class ReservationController implements Initializable {
         }
 
     }
+    //fermer update pane
     public void returnUpdate() {
         blur.setEffect(null);
         updatePane.setVisible(false);
@@ -392,6 +403,7 @@ public class ReservationController implements Initializable {
         list = reservationDAO.list();
         dataReservation();
     }
+    //Modifier Réservation
     public void modifyReservation()
     {
         String title = "Asterisk Location - Message :";
@@ -458,6 +470,7 @@ public class ReservationController implements Initializable {
             }
         }
     }
+    //Supprimer Réservation
     public void deleteReservation() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();

@@ -1,6 +1,5 @@
 package models.DAO;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Parking;
@@ -8,10 +7,6 @@ import models.Véhicule;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 public class ParkingDAO extends DAO<Parking>{
 
@@ -119,7 +114,6 @@ public class ParkingDAO extends DAO<Parking>{
             {
                 listParkings.add(new Parking(resultSet.getInt("NParking"),resultSet.getInt("capacite"),resultSet.getString("rue"),resultSet.getString("arrondissement"),resultSet.getInt("nbrPlacesOccupees")));
             }
-            //Collections.sort(listParkings, Comparator.comparing(Parking::getPlacesVides).reversed());
             return listParkings;
         }
         catch(SQLException e)

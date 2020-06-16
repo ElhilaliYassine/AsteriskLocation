@@ -10,7 +10,6 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -20,8 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import models.Client;
-import models.DAO.ClientDAO;
 import models.DAO.ParkingDAO;
 import models.Parking;
 import models.Véhicule;
@@ -121,6 +118,7 @@ public class ParkingController implements Initializable {
         dataUser();
 
     }
+    //Afficher la base donée Parking
     private void dataUser() {
 
         for(int i=0;i<list.size();i++)
@@ -139,6 +137,7 @@ public class ParkingController implements Initializable {
         table.setItems(list);
 
     }
+    //Afficher les véhicule dans le parking sélectionner
     private void dataVehicule(int i)
     {
         col_matricule.setCellValueFactory(new PropertyValueFactory<>("NImmatriculation"));
@@ -151,6 +150,7 @@ public class ParkingController implements Initializable {
         ObservableList<Véhicule> vehiculeParking =  parkingDAO.vehiculeParking(i);
         tableVehicule.setItems(vehiculeParking);
     }
+    //Chercher un parking
     public void search() {
         FilteredList<Parking> filteredData = new FilteredList<>(list, p -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -166,6 +166,7 @@ public class ParkingController implements Initializable {
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
     }
+    //Fermer la pane detail parking véhicule
     public void returnDetail() {
         blur.setEffect(null);
         detailPane.setVisible(false);
@@ -173,6 +174,7 @@ public class ParkingController implements Initializable {
         list = parkingDAO.list();
         dataUser();
     }
+    //Afficher la pane détail parking
     public void detailParking(){
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -208,6 +210,7 @@ public class ParkingController implements Initializable {
 
         }
     }
+    //Ouvrir la vue creer Parking
     public void createParking() throws IOException {
         blur.setEffect(new GaussianBlur(10));
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/createParking.fxml"));
@@ -215,12 +218,14 @@ public class ParkingController implements Initializable {
         rootPane.setVisible(true);
         rootPane.toFront();
     }
+    //Fermer creer pane
     public void btnReturn() {
         blur.setEffect(null);
         rootPane.setVisible(false);
         rootPane.toBack();
         dataUser();
     }
+    //Afficher la pane update avec les informations du parking à modifer
     public void updateParking() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -254,12 +259,14 @@ public class ParkingController implements Initializable {
 
         }
     }
+    //Fermer updatePane
     public void returnUpdate() {
         blur.setEffect(null);
         updatePane.setVisible(false);
         updatePane.toBack();
         dataUser();
     }
+    //Modifier le parking en base de donnée
     public void modifyParking() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -274,14 +281,22 @@ public class ParkingController implements Initializable {
         close.setOnAction(e -> {
             dialog.close();
         });
-        Parking parking = new Parking(0,Integer.parseInt(capaciteField.getText()),rueField.getText(),arrondissementField.getText(),0);
+        try{
+            Parking parking = new Parking(0,Integer.parseInt(capaciteField.getText()),rueField.getText(),arrondissementField.getText(),0);
+            if (parkingDAO.update(parking, table.getSelectionModel().getSelectedItem().getNParking())) {
+                dialogContent.setBody(new Text("Le parking a été modifié!"));
+            }else{
+                dialogContent.setBody(new Text("Le parking n'a pas été modifié!"));
+            }
 
-        if (parkingDAO.update(parking, table.getSelectionModel().getSelectedItem().getNParking())) {
-            dialogContent.setBody(new Text("Le parking a été modifié!"));
-            dialog.show();
-            return;
+        }catch (NumberFormatException e)
+        {
+            dialogContent.setBody(new Text("Veuillez vérifier les champs saisis!"));
         }
+        dialog.show();
+        return;
     }
+    //Supprimer Parking
     public void deleteVehicule() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();

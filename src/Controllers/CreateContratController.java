@@ -1,6 +1,5 @@
 package Controllers;
 
-import Util.dateUtil;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
@@ -48,12 +47,14 @@ public class CreateContratController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         selectReservation.setItems(listReservations);
     }
+    //Vider les inputs
     @FXML
     public void clear() {
         selectReservation.setItems(listReservations);
         dateContratField.setValue(null);
         dateEcheanceField.setValue(null);
     }
+    //Ajouter Nouvelle Contrat
     @FXML
     public void newContrat() {
         String title = "Asterisk Location - Message :";

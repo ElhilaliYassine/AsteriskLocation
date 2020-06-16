@@ -18,9 +18,7 @@ import models.Véhicule;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ResourceBundle;
 
 public class CreateFactureController implements Initializable {
@@ -31,7 +29,6 @@ public class CreateFactureController implements Initializable {
     @FXML
     private JFXComboBox<Integer> selectContrat;
     ContratDAO contratDAO;
-
     {
         try {
             contratDAO = new ContratDAO(ContratDAO.connect);
@@ -41,7 +38,6 @@ public class CreateFactureController implements Initializable {
     }
 
     FactureDAO factureDAO;
-
     {
         try {
             factureDAO = new FactureDAO(FactureDAO.connect);
@@ -58,7 +54,6 @@ public class CreateFactureController implements Initializable {
         }
     }
     VéhiculeDAO véhiculeDAO;
-
     {
         try {
             véhiculeDAO = new VéhiculeDAO(VéhiculeDAO.connect);
@@ -75,12 +70,14 @@ public class CreateFactureController implements Initializable {
         selectContrat.setItems(listContrats);
     }
 
+    //Vider Les inputs
     @FXML
     public void clear() {
         selectContrat.setItems(listContrats);
         dateFactureField.setValue(null);
     }
 
+    //Ajouter une nouvelle facture
     @FXML
     public void newFacture() {
         String title = "Asterisk Location - Message :";
@@ -118,8 +115,8 @@ public class CreateFactureController implements Initializable {
         }
     }
 
+    //calculer le nombre de jours le client a reservé le vehicule
     private double getNbrJours(int idContrat) {
-        //calculer le nombre de jours le client a reservé le vehicule
         Contrat contrat = contratDAO.find(idContrat);
         Réservation reservation = reservationDAO.find(contrat.getIdReservation());
         LocalDate dateDepart = reservation.getDateDépart();
@@ -128,6 +125,7 @@ public class CreateFactureController implements Initializable {
         return Math.abs(diff);
     }
 
+    //Calculer le montant à payer prixVehicule * nombre de jours
     private double montantAPayer(int idContrat) {
         Contrat contrat = contratDAO.find(idContrat);
         Réservation reservation = reservationDAO.find(contrat.getIdReservation());

@@ -61,7 +61,6 @@ public class ClientController implements Initializable {
     @FXML
     private Label idClient;
     ClientDAO clientDAO;
-
     {
         try {
             clientDAO = new ClientDAO(ClientDAO.connect);
@@ -77,6 +76,7 @@ public class ClientController implements Initializable {
         DataUser();
     }
 
+    //Afficher la base donnée client
     private void DataUser() {
         col_codeClient.setCellValueFactory(new PropertyValueFactory<>("codeClient"));
         col_nomComplet.setCellValueFactory(new PropertyValueFactory<>("nomComplet"));
@@ -85,6 +85,7 @@ public class ClientController implements Initializable {
         table.setItems(list);
     }
 
+    //Afficher dans loadPane la vue CreationClient
     public void createClient() throws IOException {
         blur.setEffect(new GaussianBlur(10));
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/createClient.fxml"));
@@ -93,6 +94,7 @@ public class ClientController implements Initializable {
         rootPane.toFront();
     }
 
+    //boutton retour de la vue createClient
     public void btnReturn() {
         blur.setEffect(null);
         rootPane.setVisible(false);
@@ -101,6 +103,7 @@ public class ClientController implements Initializable {
         DataUser();
     }
 
+    //Chercher un client
     public void search() {
         FilteredList<Client> filteredData = new FilteredList<>(list, p -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -119,6 +122,7 @@ public class ClientController implements Initializable {
         table.setItems(sortedData);
     }
 
+    //Supprimer Client
     public void deleteClient() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -156,6 +160,7 @@ public class ClientController implements Initializable {
         }
     }
 
+    //Afficher "UpdatePane" pour modifier client
     public void updateClient() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -189,6 +194,7 @@ public class ClientController implements Initializable {
         }
     }
 
+    //Fermer la pane de modifier client
     public void returnUpdate() {
         blur.setEffect(null);
         updatePane.setVisible(false);
@@ -197,6 +203,7 @@ public class ClientController implements Initializable {
         DataUser();
     }
 
+    //Modifier le Client
     public void modifyClient() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -210,9 +217,18 @@ public class ClientController implements Initializable {
         close.setOnAction(e -> {
             dialog.close();
         });
-        Client client = new Client(0, nomCompletField.getText(), adresseField.getText(), Integer.parseInt(numGsmField.getText()));
-        if (clientDAO.update(client, table.getSelectionModel().getSelectedItem().getCodeClient())) {
-            dialogContent.setBody(new Text("Le client a été modifié!"));
+        try{
+            Client client = new Client(0, nomCompletField.getText(), adresseField.getText(), Integer.parseInt(numGsmField.getText()));
+            if (clientDAO.update(client, table.getSelectionModel().getSelectedItem().getCodeClient())) {
+                dialogContent.setBody(new Text("Le client a été modifié!"));
+            }else{
+                dialogContent.setBody(new Text("Le client n'a pas été modifié!"));
+            }
+            dialog.show();
+            return;
+        }catch (NumberFormatException e)
+        {
+            dialogContent.setBody(new Text("Veuillez vérifier les champs saisis!"));
             dialog.show();
             return;
         }

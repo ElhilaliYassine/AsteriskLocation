@@ -17,9 +17,6 @@ import models.Parking;
 
 public class CreateParkingController implements Initializable {
     @FXML
-    private AnchorPane rootPane;
-
-    @FXML
     private JFXTextField capaciteField;
 
     @FXML
@@ -45,6 +42,7 @@ public class CreateParkingController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+    //Vider les inputs
     @FXML
     void clear() {
         capaciteField.setText("");
@@ -52,6 +50,7 @@ public class CreateParkingController implements Initializable {
         arrondissementField.setText("");
     }
 
+    //Creation d'un nouveau parking
     @FXML
     void nouveauParking() {
         String title = "Asterisk Location - Message :";
@@ -76,11 +75,17 @@ public class CreateParkingController implements Initializable {
         if (checker.getNParking() != 0) {
             dialogContent.setBody(new Text("Le parking déjà enregistré!"));
         } else {
-            Parking parking = new Parking(0, Integer.parseInt(capaciteField.getText()), rueField.getText(), arrondissementField.getText(), 0);
-            if(parkingDAO.create(parking))
-                dialogContent.setBody(new Text("Le parking a été enregistré"));
-            else
-                dialogContent.setBody(new Text("Le parking n'a pas été enregistré"));
+            try{
+                Parking parking = new Parking(0, Integer.parseInt(capaciteField.getText()), rueField.getText(), arrondissementField.getText(), 0);
+                if(parkingDAO.create(parking))
+                    dialogContent.setBody(new Text("Le parking a été enregistré"));
+                else
+                    dialogContent.setBody(new Text("Le parking n'a pas été enregistré"));
+
+            }catch (NumberFormatException e)
+            {
+                dialogContent.setBody(new Text("Veuillez vérifier les champs saisis!"));
+            }
         }
         dialog.show();
         return;

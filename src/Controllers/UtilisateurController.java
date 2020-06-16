@@ -1,17 +1,12 @@
 package Controllers;
 
 import com.jfoenix.controls.*;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -102,10 +97,11 @@ public class UtilisateurController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        DataUser();
+        dataUser();
     }
 
-    public void DataUser() {
+    //Afficher le base donée utilisateur
+    public void dataUser() {
         col_codeUtilisateur.setCellValueFactory(new PropertyValueFactory<>("codeUtilisateur"));
         col_nomComplet.setCellValueFactory(new PropertyValueFactory<>("nomComplet"));
         col_password.setCellValueFactory(new PropertyValueFactory<>("password"));
@@ -115,6 +111,7 @@ public class UtilisateurController implements Initializable {
         table.setItems(list);
     }
 
+    //Afficher la vue Creation utilisateur
     @FXML
     public void createUser() throws IOException {
         blur.setEffect(new GaussianBlur(10));
@@ -124,15 +121,17 @@ public class UtilisateurController implements Initializable {
         rootPane.toFront();
     }
 
+    //Fermer la vue creation utilisateur
     @FXML
     public void btnReturn() {
         blur.setEffect(null);
         rootPane.setVisible(false);
         rootPane.toBack();
         list = utilisateurDAO.list();
-        DataUser();
+        dataUser();
     }
 
+    //Chercher un utilisateur
     public void search() {
         FilteredList<Utilisateur> filteredData = new FilteredList<>(list, p -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -156,6 +155,7 @@ public class UtilisateurController implements Initializable {
         table.setItems(sortedData);
     }
 
+    //Supprimer un utilisateur
     public void deleteUser() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -170,7 +170,7 @@ public class UtilisateurController implements Initializable {
             dialog.close();
             blur.setEffect(null);
             list = utilisateurDAO.list();
-            DataUser();
+            dataUser();
         });
         if (table.getSelectionModel().isEmpty()) {
             dialogContent.setBody(new Text("Veuillez selectionner l'utilisateur à supprimer!"));
@@ -192,6 +192,7 @@ public class UtilisateurController implements Initializable {
         }
     }
 
+    //Afficher update pane avec les information d'utitlisateur à modifier
     public void updateUser() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
@@ -206,7 +207,7 @@ public class UtilisateurController implements Initializable {
             dialog.close();
             blur.setEffect(null);
             list = utilisateurDAO.list();
-            DataUser();
+            dataUser();
         });
         if (table.getSelectionModel().isEmpty()) {
             dialogContent.setBody(new Text("Veuillez selectionner l'utilisateur à modifier!"));
@@ -227,41 +228,40 @@ public class UtilisateurController implements Initializable {
         }
     }
 
+    //Fermer update Pane
     public void returnUpdate() {
         blur.setEffect(null);
         updatePane.setVisible(false);
         updatePane.toBack();
         list = utilisateurDAO.list();
-        DataUser();
+        dataUser();
     }
 
+    //Modifier Utilisateur
     public void modifierUtilisateur() {
         String title = "Asterisk Location - Message :";
-
-
         JFXDialogLayout dialogContent = new JFXDialogLayout();
-
         dialogContent.setHeading(new Text(title));
-
         JFXButton close = new JFXButton("Close");
-
         close.setButtonType(JFXButton.ButtonType.RAISED);
-
         close.setStyle("-fx-background-color: #4059a9; -fx-text-fill: #FFF; -fx-background-radius : 18");
         dialogContent.setActions(close);
-
         JFXDialog dialog = new JFXDialog(myStackUpdate, dialogContent, JFXDialog.DialogTransition.BOTTOM);
         dialog.setStyle("-fx-background-radius : 18");
-
-
         close.setOnAction(e-> dialog.close());
 
-        Utilisateur modifuser = new Utilisateur(0, usernameField.getText(), adresseField.getText(), Integer.parseInt(telephoneField.getText()), passwordField.getText(), emailField.getText());
-        if (utilisateurDAO.update(modifuser, table.getSelectionModel().getSelectedItem().getCodeUtilisateur())) {
-            dialogContent.setBody(new Text("l'utilisateur a été modifié !"));
-            dialog.show();
-            return;
+        try{
+            Utilisateur modifuser = new Utilisateur(0, usernameField.getText(), adresseField.getText(), Integer.parseInt(telephoneField.getText()), passwordField.getText(), emailField.getText());
+            if (utilisateurDAO.update(modifuser, table.getSelectionModel().getSelectedItem().getCodeUtilisateur())) {
+                dialogContent.setBody(new Text("l'utilisateur a été modifié !"));
+            }else{
+                dialogContent.setBody(new Text("l'utilisateur n'a pas été modifié !"));
+            }
+        }catch (NumberFormatException e)
+        {
+            dialogContent.setBody(new Text("Veuillez vérifier les champs saisis!"));
         }
-
+        dialog.show();
+        return;
     }
 }

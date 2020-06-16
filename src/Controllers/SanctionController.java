@@ -8,10 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -23,7 +20,6 @@ import javafx.scene.text.Text;
 import models.*;
 import models.DAO.*;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -62,10 +58,11 @@ public class SanctionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dataContrat();
+        dataSanction();
     }
 
-    private void dataContrat() {
+    //Afficher la base donnée Sanction
+    private void dataSanction() {
         col_numeroSanction.setCellValueFactory(new PropertyValueFactory<>("idSanction"));
         col_nbrJoursRetard.setCellValueFactory(new PropertyValueFactory<>("nbrJoursRetard"));
         col_idContrat.setCellValueFactory(new PropertyValueFactory<>("idContrat"));
@@ -73,6 +70,7 @@ public class SanctionController implements Initializable {
         table.setItems(list);
     }
 
+    //Chercher une Sanction
     public void search() {
         FilteredList<Sanction> filteredData = new FilteredList<>(list, p -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -89,7 +87,8 @@ public class SanctionController implements Initializable {
         table.setItems(sortedData);
     }
 
-    public void deleteContrat() {
+    //Supprimer Sanction
+    public void deleteSanction() {
         String title = "Asterisk Location - Message :";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         JFXButton close = new JFXButton("Close");
@@ -104,7 +103,7 @@ public class SanctionController implements Initializable {
             dialog.close();
             blur.setEffect(null);
             list = sanctionDAO.list();
-            dataContrat();
+            dataSanction();
         });
         if (table.getSelectionModel().isEmpty()) {
             dialogContent.setBody(new Text("Veuillez selectionner la sanction à supprimer!"));

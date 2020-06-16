@@ -39,7 +39,7 @@
                   </Pane>
                </children>
             </HBox>
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#052f57" height="76.0" layoutX="29.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="672.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#074684" height="76.0" layoutX="29.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="672.0" />
             <Label layoutX="73.0" layoutY="164.0" text="Revenu total" textFill="WHITE">
                <font>
                   <Font size="15.0" />
@@ -86,7 +86,7 @@
                </font>
             </Label>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#052f57" height="76.0" layoutX="29.0" layoutY="199.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="672.0" />
-            <JFXButton alignment="CENTER" layoutX="535.0" layoutY="218.0" onAction="#btnStatics" prefHeight="23.0" prefWidth="153.0" ripplerFill="#e4d2d8" style="-fx-background-color: #e73535;" text="Autres Statistiques" textFill="WHITE">
+            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="535.0" layoutY="218.0" onAction="#btnStatics" prefHeight="23.0" prefWidth="153.0" ripplerFill="#e4d2d8" style="-fx-background-color: #e73535;" text="Autres Statistiques" textFill="WHITE">
                <font>
                   <Font size="12.0" />
                </font>
@@ -94,7 +94,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton alignment="CENTER" layoutX="377.0" layoutY="218.0" onAction="#btnPartkingStatics" prefHeight="23.0" prefWidth="153.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Statistique parking" textFill="WHITE">
+            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="377.0" layoutY="218.0" onAction="#btnPartkingStatics" prefHeight="23.0" prefWidth="153.0" ripplerFill="#fffa05" style="-fx-background-color: #f2a51a;" text="Statistique parking" textFill="WHITE">
                <font>
                   <Font size="12.0" />
                </font>
@@ -102,7 +102,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton alignment="CENTER" layoutX="195.0" layoutY="218.0" onAction="#btnReservationStatics" prefHeight="23.0" prefWidth="174.0" ripplerFill="#05ff90" style="-fx-background-color: green;" text="Statistique réservations" textFill="WHITE">
+            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="195.0" layoutY="218.0" onAction="#btnReservationStatics" prefHeight="23.0" prefWidth="174.0" ripplerFill="#05ff90" style="-fx-background-color: green;" text="Statistique réservations" textFill="WHITE">
                <font>
                   <Font size="12.0" />
                </font>
@@ -110,7 +110,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton alignment="CENTER" layoutX="36.0" layoutY="218.0" onAction="#btnVehiculeStatics" prefHeight="23.0" prefWidth="153.0" ripplerFill="#13a1ee" style="-fx-background-color: #074684;" text="Statistique véhicules" textFill="WHITE">
+            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="36.0" layoutY="218.0" onAction="#btnVehiculeStatics" prefHeight="23.0" prefWidth="153.0" ripplerFill="#13a1ee" style="-fx-background-color: #074684;" text="Statistique véhicules" textFill="WHITE">
                <font>
                   <Font size="12.0" />
                </font>
@@ -246,34 +246,34 @@
             </AnchorPane>
             <AnchorPane fx:id="statistiquePane" layoutX="29.0" layoutY="255.0" prefHeight="402.0" prefWidth="672.0" visible="false">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="340.0" layoutX="176.0" layoutY="44.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="6.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="340.0" layoutX="177.0" layoutY="44.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="3.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="30.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="672.0" />
-                  <Label layoutX="20.0" layoutY="112.0" text="Nombre de client">
+                  <Label alignment="CENTER" layoutX="7.0" layoutY="125.0" prefHeight="19.0" prefWidth="165.0" text="Nombre de client">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nombreClient" alignment="CENTER" layoutX="20.0" layoutY="82.0" prefHeight="35.0" prefWidth="127.0" text="123456" textFill="#4979e5">
+                  <Label fx:id="nombreClient" alignment="CENTER" layoutX="8.0" layoutY="95.0" prefHeight="35.0" prefWidth="165.0" text="123456" textFill="#4979e5">
                      <font>
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nombreFacture" alignment="CENTER" layoutX="19.0" layoutY="194.0" prefHeight="35.0" prefWidth="127.0" text="123456" textFill="#49e64d">
+                  <Label fx:id="nombreFacture" alignment="CENTER" layoutX="7.0" layoutY="167.0" prefHeight="35.0" prefWidth="165.0" text="123456" textFill="#49e64d">
                      <font>
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nombreSanction" alignment="CENTER" layoutX="22.0" layoutY="298.0" prefHeight="35.0" prefWidth="127.0" text="123456" textFill="#e54949">
+                  <Label fx:id="nombreSanction" alignment="CENTER" layoutX="7.0" layoutY="246.0" prefHeight="35.0" prefWidth="165.0" text="123456" textFill="#e54949">
                      <font>
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Label layoutX="13.0" layoutY="225.0" text="Nombre de facture">
+                  <Label alignment="CENTER" layoutX="7.0" layoutY="198.0" prefHeight="19.0" prefWidth="165.0" text="Nombre de facture">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="9.0" layoutY="330.0" text="Nombre de sanction">
+                  <Label alignment="CENTER" layoutX="7.0" layoutY="278.0" prefHeight="19.0" prefWidth="165.0" text="Nombre de sanction">
                      <font>
                         <Font size="15.0" />
                      </font>

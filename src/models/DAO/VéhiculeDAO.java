@@ -6,8 +6,6 @@ import models.Véhicule;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class VéhiculeDAO extends DAO<Véhicule>{
 
