@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Initial">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jar files/desktop.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jar files/fontawesomefx-commons-9.1.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jar files/fontawesomefx-controls-9.1.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jar files/fontawesomefx-emojione-3.1.1-9.1.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jar files/fontawesomefx-icons525-4.2.0-9.1.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jar files/fontawesomefx-materialdesignfont-2.0.26-9.1.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jar files/jfoenix-9.0.8.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jar files/mysql-connector-java-5.1.48-bin.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jar files/mysql-connector-java-5.1.48.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Initial" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -243,7 +230,7 @@
       <workItem from="1591195940224" duration="14771000" />
       <workItem from="1591215879024" duration="711000" />
       <workItem from="1591270981410" duration="18440000" />
-      <workItem from="1592389643344" duration="3406000" />
+      <workItem from="1592389643344" duration="3535000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <created>1586793573886</created>
